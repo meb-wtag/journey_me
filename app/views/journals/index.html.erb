@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th><%= link_to 'Title', sort: :title %> </th>
+            <th><%= link_to 'Description', sort: :description %> </th>
+            <th><%= link_to 'Updated at', sort: :updated_at %> </th>
+            <th><%= link_to 'ID', sort: :id %> </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @journals.each do |journal| %>
+          <tr>
+            <td><%= journal.title %></td>
+            <td><%= journal.description %></td>
+            <td><%= journal.created_at.to_formatted_s(:short) %></td>
+            <td><%= journal.id %></td>
+            <td>
+              <%= link_to 'Show', journal_path(journal), class: "btn btn-primary"%>
+
+              <%= link_to "Delete", journal_path(journal), class: "btn btn-danger", data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %>
+
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<div>
+  <div>
+    <% if @journals.empty? %>
+      <%= 'You still dont have any Journals' %>
+    <% end %>
+  </div>
+  <a>
+    <%= link_to('Add Journal', new_journal_path,
+            {class:"btn btn-primary"})%> 
+  </a>
+</div>
