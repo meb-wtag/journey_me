@@ -1,6 +1,6 @@
 class Journal < ApplicationRecord
 
-	validates :title, presence: true
-	validates :description, presence: true
-	
+  validates :title, presence: true
+  validates :description, presence: true
+  
 end
