@@ -1,0 +1,52 @@
+<div class= "mt-30">  
+  <h1 style="text-align: center"><%= @journal.title %></h1>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th><%= link_to "Title", sort_e: :title%> </th>
+            <th><%= link_to "Updated at", sort_e: :updated_at %> </th>
+            <th><%= link_to "Created at", sort_e: :created_at %> </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @journal.journal_entries.each do |entry| %>
+          <tr>
+            <td><%= entry.id %></td>
+            <td><%= entry.title %></td>
+            <td><%= entry.updated_at.to_formatted_s(:short) %></td>
+            <td><%= entry.created_at.to_formatted_s(:short) %></td>
+            <td>
+            <%= link_to "Show", journal_journal_entry_path(entry), class: "btn btn-primary"%>
+
+            <%= link_to "Delete", journal_journal_entry_path(entry), class: "btn btn-danger", data: {
+                turbo_method: :delete,
+                turbo_confirm: "Are you sure?"
+            } %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<div>
+  <div>
+    <% if @journal.journal_entries.empty? %>
+      <%= "You still dont have any Entrys to this Journal :)" %>
+    <% end %>
+  </div>
+  <a>
+    <%= link_to('Add Entry', new_journal_journal_entry_path(@journal),
+            {class:"btn btn-primary"})%> 
+  </a>
+</div>
