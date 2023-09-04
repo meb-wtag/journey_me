@@ -23,9 +23,9 @@
             <td><%= entry.updated_at.to_formatted_s(:short) %></td>
             <td><%= entry.created_at.to_formatted_s(:short) %></td>
             <td>
-            <%= link_to "Show", journal_journal_entry_path(entry), class: "btn btn-primary"%>
+            <%= link_to "Show", journal_journal_entry_path(@journal,entry), class: "btn btn-primary"%>
 
-            <%= link_to "Delete", journal_journal_entry_path(entry), class: "btn btn-danger", data: {
+            <%= link_to "Delete", journal_journal_entry_path(@journal,entry), class: "btn btn-danger", data: {
                 turbo_method: :delete,
                 turbo_confirm: "Are you sure?"
             } %>

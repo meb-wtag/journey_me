@@ -1,7 +1,7 @@
 class JournalEntriesController < ApplicationController
 
 	def index
-		@journal_entries = JournalEntry.order(params[:sort])
+		@journal_entries = JournalEntry.all
 	end
 	
 	def new
@@ -21,21 +21,22 @@ class JournalEntriesController < ApplicationController
 	end
 
 	def destroy
-		@journal_entry = JournalEntry.find(params[:journal_id])
-		@journal_entry.destroy
+		@journal = Journal.find(params[:journal_id])
+  	@journal_entry = @journal.journal_entries.find(params[:id])
+  	@journal_entry.destroy
 
 		redirect_to journal_path
 	end
 
 	def show
-		@journal_entry = JournalEntry.find(params[:journal_id])
+		@journal = Journal.find(params[:journal_id])
+		@journal_entry = @journal.journal_entries.find(params[:id])
 	end
 
 	private
 	
 	def journal_entry_params
 		params.require(:journal_entry).permit(:title, 
-			:content,
-			:file)
+																					:content)
 	end
 end
