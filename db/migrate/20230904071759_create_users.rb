@@ -6,14 +6,11 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :last_name
       t.integer :role, default: 2
       t.text :description
-
       t.string :email
       t.integer :mobile
-
       t.string :adress
       t.string :country
-      t.string :city
-      
+      t.string :city  
       t.date :date_of_birth 
       t.date :joining_date
 
