@@ -33,6 +33,14 @@ class JournalEntriesController < ApplicationController
 		@journal_entry = @journal.journal_entries.find(params[:id])
 	end
 
+	def update
+    @journal = Journal.find(params[:journal_id])
+    @journal_entry = @journal.journal_entries.find(params[:id])
+    @journal_entry = @journal_entry.update(journal_entry_params)
+
+    redirect_to journal_path(@journal) 
+  end
+
 	private
 	
 	def journal_entry_params
