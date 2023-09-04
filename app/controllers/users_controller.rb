@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id]) # Replace with your logic to fetch the user record
+    @user = User.find(params[:id]) 
   end
 
   def update
