@@ -16,7 +16,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_04_121544) do
 
   create_table "journal_entries", force: :cascade do |t|
     t.integer "journal_id", null: false
-    t.integer "user_id"
     t.string "title"
     t.text "content"
     t.text "goal"
@@ -31,22 +30,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_04_121544) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.string "first_name"
-    t.string "last_name"
-    t.integer "role", default: 2
-    t.text "description"
-    t.string "email"
-    t.integer "mobile"
-    t.string "adress"
-    t.string "country"
-    t.string "city"
-    t.date "date_of_birth"
-    t.date "joining_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
 end
