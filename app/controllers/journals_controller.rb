@@ -1,7 +1,7 @@
 class JournalsController < ApplicationController
 
   def index
-    @journals = Journal.all
+    @journals = Journal.order(params[:sort])
   end
 
   def new

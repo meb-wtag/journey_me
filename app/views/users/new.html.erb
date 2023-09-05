@@ -4,15 +4,15 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-  <%= f.input :username %>
-  <%= f.input :first_name %>
-  <%= f.input :last_name %>
-  <%= f.input :country %>
-  <%= f.collection_radio_buttons :role, 
-  [['Admin', 0], ['Superuser', 1], ['User', 2]], 
-  :second, :first %>
-  <%= f.input :description %>
-  <%= f.input :date_of_birth%>
+    <%= f.input :username %>
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.input :country %>
+    <%= f.collection_radio_buttons :role, 
+    [['Admin', 0], ['Superuser', 1], ['User', 2]], 
+    :second, :first %>
+    <%= f.input :description %>
+    <%= f.input :date_of_birth%>
   </div>
 
   <div class="btn btn-primary">
@@ -20,8 +20,8 @@
   </div>
 
   <div>
-  <% if @user.save %>
-    <%= "#{h(@user.id)}' created sucessfully." %>
-  <% end %>
-</div>
+    <% if @user.save %>
+      <%= "#{h(@user.id)}' created sucessfully." %>
+    <% end %>
+  </div>
 <% end %>
