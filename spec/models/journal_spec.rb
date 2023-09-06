@@ -1,5 +1,12 @@
- require 'rails_helper'
-
+require 'rails_helper'
 RSpec.describe Journal, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'is not valid without a title' do
+    journal = Journal.new(description: 'Sample description')
+    expect(journal.valid?).to be_falsey
+  end
+
+  it 'is not valid without a description' do
+    journal = Journal.new(title: 'Sample title')
+    expect(journal.valid?).to be_falsey
+  end
 end
