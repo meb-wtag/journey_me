@@ -1,7 +1,7 @@
 require 'rails_helper'
 RSpec.describe UsersController, type: :controller do 	
-	let(:user_1) do
-    FactoryBot.create(:user, id: 1)
+	let!(:user) do
+    FactoryBot.build(:user)
   end
 
 	# describe 'GET #index' do 
@@ -27,40 +27,35 @@ RSpec.describe UsersController, type: :controller do
     end
 	end
 
-	describe 'GET #show' do 
-		it 'displays the requested User to @user' do
-			get :show, params: { id: 1 }
-			expect(assigns :user).to eq journal_1
-    end
-  end
-
-  # describe 'DELETE #destroy' do 
-	# 	it 'deletes the journal' do
-  #     expect {
-  #       delete :destroy, params: { id: 1 }
-  #     }.to change(Journal, :count).by(-1)
+	# describe 'GET #show' do 
+	# 	it 'displays the requested User to @user' do
+	# 		get :show, params: { id: 2 }
+	# 		expect(assigns :user).to eq user
   #   end
 
   #   it 'renders the :show template' do
-  #     delete :destroy, params: { id: 1 }
-  #     expect(response).to redirect_to journals_path
+  #     get :show, params: { id: 3 }
+  #     expect(response).to render_template :show
   #   end
   # end
 
-  #  describe 'POST #create' do 
-  #  	let(:valid_params) do
-  #       FactoryBot.attributes_for(:journal)
-  #     end
-
-	# 	it 'creates a journal with params and saves it' do
-	# 		expect do
-  #       post :create, params: { journal: valid_params }
-  #       end.to change(Journal, :count).by(1)
-  #   end
-
-  #   it 'ridirects to journals_path' do
-  #     post :create, params: { journal: valid_params }
-  #     expect(response).to redirect_to(journals_path)
+  # describe 'DELETE #destroy' do 
+	# 	it 'deletes the user' do
+  #     expect {
+  #       delete :destroy, params: { id: 1 }
+  #     }.to change(User, :count).by(-1)
   #   end
   # end
+
+   describe 'POST #create' do 
+   	let(:valid_params) do
+        FactoryBot.attributes_for(:user)
+      end
+
+		it 'creates a user with params and saves it' do
+			expect do
+        post :create, params: { user: valid_params }
+        end.to change(User, :count).by(1)
+    end
+  end
 end
