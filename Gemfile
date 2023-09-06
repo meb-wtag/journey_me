@@ -16,6 +16,7 @@ gem "bootsnap", require: false
 gem 'bootstrap', '~> 5.3.1'
 gem 'simple_form'
 gem 'country_select'
+gem 'rails-controller-testing'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
@@ -23,6 +24,8 @@ end
 
 group :development do
   gem "web-console"
+  gem 'rspec-rails', '~> 6.0.0'
+  gem 'factory_bot_rails'
 end
 
 group :test do
