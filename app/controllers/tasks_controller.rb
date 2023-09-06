@@ -1,34 +1,33 @@
 class TasksController < ApplicationController
 
   def index
-    @journals = Journal.all
+    @tasks = Task.all
   end
 
   def new
-    @journal = Journal.new
+    @task = Task.new
   end
 
   def create
-    @journal = Journal.new(journal_params)
-    if @journal.save
-      redirect_to journals_path 
+    @task = Task.new(task_params)
+    if @task.save
+      redirect_to tasks_path 
     end
   end
 
   def destroy
-    @journal = Journal.find(params[:id])
-    @journal.destroy
+    @task = Task.find(params[:id])
+    @task.destroy
 
-    redirect_to journals_path
+    redirect_to tasks_path
   end
 
   def show
-    @journal = Journal.find(params[:id])
+    @task = Task.find(params[:id])
   end
 
   private
-  def journal_params
-    params.require(:journal).permit(:title, :description)
+  def task_params
+    params.require(:task).permit(:title, :description)
   end
 end
-x
