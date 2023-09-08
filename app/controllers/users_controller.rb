@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    redirect_to journals_path
   end
 
   def new
@@ -22,7 +23,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id]) 
     @user = User.update(user_params)
-    redirect_to user_path(@user) 
+    redirect_to user_path(@user)
   end
 
   def destroy
