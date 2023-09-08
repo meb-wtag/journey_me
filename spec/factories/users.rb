@@ -4,4 +4,3 @@ FactoryBot.define do
     last_name {'Last'}
   end
 end
-
