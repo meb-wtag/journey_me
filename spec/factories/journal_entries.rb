@@ -6,4 +6,3 @@ FactoryBot.define do
     goal { 'abc' }
   end
 end
-

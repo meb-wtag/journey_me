@@ -2,6 +2,7 @@ class JournalEntriesController < ApplicationController
 
   def index
     @journal_entries = JournalEntry.all
+    redirect_to journals_path
   end
   
   def new
@@ -25,7 +26,7 @@ class JournalEntriesController < ApplicationController
     @journal_entry = @journal.journal_entries.find(params[:id])
     @journal_entry.destroy
 
-    redirect_to journal_path
+    redirect_to journal_path(@journal)
   end
 
   def show
