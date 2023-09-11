@@ -1,15 +1,21 @@
 require 'rails_helper'
 RSpec.describe JournalEntry, type: :model do
 
-  journal_test = Journal.new
+  let(:journal) do
+    FactoryBot.create(:journal)
+  end
 
+  let(:entry) do
+    FactoryBot.build(:journal_entry, title: nil)
+  end
   it 'is not valid without a title' do
-    entry = JournalEntry.new(journal: journal_test, content: 'Sample description')
     expect(entry.valid?).to be_falsey
   end
 
+  let(:entry1) do
+    FactoryBot.build(:journal_entry, content: nil)
+  end
   it 'is not valid without content' do
-    entry = JournalEntry.new(journal: journal_test, title: 'journal_test')
-    expect(entry.valid?).to be_falsey
+    expect(entry1.valid?).to be_falsey
   end
 end
