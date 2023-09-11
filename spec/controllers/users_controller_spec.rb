@@ -65,7 +65,7 @@ RSpec.describe UsersController, type: :controller do
   end
   
   describe 'GET #update' do
-    it 'updates an Entry with params and saves it' do 
+    it 'updates a User with params and saves it' do 
       expect do     
         post :update, params: { id: user.id, user: { first_name: 'Name', last_name: 'Last Name' } }
         user.reload
