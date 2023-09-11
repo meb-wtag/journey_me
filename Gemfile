@@ -17,6 +17,7 @@ gem 'bootstrap', '~> 5.3.1'
 gem 'simple_form'
 gem 'country_select'
 gem 'rails-controller-testing'
+gem 'rails-i18n', '~> 7.0.7'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
@@ -26,6 +27,7 @@ group :development do
   gem "web-console"
   gem 'rspec-rails', '~> 6.0.0'
   gem 'factory_bot_rails'
+  gem 'ffaker'
 end
 
 group :test do
