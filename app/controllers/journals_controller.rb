@@ -30,10 +30,7 @@ class JournalsController < ApplicationController
   end
 
   def show
-    if !@journal = Journal.find(params[:id])
-      flash[:error] = t('journal.message.error.show')
-    else
-    end
+    @journal = Journal.find(params[:id])
   end
 
   private
