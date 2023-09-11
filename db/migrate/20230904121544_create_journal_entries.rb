@@ -8,6 +8,7 @@ class CreateJournalEntries < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end 
+    add_index :journal_entries, :title, unique: true
   end
 
   def down

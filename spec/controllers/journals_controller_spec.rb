@@ -1,8 +1,8 @@
 require 'rails_helper'
 RSpec.describe JournalsController, type: :controller do 	
 	let!(:journal_1) do
-     	FactoryBot.create(:journal)
-   	end
+    FactoryBot.create(:journal)
+  end
 
 	describe 'GET #index' do 
 		let!(:journal_2) do
@@ -59,8 +59,8 @@ RSpec.describe JournalsController, type: :controller do
 
    describe 'POST #create' do 
    	let(:valid_params) do
-        FactoryBot.attributes_for(:journal)
-      end
+      FactoryBot.attributes_for(:journal)
+    end
 
 		it 'creates a journal with params and saves it' do
 			expect do
@@ -68,7 +68,7 @@ RSpec.describe JournalsController, type: :controller do
         end.to change(Journal, :count).by(1)
     end
 
-    it 'ridirects to journals_path' do
+    it 'redirects to journals_path' do
       post :create, params: { journal: valid_params }
       expect(response).to redirect_to(journals_path)
     end

@@ -1,2 +1,9 @@
-journal_dummy = Journal.create(title: "Test", description: "text")
-entry_dummy = JournalEntry.create(journal: journal_dummy, title: "Test", content: "text", goal: "abc")
+5.times do
+  journal_dummy = Journal.create(title: FFaker::Lorem.sentence, description: FFaker::Lorem.sentence)
+  journal_entry_dummy = JournalEntry.create(
+    journal: journal,
+    title: FFaker::Lorem.sentence,
+    content: FFaker::Lorem.sentence,
+    goal: FFaker::Lorem.sentence
+  )
+end

@@ -1,5 +1,4 @@
 require 'rails_helper'
-
 RSpec.describe JournalEntriesController, type: :controller do
   let(:journal) do
     FactoryBot.create(:journal)
@@ -10,8 +9,8 @@ RSpec.describe JournalEntriesController, type: :controller do
   end
 
   let(:valid_params) do
-        FactoryBot.attributes_for(:journal_entry)
-      end
+    FactoryBot.attributes_for(:journal_entry)
+  end
 
   describe 'GET #index' do
     let!(:entry_2) do

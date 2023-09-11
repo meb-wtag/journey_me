@@ -1,5 +1,4 @@
 class JournalsController < ApplicationController
-
   def index
     @journals = Journal.order(params[:sort])
   end
@@ -10,7 +9,7 @@ class JournalsController < ApplicationController
 
   def create
     @journal = Journal.new(journal_params)
-      if @journal.save
+    if @journal.save
       flash[:success] = t('journal.message.success.create')
       redirect_to journals_path
     else

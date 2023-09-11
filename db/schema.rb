@@ -22,6 +22,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_06_112844) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["journal_id"], name: "index_journal_entries_on_journal_id"
+    t.index ["title"], name: "index_journal_entries_on_title", unique: true
   end
 
   create_table "journals", force: :cascade do |t|
@@ -44,8 +45,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_06_112844) do
 
   create_table "users", force: :cascade do |t|
     t.string "username"
-    t.string "first_name"
-    t.string "last_name"
+    t.string "first_name", null: false
+    t.string "last_name", null: false
     t.integer "role", default: 2
     t.text "description"
     t.string "email"
