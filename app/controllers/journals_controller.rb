@@ -10,20 +10,31 @@ class JournalsController < ApplicationController
 
   def create
     @journal = Journal.new(journal_params)
-    if @journal.save
-      redirect_to journals_path 
+      if @journal.save
+      flash[:success] = t('journal.message.success.create')
+      redirect_to journals_path
+    else
+      flash[:error] = t('journal.message.error.create')
+      redirect_to journals_path
     end
   end
 
   def destroy
     @journal = Journal.find(params[:id])
-    @journal.destroy
-
-    redirect_to journals_path
+     if @journal.destroy
+      flash[:success] = t('journal.message.success.delete')
+      redirect_to journals_path
+    else
+      flash[:error] = t('journal.message.error.delete')
+      redirect_to journals_path
+    end
   end
 
   def show
-    @journal = Journal.find(params[:id])
+    if !@journal = Journal.find(params[:id])
+      flash[:error] = t('journal.message.error.show')
+    else
+    end
   end
 
   private

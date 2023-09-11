@@ -9,9 +9,9 @@
         <thead class="thead-dark">
           <tr>
             <th scope="col">ID</th>
-            <th><%= link_to "Title", sort: :title%> </th>
-            <th><%= link_to "Updated at", sort: :updated_at %> </th>
-            <th><%= link_to "Created at", sort: :created_at %> </th>
+            <th><%= link_to t('entry.table.title'), sort: :title %> </th>
+            <th><%= link_to t('entry.table.updated_at'), sort: :updated_at %> </th>
+            <th><%= link_to t('entry.table.created_at'), sort: :created_at %> </th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -23,11 +23,11 @@
             <td><%= entry.updated_at.to_formatted_s(:short) %></td>
             <td><%= entry.created_at.to_formatted_s(:short) %></td>
             <td>
-            <%= link_to "Show", journal_journal_entry_path(@journal,entry), class: "btn btn-primary"%>
+            <%= link_to t('entry.action.show'), journal_journal_entry_path(@journal,entry), class: "btn btn-primary"%>
 
-            <%= link_to "Delete", journal_journal_entry_path(@journal,entry), class: "btn btn-danger", data: {
+            <%= link_to t('entry.action.delete'), journal_journal_entry_path(@journal,entry), class: "btn btn-danger", data: {
                 turbo_method: :delete,
-                turbo_confirm: "Are you sure?"
+                turbo_confirm: t('entry.message.confirm')
             } %>
             </td>
           </tr>
@@ -42,11 +42,11 @@
 <div>
   <div>
     <% if @journal.journal_entries.empty? %>
-      <%= "You still dont have any Entrys to this Journal :)" %>
+      <%= t('entry.message.no_entry') %>
     <% end %>
   </div>
   <a>
-    <%= link_to('Add Entry', new_journal_journal_entry_path(@journal),
+    <%= link_to(t('entry.action.add'), new_journal_journal_entry_path(@journal),
             {class:"btn btn-primary"})%> 
   </a>
 </div>

@@ -9,19 +9,23 @@ RSpec.describe JournalEntriesController, type: :controller do
     FactoryBot.create(:journal_entry, journal: journal)
   end
 
+  let(:valid_params) do
+        FactoryBot.attributes_for(:journal_entry)
+      end
+
   describe 'GET #index' do
     let!(:entry_2) do
       FactoryBot.create(:journal_entry, journal: journal, title: 'Test2', content: 'abc', goal: 'abc')
     end
 
     it 'populates an array of all journal entries' do
-      get :index , params: { journal_id: journal.id }
+      get :index, params: { journal_id: journal.id, journal_entry: valid_params }
       expect(assigns(:journal_entries)).to match_array [entry, entry_2]
     end
 
     it 'redirects to the journals page' do
-      get :index , params: { journal_id: journal.id }
-      expect(response).to redirect_to journals_path 
+      get :index, params: { journal_id: journal.id, journal_entry: valid_params }
+      expect(response).to redirect_to journal_path(journal) 
     end
   end
 
@@ -38,9 +42,6 @@ RSpec.describe JournalEntriesController, type: :controller do
   end
 
   describe 'POST #create' do 
-    let(:valid_params) do
-        FactoryBot.attributes_for(:journal_entry)
-      end
 
     it 'creates an Entry with params and saves it' do
       expect do

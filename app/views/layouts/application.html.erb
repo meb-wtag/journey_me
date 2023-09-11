@@ -14,7 +14,16 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+<body>
+  <div class="container">
+    <!-- Display flash messages -->
+    <% flash.each do |type, message| %>
+      <div class="alert alert-<%= type %> text-center">
+        <%= message %>
+      </div>
+    <% end %>
+
     <%= yield %>
-  </body>
+  </div>
+</body>
 </html>

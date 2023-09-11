@@ -1,8 +1,9 @@
 class JournalEntriesController < ApplicationController
 
   def index
+    @journal = Journal.find(params[:journal_id])
     @journal_entries = JournalEntry.all
-    redirect_to journals_path
+    redirect_to journal_path(@journal)
   end
   
   def new
@@ -15,8 +16,10 @@ class JournalEntriesController < ApplicationController
     @journal_entry = @journal.journal_entries.new(journal_entry_params)
 
     if @journal_entry.save
-      redirect_to journal_path(@journal), notice: 'Journal entry was successfully created.'
+      flash[:success] = t('entry.message.success.create')
+      redirect_to journal_path(@journal)
     else
+      flash[:error] = t('entry.message.error.create')
       render :new
     end
   end
@@ -24,9 +27,13 @@ class JournalEntriesController < ApplicationController
   def destroy
     @journal = Journal.find(params[:journal_id])
     @journal_entry = @journal.journal_entries.find(params[:id])
-    @journal_entry.destroy
-
-    redirect_to journal_path(@journal)
+    if @journal_entry.destroy
+      flash[:success] = t('entry.message.success.delete')
+      redirect_to journal_path(@journal)
+    else
+      flash[:error] = t('entry.message.error.delete')
+      redirect_to journal_path(@journal)
+    end
   end
 
   def show
@@ -37,12 +44,17 @@ class JournalEntriesController < ApplicationController
   def update
     @journal = Journal.find(params[:journal_id])
     @journal_entry = @journal.journal_entries.find(params[:id])
-    @journal_entry = @journal_entry.update(journal_entry_params)
-
-    redirect_to journal_path(@journal) 
+    if @journal_entry.update(journal_entry_params)
+      flash[:success] = t('entry.message.success.update')
+      redirect_to journal_path(@journal)
+    else
+      flash[:error] = t('entry.message.error.update')
+      redirect_to journal_path(@journal) 
+    end
   end
 
   private
+  
   def journal_entry_params
     params.require(:journal_entry).permit(:title, 
                                           :content)

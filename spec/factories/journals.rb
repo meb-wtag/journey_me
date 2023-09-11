@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :journal do
-    title { 'Test' }
-    description { 'abc' }
+    title { FFaker::Lorem.sentence }
+    description { FFaker::Lorem.sentence }
   end
 end

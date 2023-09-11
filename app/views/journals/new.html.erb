@@ -11,10 +11,4 @@
   <div class="btn btn-primary">
     <%= f.button :submit, {class: "form-check"} %>
   </div>
-
-  <div>
-  <% if @journal.save %>
-    <%= "#{h(@journal.title)}' created sucessfully." %>
-  <% end %>
-</div>
 <% end %>

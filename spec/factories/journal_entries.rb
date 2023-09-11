@@ -1,8 +1,10 @@
+require 'ffaker'
+
 FactoryBot.define do
   factory :journal_entry do
-    journal_id {1}
-    title { 'Test' }
-    content { 'abc' }
-    goal { 'abc' }
+    journal
+    title { FFaker::Lorem.sentence }
+    content { FFaker::Lorem.sentence }
+    goal { FFaker::Lorem.sentence }
   end
 end

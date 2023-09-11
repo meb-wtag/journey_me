@@ -1,7 +1,7 @@
 require 'rails_helper'
 RSpec.describe JournalsController, type: :controller do 	
 	let!(:journal_1) do
-     	FactoryBot.create(:journal,id: 1)
+     	FactoryBot.create(:journal)
    	end
 
 	describe 'GET #index' do 
@@ -34,12 +34,12 @@ RSpec.describe JournalsController, type: :controller do
 
 	describe 'GET #show' do 
 		it 'displays the requested Journal to @journal' do
-			get :show, params: { id: 1 }
+			get :show, params: { id: journal_1.id }
 			expect(assigns :journal).to eq journal_1
     end
 
     it 'renders the :show template' do
-      get :show, params: { id: 1 }
+      get :show, params: { id: journal_1.id }
       expect(response).to render_template :show
     end
   end
@@ -47,12 +47,12 @@ RSpec.describe JournalsController, type: :controller do
   describe 'DELETE #destroy' do 
 		it 'deletes the journal' do
       expect {
-        delete :destroy, params: { id: 1 }
+        delete :destroy, params: { id: journal_1.id }
       }.to change(Journal, :count).by(-1)
     end
 
     it 'renders the :show template' do
-      delete :destroy, params: { id: 1 }
+      delete :destroy, params: { id: journal_1.id }
       expect(response).to redirect_to journals_path
     end
   end
