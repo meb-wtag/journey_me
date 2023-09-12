@@ -41,8 +41,8 @@ RSpec.describe JournalsController, type: :controller do
 
   describe 'DELETE #destroy' do 
 		it 'deletes the journal' do
-        delete :destroy, params: { id: journal.id }
-        expect { journal.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      delete :destroy, params: { id: journal.id }
+      expect { journal.reload }.to raise_error(ActiveRecord::RecordNotFound)
     end
 
     it 'renders the :show template' do
