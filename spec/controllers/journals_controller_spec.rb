@@ -1,17 +1,12 @@
 require 'rails_helper'
 RSpec.describe JournalsController, type: :controller do 	
-	let!(:journal_1) do
-    FactoryBot.create(:journal)
-  end
-
+  let(:journal) { FactoryBot.create(:journal) }
 	describe 'GET #index' do 
-		let!(:journal_2) do
-     	FactoryBot.create(:journal, title: 'Test2', description: 'abc' )
-   	end
+		let(:journal2) { FactoryBot.create(:journal) }
 
    	it 'populates an array of all Journals' do
 			get :index
-    	expect(assigns(:journals)).to match_array [journal_1, journal_2]
+    	expect(assigns(:journals)).to match_array [journal, journal2]
     end
 
    	it 'renders the :index template' do
@@ -34,33 +29,30 @@ RSpec.describe JournalsController, type: :controller do
 
 	describe 'GET #show' do 
 		it 'displays the requested Journal to @journal' do
-			get :show, params: { id: journal_1.id }
-			expect(assigns :journal).to eq journal_1
+			get :show, params: { id: journal.id }
+			expect(assigns :journal).to eq journal
     end
 
     it 'renders the :show template' do
-      get :show, params: { id: journal_1.id }
+      get :show, params: { id: journal.id }
       expect(response).to render_template :show
     end
   end
 
   describe 'DELETE #destroy' do 
 		it 'deletes the journal' do
-      expect {
-        delete :destroy, params: { id: journal_1.id }
-      }.to change(Journal, :count).by(-1)
+        delete :destroy, params: { id: journal.id }
+        expect { journal.reload }.to raise_error(ActiveRecord::RecordNotFound)
     end
 
     it 'renders the :show template' do
-      delete :destroy, params: { id: journal_1.id }
+      delete :destroy, params: { id: journal.id }
       expect(response).to redirect_to journals_path
     end
   end
 
-   describe 'POST #create' do 
-   	let(:valid_params) do
-      FactoryBot.attributes_for(:journal)
-    end
+  describe 'POST #create' do 
+    let(:valid_params) { FactoryBot.attributes_for(:journal) }
 
 		it 'creates a journal with params and saves it' do
 			expect do

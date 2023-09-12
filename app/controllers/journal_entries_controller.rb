@@ -1,11 +1,13 @@
 class JournalEntriesController < ApplicationController
   before_action :set_journal
+  before_action :set_entry, only: %i(show destroy update)
 
   def set_journal
-    if @journal = Journal.find(params[:journal_id])
-    else ActiveRecord::RecordNotFound
-      flash[:error] = t('entry.message.error.show')
-    end
+    @journal = Journal.find(params[:journal_id])
+  end
+
+  def set_entry
+    @journal_entry = @journal.journal_entries.find(params[:id])
   end
 
   def index
@@ -18,9 +20,7 @@ class JournalEntriesController < ApplicationController
   end
 
   def create
-    @journal = Journal.find(params[:journal_id])
     @journal_entry = @journal.journal_entries.new(journal_entry_params)
-
     if @journal_entry.save
       flash[:success] = t('entry.message.success.create')
       redirect_to journal_path(@journal)
@@ -31,29 +31,23 @@ class JournalEntriesController < ApplicationController
   end
 
   def destroy
-    @journal_entry = @journal.journal_entries.find(params[:id])
     if @journal_entry.destroy
       flash[:success] = t('entry.message.success.delete')
-      redirect_to journal_path(@journal)
     else
       flash[:error] = t('entry.message.error.delete')
-      redirect_to journal_path(@journal)
     end
+    redirect_to journal_path(@journal)
   end
 
-  def show
-    @journal_entry = @journal.journal_entries.find(params[:id])
-  end
+  def show;end
 
   def update
-    @journal_entry = @journal.journal_entries.find(params[:id])
     if @journal_entry.update(journal_entry_params)
       flash[:success] = t('entry.message.success.update')
-      redirect_to journal_path(@journal)
     else
       flash[:error] = t('entry.message.error.update')
-      redirect_to journal_path(@journal) 
     end
+    redirect_to journal_path(@journal)
   end
 
   private

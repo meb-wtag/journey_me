@@ -1,25 +1,14 @@
 require 'rails_helper'
 RSpec.describe JournalEntriesController, type: :controller do
-  let(:journal) do
-    FactoryBot.create(:journal)
-  end
-
-  let(:entry) do
-    FactoryBot.create(:journal_entry, journal: journal)
-  end
-
-  let(:valid_params) do
-    FactoryBot.attributes_for(:journal_entry)
-  end
+  let(:journal) { FactoryBot.create(:journal) }
+  let(:entry) { FactoryBot.create(:journal_entry, journal: journal) }
+  let(:valid_params) { FactoryBot.attributes_for(:journal_entry) }
 
   describe 'GET #index' do
-    let!(:entry_2) do
-      FactoryBot.create(:journal_entry, journal: journal, title: 'Test2', content: 'abc', goal: 'abc')
-    end
-
+    let(:entry2) { FactoryBot.create(:journal_entry, journal: journal) }
     it 'populates an array of all journal entries' do
       get :index, params: { journal_id: journal.id, journal_entry: valid_params }
-      expect(assigns(:journal_entries)).to match_array [entry, entry_2]
+      expect(assigns(:journal_entries)).to match_array [entry, entry2]
     end
 
     it 'redirects to the journals page' do
@@ -62,20 +51,15 @@ RSpec.describe JournalEntriesController, type: :controller do
   end
 
   describe 'POST #update' do
-
-  let(:entry3) do
-    FactoryBot.create(:journal_entry, journal: journal)
-  end
-  
-  it 'updates an Entry with params and saves it' do
-    expect do     
-      post :update, params: { journal_id: journal.id, id: entry3.id, journal_entry: { title: 'New Title', content: 'New Content' } }
-      entry3.reload
-      end.to change{entry3.title}.to 'New Title'
+    it 'updates an Entry with params and saves it' do
+      expect do     
+        post :update, params: { journal_id: journal.id, id: entry.id, journal_entry: { title: 'New Title', content: 'New Content' } }
+        entry.reload
+      end.to change{entry.title}.to 'New Title'
     end
   end
 
-    describe 'DELETE #destroy' do 
+  describe 'DELETE #destroy' do 
     it 'deletes the journal' do
         delete :destroy, params: { journal_id: journal.id, id: entry.id }
         expect { entry.reload }.to raise_error(ActiveRecord::RecordNotFound)
