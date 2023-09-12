@@ -10,52 +10,52 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_230_906_112_844) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_06_112844) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'journal_entries', force: :cascade do |t|
-    t.integer 'journal_id', null: false
-    t.string 'title', null: false
-    t.text 'content', null: false
-    t.text 'goal'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['journal_id'], name: 'index_journal_entries_on_journal_id'
+  create_table "journal_entries", force: :cascade do |t|
+    t.integer "journal_id", null: false
+    t.string "title", null: false
+    t.text "content", null: false
+    t.text "goal"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["journal_id"], name: "index_journal_entries_on_journal_id"
   end
 
-  create_table 'journals', force: :cascade do |t|
-    t.string 'title', null: false
-    t.text 'description', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['title'], name: 'index_journals_on_title', unique: true
+  create_table "journals", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'tasks', force: :cascade do |t|
-    t.string 'title'
-    t.text 'description'
-    t.date 'deadline'
-    t.integer 'importance'
-    t.integer 'status'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "tasks", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.date "deadline"
+    t.integer "importance"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'username'
-    t.string 'first_name', null: false
-    t.string 'last_name', null: false
-    t.integer 'role', default: 2
-    t.text 'description'
-    t.string 'email'
-    t.integer 'mobile'
-    t.string 'adress'
-    t.string 'country'
-    t.string 'city'
-    t.date 'date_of_birth'
-    t.date 'joining_date'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.integer "role", default: 2
+    t.text "description"
+    t.string "email"
+    t.integer "mobile"
+    t.string "adress"
+    t.string "country"
+    t.string "city"
+    t.date "date_of_birth"
+    t.date "joining_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
+
 end

@@ -1,14 +1,6 @@
 class JournalEntriesController < ApplicationController
-  before_action :find_journal, only: %i[show destroy update]
+  before_action :find_journal, only: %i[new create index show destroy update]
   before_action :find_entry, only: %i[show destroy update]
-
-  def find_journal
-    @journal = Journal.find(params[:journal_id])
-  end
-
-  def find_entry
-    @journal_entry = @journal.journal_entries.find(params[:id])
-  end
 
   def index
     @journal_entries = JournalEntry.all
@@ -51,6 +43,14 @@ class JournalEntriesController < ApplicationController
   end
 
   private
+
+  def find_journal
+    @journal = Journal.find(params[:journal_id])
+  end
+
+  def find_entry
+    @journal_entry = @journal.journal_entries.find(params[:id])
+  end
 
   def journal_entry_params
     params.require(:journal_entry).permit(:title,
