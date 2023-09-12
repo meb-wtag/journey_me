@@ -1,12 +1,12 @@
 class JournalEntriesController < ApplicationController
-  before_action :set_journal
-  before_action :set_entry, only: %i(show destroy update)
+  before_action :find_journal, only: %i[show destroy update]
+  before_action :find_entry, only: %i[show destroy update]
 
-  def set_journal
+  def find_journal
     @journal = Journal.find(params[:journal_id])
   end
 
-  def set_entry
+  def find_entry
     @journal_entry = @journal.journal_entries.find(params[:id])
   end
 
@@ -14,7 +14,7 @@ class JournalEntriesController < ApplicationController
     @journal_entries = JournalEntry.all
     redirect_to journal_path(@journal)
   end
-  
+
   def new
     @journal_entry = @journal.journal_entries.new
   end
@@ -39,7 +39,7 @@ class JournalEntriesController < ApplicationController
     redirect_to journal_path(@journal)
   end
 
-  def show;end
+  def show; end
 
   def update
     if @journal_entry.update(journal_entry_params)
@@ -51,9 +51,9 @@ class JournalEntriesController < ApplicationController
   end
 
   private
-  
+
   def journal_entry_params
-    params.require(:journal_entry).permit(:title, 
+    params.require(:journal_entry).permit(:title,
                                           :content)
   end
 end

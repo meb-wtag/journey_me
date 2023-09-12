@@ -5,25 +5,26 @@ ruby '3.2.2'
 
 gem 'bootsnap', require: false
 gem 'bootstrap', '~> 5.3.1'
+gem 'i18n-tasks', '~> 1.0.12'
 gem 'importmap-rails'
 gem 'jbuilder'
 gem 'pg'
 gem 'puma', '~> 5.0'
 gem 'rails', '~> 7.0.7'
-gem 'rails-i18n', '~> 7.0.7'
-gem 'i18n-tasks', '~> 1.0.12'
 gem 'rails-controller-testing'
-gem 'sprockets-rails'
+gem 'rails-i18n', '~> 7.0.7'
+gem 'rubocop', require: false
 gem 'simple_form'
+gem 'sprockets-rails'
 gem 'stimulus-rails'
-gem 'tzinfo-data', platforms: %i[ mingw mswin x64_mingw jruby ]
 gem 'turbo-rails'
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
-  gem 'debug', platforms: %i[ mri mingw x64_mingw ]
-  gem 'rspec-rails', '~> 6.0.0'
+  gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
   gem 'ffaker'
+  gem 'rspec-rails', '~> 6.0.0'
 end
 
 group :development do
@@ -33,6 +34,6 @@ end
 group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
-  gem 'webdrivers'
   gem 'shoulda-matchers', '~> 5.0'
+  gem 'webdrivers'
 end

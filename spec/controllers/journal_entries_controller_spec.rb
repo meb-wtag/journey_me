@@ -1,11 +1,11 @@
 require 'rails_helper'
 RSpec.describe JournalEntriesController, type: :controller do
   let(:journal) { FactoryBot.create(:journal) }
-  let(:entry) { FactoryBot.create(:journal_entry, journal: journal) }
+  let(:entry) { FactoryBot.create(:journal_entry, journal:) }
   let(:valid_params) { FactoryBot.attributes_for(:journal_entry) }
 
   describe 'GET #index' do
-    let(:entry2) { FactoryBot.create(:journal_entry, journal: journal) }
+    let(:entry2) { FactoryBot.create(:journal_entry, journal:) }
     it 'populates an array of all journal entries' do
       get :index, params: { journal_id: journal.id, journal_entry: valid_params }
       expect(assigns(:journal_entries)).to match_array [entry, entry2]
@@ -13,11 +13,11 @@ RSpec.describe JournalEntriesController, type: :controller do
 
     it 'redirects to the journals page' do
       get :index, params: { journal_id: journal.id, journal_entry: valid_params }
-      expect(response).to redirect_to journal_path(journal) 
+      expect(response).to redirect_to journal_path(journal)
     end
   end
 
-  describe 'GET #new' do 
+  describe 'GET #new' do
     it 'assigns a new Entry to @journal_entry' do
       get :new, params: { journal_id: journal.id }
       expect(assigns(:journal_entry)).to be_a_new(JournalEntry)
@@ -29,12 +29,11 @@ RSpec.describe JournalEntriesController, type: :controller do
     end
   end
 
-  describe 'POST #create' do 
-
+  describe 'POST #create' do
     it 'creates an Entry with params and saves it' do
       expect do
         post :create, params: { journal_id: journal.id, journal_entry: valid_params }
-        end.to change(JournalEntry, :count).by(1)
+      end.to change(JournalEntry, :count).by(1)
     end
 
     it 'redirects to journals_path' do
@@ -43,7 +42,7 @@ RSpec.describe JournalEntriesController, type: :controller do
     end
   end
 
-  describe 'GET #show' do 
+  describe 'GET #show' do
     it 'renders the :show template' do
       get :show, params: { journal_id: journal.id, id: entry.id }
       expect(response).to render_template :show
@@ -52,17 +51,19 @@ RSpec.describe JournalEntriesController, type: :controller do
 
   describe 'POST #update' do
     it 'updates an Entry with params and saves it' do
-      expect do     
-        post :update, params: { journal_id: journal.id, id: entry.id, journal_entry: { title: 'New Title', content: 'New Content' } }
+      expect do
+        post :update,
+             params: { journal_id: journal.id, id: entry.id,
+                       journal_entry: { title: 'New Title', content: 'New Content' } }
         entry.reload
-      end.to change{entry.title}.to 'New Title'
+      end.to change { entry.title }.to 'New Title'
     end
   end
 
-  describe 'DELETE #destroy' do 
+  describe 'DELETE #destroy' do
     it 'deletes the journal' do
-        delete :destroy, params: { journal_id: journal.id, id: entry.id }
-        expect { entry.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      delete :destroy, params: { journal_id: journal.id, id: entry.id }
+      expect { entry.reload }.to raise_error(ActiveRecord::RecordNotFound)
     end
 
     it 'renders the :show template' do

@@ -7,7 +7,7 @@ class CreateJournalEntries < ActiveRecord::Migration[7.0]
       t.text :goal
 
       t.timestamps
-    end 
+    end
   end
 
   def down
