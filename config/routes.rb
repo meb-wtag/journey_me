@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  
   root 'journals#index'
-  resources :journals
-  resources :users
+  resources :journals do
+    resources :journal_entries do
+    end
+  end
 end

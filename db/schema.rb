@@ -24,29 +24,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_04_121544) do
     t.index ["journal_id"], name: "index_journal_entries_on_journal_id"
   end
 
-  create_table "tasks", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
-    t.date "deadline"
-    t.integer "importance"
-    t.integer "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.string "first_name", null: false
-    t.string "last_name", null: false
-    t.integer "role", default: 2
-    t.text "description"
-    t.string "email"
-    t.integer "mobile"
-    t.string "adress"
-    t.string "country"
-    t.string "city"
-    t.date "date_of_birth"
-    t.date "joining_date"
+  create_table "journals", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "description", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

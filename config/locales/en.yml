@@ -1,67 +1,42 @@
+---
 en:
-  journal:
-    table:
-      title: Title
-      description: Description
-      updated_at: Updated at
-      id: ID
-    action:
-      add: Add Journal
-      delete: Delete 
-      show: Show
-    message:
-      confirm: Are you sure?
-      no_journal: You still dont have any Journals
-      error:
-        create: There was an error creating the Journal
-        delete: There was an error deleting the Journal
-        update: There was an error updating the Journal
-        show: Journal can not be found
-      success:
-        create: Journal was created successfully
-        delete: Journal was deleted successfully
-        update: Journal was updated successfully
   entry:
-    table:
-      title: Title
-      description: Description
-      updated_at: Updated at
-      created_at: Created at
-      id: ID
     action:
       add: Add Entry
-      delete: Delete 
+      delete: Delete
       show: Show
     message:
       confirm: Are you sure?
-      no_entry: You still dont have any Journal Entrys
       error:
         create: There was an error creating the Entry
         delete: There was an error deleting the Entry
-        update: There was an error updating the Entry
         show: Entry can not be found
+        update: There was an error updating the Entry
+      no_entry: You still dont have any Journal Entrys
       success:
         create: Entry was created successfully
         delete: Entry was deleted successfully
         update: Entry was updated successfully
-  user:
     table:
-      title: Title
-      description: Description
-      updated_at: Updated at
       created_at: Created at
-      id: ID
+      title: Title
+      updated_at: Updated at
+  journal:
     action:
-      delete: Delete 
+      add: Add Journal
+      delete: Delete
       show: Show
     message:
       confirm: Are you sure?
       error:
-        create: There was an error creating the User
-        delete: There was an error deleting the User
-        update: There was an error updating the User
-        show: User can not be found
+        create: There was an error creating the Journal
+        delete: There was an error deleting the Journal
+      no_journal: You still dont have any Journals
       success:
-        create: User was created successfully
-        delete: User was deleted successfully
-        update: User was updated successfully
+        create: Journal was created successfully
+        delete: Journal was deleted successfully
+    table:
+      description: Description
+      id: ID
+      title: Title
+      updated_at: Updated at
