@@ -8,10 +8,10 @@ class UserSessionsController < ApplicationController
 
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
-      redirect_to user_session_path
+      redirect_to root_path
     else
       flash[:alert] = "Login failed"
-      redirect_to user_session_path
+      redirect_to new_user_path
     end
   end
-end 
+end
