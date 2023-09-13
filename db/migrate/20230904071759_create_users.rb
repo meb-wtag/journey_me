@@ -2,9 +2,11 @@ class CreateUsers < ActiveRecord::Migration[7.0]
   def up
       create_table :users do |t|
       t.string :username
-      t.string :first_name, null: false
-      t.string :last_name, null: false
+      t.string :first_name
+      t.string :last_name
       t.integer :role, default: 2
+      t.string :password_digest
+      t.string :password_confirmation
       t.text :description
       t.string :email
       t.integer :mobile
@@ -22,3 +24,4 @@ class CreateUsers < ActiveRecord::Migration[7.0]
     drop_table :users
   end
 end
+

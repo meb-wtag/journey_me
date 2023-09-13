@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
+   before_action :find_user, only: %i[show destroy update]
 
   def index
     @users = User.all
-    redirect_to journals_path
   end
 
   def new
@@ -13,50 +13,47 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = t('user.message.success.create')
-      redirect_to user_path(@user) 
+      redirect_to users_path 
     else
       flash[:error] = t('user.message.error.create')
-      redirect_to user_path(@user) 
+      redirect_to users_path
     end
   end
 
   def update
-    @user = User.find(params[:id]) 
     if User.update(user_params)
       flash[:success] = t('user.message.success.update')
       redirect_to user_path(@user)
     else
       flash[:error] = t('user.message.error.update')
       redirect_to user_path(@user)
+    end
   end
 
   def destroy
-    @user = User.find(params[:id])
     if @user.destroy
       flash[:success] = t('user.message.success.delete')
       redirect_to new_user_path
     else
       flash[:error] = t('user.message.error.delete')
       redirect_to new_user_path
+    end
   end
 
-  def show
-    if User.find(params[:id])
-    else
-      flash[:error] = t('user.message.error.show')
-  end
+  def show;end
 
   private
+
+  def find_user
+    @user = User.find(params[:id])
+  end
+
   def user_params
     params.require(:user).permit(:username,
                                  :first_name,
                                  :last_name,
-                                 :role,
-                                 :country,
-                                 :city,
-                                 :description,
-                                 :date_of_birth,
-                                 :joining_date)
+                                 :password,
+                                 :password_conf)
     .tap { |whitelisted| whitelisted[:role] = params[:user][:role].to_i }
   end 
 end
