@@ -1,5 +1,5 @@
 <% if current_user %>
-  <h1>Welcome, <%= current_user.name %></h1>
+  <h1>Welcome, <%= current_user.username %></h1>
 <% else %>
   <h1>This is the index page</h1>
   <%= link_to 'Login', new_user_path %><br>

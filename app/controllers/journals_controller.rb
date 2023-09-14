@@ -36,14 +36,4 @@ class JournalsController < ApplicationController
   def journal_params
     params.require(:journal).permit(:title, :description)
   end
-
-  def current_user
-    @current_user ||= User.find(params[:id])
-  end
-
-  def authenticate_user
-    unless current_user == current_session_user
-      redirect_to root_path
-    end
-  end
 end

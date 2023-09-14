@@ -1,12 +1,12 @@
 class CreateUsers < ActiveRecord::Migration[7.0]
   def up
       create_table :users do |t|
-      t.string :username
+      t.string :username, null: false, uniqueness: true
       t.string :first_name
       t.string :last_name
       t.integer :role, default: 2
-      t.string :password_digest
-      t.string :password_confirmation
+      t.string :password_digest, null: false
+      t.string :password_confirmation, null: false
       t.text :description
       t.string :email
       t.integer :mobile

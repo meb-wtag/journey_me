@@ -13,10 +13,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = t('user.message.success.create')
-      redirect_to users_path 
+      redirect_to new_user_session_path
     else
       flash[:error] = t('user.message.error.create')
-      redirect_to users_path
+      redirect_to new_user_session_path
     end
   end
 
