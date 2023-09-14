@@ -6,6 +6,7 @@ ruby '3.2.2'
 gem 'bootsnap', require: false
 gem 'bootstrap', '~> 5.3.1'
 gem 'bcrypt', '~> 3.1.7'
+gem 'country_select'
 gem 'i18n-tasks', '~> 1.0.12'
 gem 'importmap-rails'
 gem 'jbuilder'

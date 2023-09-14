@@ -1,119 +1,114 @@
-<% if current_user %>
-  <h1>Welcome, <%= current_user.username %></h1>
-  <section style="background-color: #eee;">
-  <div class="container py-5">
-    <div 2="row">
-      <div class="col">
-        <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
-          <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">User</a></li>
-            <li class="breadcrumb-item active" aria-current="page">User Profile</li>
-          </ol>
-        </nav>
+<h1>Welcome, <%= @user.username %></h1>
+<section style="background-color: #eee;">
+<div class="container py-5">
+  <div 2="row">
+    <div class="col">
+      <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="#">User</a></li>
+          <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="card mb-4">
+        <div class="card-body text-center">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+            class="rounded-circle img-fluid" style="width: 150px;">
+          <h5 class="my-3"><%= @user.username %></h5>
+          <p class="text-muted mb-1"><%= @user.description %></p>
+          <p class="text-muted mb-4"><%= @user.country %> <%= @user.city %></p>
+          <div class="d-flex justify-content-center mb-2">
+            <%= link_to 'Edit Profile', edit_user_path(@user), class: "btn btn-primary"%>
+          </div>
+          <div class="d-flex justify-content-center mb-2">
+          <%= link_to "Log out", user_session_path(@user), class: "btn btn-danger", data: {
+                  turbo_method: :delete,
+                  turbo_confirm: "Are you sure?"
+                } %>
+          </div>
+        </div>
+      </div>
+      <div class="card mb-4 mb-lg-0">
+        <div class="card-body p-0">
+          <ul class="list-group list-group-flush rounded-3">
+            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+              <i class="fas fa-globe fa-lg text-warning"></i>
+              <p class="mb-0">https://mdbootstrap.com</p>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+              <i class="fab fa-github fa-lg" style="color: #333333;"></i>
+              <p class="mb-0">mdbootstrap</p>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+              <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
+              <p class="mb-0">@mdbootstrap</p>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+              <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
+              <p class="mb-0">mdbootstrap</p>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+              <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
+              <p class="mb-0">mdbootstrap</p>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-
-    <div class="row">
-      <div class="col-lg-4">
-        <div class="card mb-4">
-          <div class="card-body text-center">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-              class="rounded-circle img-fluid" style="width: 150px;">
-            <h5 class="my-3"><%= @user.username %></h5>
-            <p class="text-muted mb-1"><%= @user.description %></p>
-            <p class="text-muted mb-4"><%= @user.country %> <%= @user.city %></p>
-            <div class="d-flex justify-content-center mb-2">
-              <%= link_to 'Edit Profile', edit_user_path(@user), class: "btn btn-primary"%>
+    <div class="col-lg-8">
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Full Name</p>
             </div>
-            <div class="d-flex justify-content-center mb-2">
-            <%= link_to "Delete", user_path(@user), class: "btn btn-danger", data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  } %>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0"><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></p>
             </div>
           </div>
-        </div>
-        <div class="card mb-4 mb-lg-0">
-          <div class="card-body p-0">
-            <ul class="list-group list-group-flush rounded-3">
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <i class="fas fa-globe fa-lg text-warning"></i>
-                <p class="mb-0">https://mdbootstrap.com</p>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <i class="fab fa-github fa-lg" style="color: #333333;"></i>
-                <p class="mb-0">mdbootstrap</p>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
-                <p class="mb-0">@mdbootstrap</p>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
-                <p class="mb-0">mdbootstrap</p>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
-                <p class="mb-0">mdbootstrap</p>
-              </li>
-            </ul>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Email</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0"><%= @user.email %></p>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="col-lg-8">
-        <div class="card mb-4">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Full Name</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0"><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></p>
-              </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Phone</p>
             </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Email</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0"><%= @user.email %></p>
-              </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0"><%= @user.mobile %></p>
             </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Phone</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0"><%= @user.mobile %></p>
-              </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Address</p>
             </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Address</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0"><%= @user.country %>, adress...</p>
-              </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0"><%= @user.country %>, adress...</p>
             </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Date of Birth</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0"><%= @user.date_of_birth %></p>
-              </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Date of Birth</p>
             </div>
-        </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0"><%= @user.date_of_birth %></p>
+            </div>
+          </div>
       </div>
     </div>
   </div>
+</div>
 </section>
-<% else %>
-  <h1>This is the index page</h1>
-  <%= link_to 'Login', new_user_session_path %><br>
-<% end %>

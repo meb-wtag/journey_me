@@ -29,7 +29,6 @@
       <div class="col-lg-8">
         <div class="card mb-4">
           <div class="card-body">
-            <%# frozen_string_literal: true %>
             <%= simple_form_for(@user, wrapper: :vertical_range) do |f| %>
             <%= f.error_notification %>
             <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>

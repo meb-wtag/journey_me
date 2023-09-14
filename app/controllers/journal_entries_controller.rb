@@ -1,6 +1,7 @@
 class JournalEntriesController < ApplicationController
   before_action :find_journal, only: %i[new create index show destroy update]
   before_action :find_entry, only: %i[show destroy update]
+  before_action :require_login
 
   def index
     @journal_entries = JournalEntry.all

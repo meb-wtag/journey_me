@@ -37,7 +37,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_04_121544) do
     t.string "last_name"
     t.integer "role", default: 2
     t.string "password_digest", null: false
-    t.string "password_confirmation", null: false
+    t.string "password_confirmation"
     t.text "description"
     t.string "email"
     t.integer "mobile"

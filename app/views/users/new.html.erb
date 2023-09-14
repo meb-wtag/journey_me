@@ -2,8 +2,9 @@
 <%= simple_form_for(@user, wrapper: :vertical_range) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-  <div class="form-inputs">
+  <h1 class="text-center">Create an Account</h1>
+  <br>
+  <div class="form-inputs d-flex flex-column">
     <%= f.input :username %>
     <%= f.input :first_name %>
     <%= f.input :last_name %>
@@ -13,8 +14,14 @@
     <%= f.password_field :password_confirmation %>
   </div>
 
-  <div class="btn btn-primary">
+  <div class="btn btn-primary d-flex justify-content-center mt-3">
     <%= f.button :submit, {class: "form-check"} %>
+  </div>
+
+  <h1 class="text-center pt-5">Existing Account?</h1>
+  <br>
+  <div >
+    <%= link_to( 'Login', new_user_session_path, {class:"btn btn-primary d-flex justify-content-center mt-3"} )%><br> 
   </div>
 <% end %>
 

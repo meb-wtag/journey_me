@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
    before_action :find_user, only: %i[show destroy update]
+   before_action :require_login, except: [:new, :create]
 
   def index
     @users = User.all
@@ -12,11 +13,12 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      session[:user_id] = @user.id
       flash[:success] = t('user.message.success.create')
-      redirect_to new_user_session_path
+      redirect_to user_path(@user)
     else
       flash[:error] = t('user.message.error.create')
-      redirect_to new_user_session_path
+      redirect_to new_user_path
     end
   end
 
@@ -40,6 +42,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
   def show;end
 
   private
@@ -53,7 +59,7 @@ class UsersController < ApplicationController
                                  :first_name,
                                  :last_name,
                                  :password,
-                                 :password_conf)
+                                 :password_confirmation)
     .tap { |whitelisted| whitelisted[:role] = params[:user][:role].to_i }
   end 
 end

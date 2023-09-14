@@ -21,9 +21,11 @@
     </div>
   <% end %>
   <div class="parent">
-    <div class="div2">
-      <%= render 'layouts/sidebar'%>
-    </div>
+    <% if current_user %>
+      <div class="div2">
+        <%= render 'layouts/sidebar'%>
+      </div>
+    <% end %>
     <div class="container div1">
       <%= yield %>
     </div>  
