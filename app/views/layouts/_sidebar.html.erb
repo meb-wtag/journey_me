@@ -5,13 +5,13 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-      			<%= link_to( 'Journals', journals_path, {class:"nav-link link-dark"} )%><br> 
+      			<%= link_to( 'Journals', user_journals_path(current_user), {class:"nav-link link-dark"} )%><br> 
       </li>
       <li>
             <%= link_to( 'new User', new_user_path, {class:"nav-link link-dark"} )%><br> 
       </li>
       <li>
-      		  <%= link_to( 'Profile', user_path(@current_user), {class:"nav-link link-dark"} )%><br> 
+    		    <%= link_to( 'Profile', user_path(current_user), {class:"nav-link link-dark"} )%><br> 
       </li>
       <li>
       		  <%= link_to( 'Login', new_user_session_path, {class:"nav-link link-dark"} )%><br> 

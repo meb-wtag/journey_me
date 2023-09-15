@@ -1,4 +1,6 @@
 class JournalsController < ApplicationController
+  before_action :find_user, only: %i[new create index show destroy update]
+  before_action :find_journal, only: %i[show destroy update find_journal]
   before_action :require_login
 
   def index
@@ -6,34 +8,39 @@ class JournalsController < ApplicationController
   end
 
   def new
-    @journal = Journal.new
+    @journal = @user.journals.new
   end
 
   def create
-    @journal = Journal.new(journal_params)
+    @journal = @user.journals.new(journal_params)
     if @journal.save
       flash[:success] = t('journal.message.success.create')
     else
       flash[:error] = t('journal.message.error.create')
     end
-    redirect_to journals_path
+    redirect_to user_journals_path(@user)
   end
 
   def destroy
-    @journal = Journal.find(params[:id])
     if @journal.destroy
       flash[:success] = t('journal.message.success.delete')
     else
       flash[:error] = t('journal.message.error.delete')
     end
-    redirect_to journals_path
+    redirect_to user_journals_path
   end
 
-  def show
-    @journal = Journal.find(params[:id])
-  end
+  def show;end
 
   private
+
+  def find_journal
+    @journal = @user.journals.find(params[:id])
+  end
+
+  def find_user
+    @user = current_user
+  end
 
   def journal_params
     params.require(:journal).permit(:title, :description)
