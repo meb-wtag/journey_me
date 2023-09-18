@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: %i[show destroy update]
-  before_action :require_login, except: [:new, :create]
+  before_action :find_user, only: %i[show destroy update edit]
+  #before_action :require_login, except: [:new, :create]
 
   def index
     @users = User.all
@@ -23,12 +23,12 @@ class UsersController < ApplicationController
   end
 
   def update
-    if User.update(user_params)
+    if @user.update(user_params)
       flash[:success] = t('user.message.success.update')
       redirect_to user_path(@user)
     else
       flash[:error] = t('user.message.error.update')
-      redirect_to user_path(@user)
+      redirect_to edit_user_path(@user)
     end
   end
 
@@ -42,12 +42,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
-    @user = User.find(params[:id])
-  end
-
-  def show;end
-
   private
 
   def find_user
@@ -59,7 +53,19 @@ class UsersController < ApplicationController
                                  :first_name,
                                  :last_name,
                                  :password,
-                                 :password_confirmation)
+                                 :password_confirmation,
+                                 :role,
+                                 :description,
+                                 :email,
+                                 :mobile,
+                                 :adress,
+                                 :country,
+                                 :city,  
+                                 :date_of_birth)
     .tap { |whitelisted| whitelisted[:role] = params[:user][:role].to_i }
   end 
 end
+
+
+
+

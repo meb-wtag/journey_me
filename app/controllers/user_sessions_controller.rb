@@ -1,6 +1,9 @@
 class UserSessionsController < ApplicationController
+  #before_action :require_login
+
   def new
     @user = User.new
+    redirect_to new_user_path
   end
 
   def create
@@ -18,6 +21,6 @@ class UserSessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_path
+    redirect_to new_user_path
   end
 end

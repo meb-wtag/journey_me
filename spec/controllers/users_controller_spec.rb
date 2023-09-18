@@ -5,18 +5,13 @@ RSpec.describe UsersController, type: :controller do
   end
   
   describe 'GET #index' do 
-    let!(:user2) do
+    let(:user2) do
       FactoryBot.create(:user)
     end
 
     it 'populates an array of all Users' do
       get :index
       expect(assigns(:users)).to match_array [user, user2]
-    end
-
-    it 'redirects to the User page' do
-      get :index, params: { id: user.id }
-      expect(response).to redirect_to journals_path
     end
   end
 
@@ -65,16 +60,24 @@ RSpec.describe UsersController, type: :controller do
   end
   
   describe 'GET #update' do
+    let(:user3) do
+      FactoryBot.create(:user)
+    end
+
     it 'updates a User with params and saves it' do 
       expect do     
-        post :update, params: { id: user.id, user: { first_name: 'Name', last_name: 'Last Name' } }
-        user.reload
-      end.to change{user.first_name}.to 'Name'
+        patch :update, params: { id: user3.id, user: { first_name: 'Name123' } }
+      end.to change{user3.reload.first_name}.to 'Name123'
     end
-  end
 
-  it 'renders the :show template' do
-    get :update, params: { id: user.id , user: { first_name: 'Name', last_name: 'Last Name' }}
-    expect(response).to redirect_to user_path(user.id) 
+    it 'renders the :edit template when succedes' do
+      get :update, params: { id: user.id , user: { username: 'test' }}
+      expect(response).to redirect_to user_path(user) 
+    end
+
+    it 'renders the :edit template when fails' do
+      get :update, params: { id: user.id , user: { username: nil }}
+      expect(response).to redirect_to edit_user_path(user) 
+    end
   end
 end

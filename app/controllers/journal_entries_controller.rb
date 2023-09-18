@@ -5,8 +5,8 @@ class JournalEntriesController < ApplicationController
   before_action :require_login
 
   def index
-    @journal_entries = JournalEntry.all
-    redirect_to journal_path(@journal)
+    @journal_entries = @journal.journal_entries
+    redirect_to user_journal_path(@user, @journal)
   end
 
   def new
@@ -30,7 +30,7 @@ class JournalEntriesController < ApplicationController
     else
       flash[:error] = t('entry.message.error.delete')
     end
-    redirect_to user_journal_path(@journal)
+    redirect_to user_journal_path(@user, @journal)
   end
 
   def show; end

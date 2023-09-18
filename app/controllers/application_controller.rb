@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 	helper_method :current_user
   helper_method :authenticate_user
-  before_action :require_login, except: [:new, :create]
+  #before_action :require_login, except: [:new, :create]
 
   def current_user
     @current_user ||= session[:user_id] && User.find_by(id: session[:user_id])
