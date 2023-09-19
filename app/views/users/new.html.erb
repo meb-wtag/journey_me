@@ -18,10 +18,10 @@
     <%= f.button :submit, {class: "form-check"} %>
   </div>
 
-  <h1 class="text-center pt-5">Existing Account?</h1>
+  <h1 class="text-center pt-5">Existing Account</h1>
   <br>
   <div >
-    <%= link_to( 'Login', new_user_session_path, {class:"btn btn-primary d-flex justify-content-center mt-3"} )%><br> 
+    <%= link_to( t('user_session.action.add'), new_user_session_path, {class:"btn btn-primary d-flex justify-content-center mt-3"} )%><br> 
   </div>
 <% end %>
 

@@ -1,51 +1,39 @@
 <section style="background-color: #eee;">
-  <div class="container py-5">
-    <div class="row">
-      <div class="col">
-        <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
-          <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">User</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Edit Profile</li>
-          </ol>
-        </nav>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-lg-4">
-        <div class="card mb-4">
-          <div class="card-body text-center">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-              class="rounded-circle img-fluid" style="width: 150px;">
-            <h5 class="my-3"><%= @user.username %></h5>
-            <p class="text-muted mb-4"><%= @user.country %></p>
-            <div class="d-flex justify-content-center mb-2">
-              <%= link_to 'Update Profile Picture', class: "btn btn-primary"%>
-            </div>
-          </div>
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="card mb-4">
+        <div class="card-body text-center">
+          <% if @user.profile_picture.attached? %>
+            <image src="<%= url_for(@user.profile_picture) %>" alt="avatar"
+            class="rounded-circle img-fluid" style="width: 150px;">
+          <% else %>
+            <image src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+            class="rounded-circle img-fluid" style="width: 150px;">
+          <% end %>
+          <h5 class="my-3"><%= @user.username %></h5>
+          <p class="text-muted mb-4"><%= @user.country %></p>
         </div>
       </div>
-      <div class="col-lg-8">
-        <div class="card mb-4">
-          <div class="card-body">
-            <%= simple_form_for(@user, wrapper: :vertical_range) do |f| %>
-            <%= f.error_notification %>
-            <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+    </div>
+    <%= simple_form_for(@user, wrapper: :vertical_range, html: { multipart: true }) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+    <div class="col-lg-8">
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="form-inputs">
+            <%= f.input :username %>
+            <%= f.input :first_name %>
+            <%= f.input :last_name %>
+            <%= f.input :country %>
+            <%= f.input :description %>
+            <%= f.input :date_of_birth %>
+          </div>
 
-            <div class="form-inputs">
-              <%= f.input :username %>
-              <%= f.input :first_name %>
-              <%= f.input :last_name %>
-              <%= f.input :country %>
-              <%= f.input :description %>
-              <%= f.input :date_of_birth%>
-            </div>
-
-            <div class="btn btn-primary">
-              <%= f.button :submit , {class: "form-check"} %>
-            </div>
-            <% end %>
+          <div class="btn btn-primary">
+            <%= f.button :submit, class: "form-check" %>
+          </div>
+          <% end %>
         </div>
       </div>
     </div>
