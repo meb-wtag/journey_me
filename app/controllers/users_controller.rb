@@ -35,9 +35,9 @@ class UsersController < ApplicationController
   def upload_profile_picture
     if params[:user][:profile_picture].present?
       current_user = User.find_by(id: session[:user_id])
-      
       if current_user
-        current_user.profile_picture.attach(params[:user][:profile_picture])
+        @user = current_user
+        @user.profile_picture.attach(params[:user][:profile_picture])
         render json: { message: 'Profile picture uploaded successfully' }
       else
         render json: { error: 'User not found' }, status: :not_found
@@ -45,6 +45,7 @@ class UsersController < ApplicationController
     else
       render json: { error: 'Invalid file' }, status: :unprocessable_entity
     end
+    redirect_to user_path(@user)
   end
 
   def destroy
