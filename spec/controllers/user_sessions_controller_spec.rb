@@ -1,11 +1,7 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 RSpec.describe UserSessionsController, type: :controller do
-  let(:user) do
-    FactoryBot.create(:user, username: 'test', password: 'password123', password_confirmation: 'password123')
-  end
+  let(:user) { FactoryBot.create(:user, username: 'test', password: 'password123', password_confirmation: 'password123') }
 
   describe 'GET #new' do
     it 'renders the new template' do

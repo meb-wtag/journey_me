@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'ffaker'
 
 password = FFaker::Internet.password(8)

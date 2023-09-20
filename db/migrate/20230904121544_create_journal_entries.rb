@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class CreateJournalEntries < ActiveRecord::Migration[7.0]
   def up
     create_table :journal_entries do |t|

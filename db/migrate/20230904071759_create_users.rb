@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 class CreateUsers < ActiveRecord::Migration[7.0]
   def up
-    create_table :users do |t|
+      create_table :users do |t|
       t.string :username, null: false, uniqueness: true
       t.string :first_name
       t.string :last_name
@@ -14,8 +12,8 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.integer :mobile
       t.string :adress
       t.string :country
-      t.string :city
-      t.date :date_of_birth
+      t.string :city  
+      t.date :date_of_birth 
       t.date :joining_date
 
       t.timestamps

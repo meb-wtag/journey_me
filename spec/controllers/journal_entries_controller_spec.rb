@@ -1,14 +1,12 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 RSpec.describe JournalEntriesController, type: :controller do
   let!(:user) { FactoryBot.create(:user) }
-  let!(:journal) { FactoryBot.create(:journal, user:) }
-  let!(:entry) { FactoryBot.create(:journal_entry, journal:) }
+  let!(:journal) { FactoryBot.create(:journal, user: user) }
+  let!(:entry) { FactoryBot.create(:journal_entry, journal: journal) }
   let!(:valid_params) { FactoryBot.attributes_for(:journal_entry) }
 
   describe 'GET #index' do
-    let(:entry2) { FactoryBot.create(:journal_entry, journal:) }
+    let(:entry2) { FactoryBot.create(:journal_entry, journal: journal) }
 
     it 'populates an array of all journal entries' do
       get :index, params: { user_id: user.id, journal_id: journal.id, journal_entry: valid_params }
@@ -71,7 +69,7 @@ RSpec.describe JournalEntriesController, type: :controller do
     end
 
     it 'renders the :show template' do
-      delete :destroy, params: { user_id: user.id, journal_id: journal.id, id: entry.id }
+      delete :destroy, params: { user_id: user.id, journal_id: journal.id, id: entry.id}
       expect(response).to redirect_to user_journal_path(user, journal)
     end
   end

@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 class UsersController < ApplicationController
   before_action :find_user, only: %i[show destroy update edit]
-  before_action :require_login, except: %i[new create upload_profile_picture]
+  before_action :require_login, except: [:new, :create, :upload_profile_picture]
 
   def index
     @users = User.all
@@ -53,10 +51,11 @@ class UsersController < ApplicationController
   def destroy
     if @user.destroy
       flash[:success] = t('user.message.success.delete')
+      redirect_to new_user_path
     else
       flash[:error] = t('user.message.error.delete')
+      redirect_to new_user_path
     end
-    redirect_to new_user_path
   end
 
   private
@@ -77,9 +76,13 @@ class UsersController < ApplicationController
                                  :mobile,
                                  :adress,
                                  :country,
-                                 :city,
+                                 :city,  
                                  :date_of_birth,
                                  :profile_picture)
-          .tap { |whitelisted| whitelisted[:role] = params[:user][:role].to_i }
-  end
+    .tap { |whitelisted| whitelisted[:role] = params[:user][:role].to_i }
+  end 
 end
+
+
+
+

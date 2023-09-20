@@ -1,9 +1,7 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 RSpec.describe JournalEntry, type: :model do
   let!(:user) { FactoryBot.create(:user) }
-  let!(:journal) { FactoryBot.create(:journal, user:) }
+  let!(:journal) { FactoryBot.create(:journal, user: user) }
   describe 'associations' do
     it { should belong_to(:journal).class_name('Journal') }
   end
