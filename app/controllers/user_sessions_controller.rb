@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class UserSessionsController < ApplicationController
-  before_action :require_login, except: [:new, :create] 
+  before_action :require_login, except: %i[new create]
 
   def new
     @user = User.new
@@ -8,7 +10,7 @@ class UserSessionsController < ApplicationController
   def create
     @user = User.find_by(username: params[:user][:username])
 
-    if @user && @user.authenticate(params[:user][:password])
+    if @user&.authenticate(params[:user][:password])
       session[:user_id] = @user.id
       flash[:success] = t('user_session.message.success.create')
       redirect_to user_path(@user)

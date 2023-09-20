@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class JournalsController < ApplicationController
   before_action :find_user, only: %i[new create index show destroy update]
   before_action :find_journal, only: %i[show destroy update find_journal]

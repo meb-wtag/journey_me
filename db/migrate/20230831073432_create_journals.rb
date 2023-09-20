@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class CreateJournals < ActiveRecord::Migration[7.0]
   def up
-    create_table :journals do |t| 
+    create_table :journals do |t|
       t.string :title, null: false, unique: true
       t.text :description, null: false
 

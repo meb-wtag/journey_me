@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
-RSpec.describe UsersController, type: :model do 
+RSpec.describe UsersController, type: :model do
   let(:user1) do
     FactoryBot.build(:user, username: nil)
   end
-	it 'is not valid without a first_name' do
+  it 'is not valid without a first_name' do
     expect(user1.valid?).to be_falsey
   end
 
@@ -36,5 +38,5 @@ RSpec.describe UsersController, type: :model do
   end
   it 'is not valid when naming 2 users with same username' do
     expect(user6.save).to be_falsey
-  end  
+  end
 end

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
-	helper_method :current_user
+  helper_method :current_user
   helper_method :authenticate_user
 
   def current_user
@@ -7,11 +9,11 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login
-    user_id = params[:id].to_i
-    unless current_user == @user
-      flash[:error] = "You must be logged in to access this page."
-      session[:user_id] = nil
-      redirect_to root_path
-    end
+    params[:id].to_i
+    return if current_user == @user
+
+    flash[:error] = 'You must be logged in to access this page.'
+    session[:user_id] = nil
+    redirect_to root_path
   end
 end
