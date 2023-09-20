@@ -30,8 +30,6 @@ class JournalsController < ApplicationController
     redirect_to user_journals_path
   end
 
-  def show;end
-
   private
 
   def find_journal

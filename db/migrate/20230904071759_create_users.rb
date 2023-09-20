@@ -24,4 +24,3 @@ class CreateUsers < ActiveRecord::Migration[7.0]
     drop_table :users
   end
 end
-

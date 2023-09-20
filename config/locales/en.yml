@@ -73,3 +73,9 @@ en:
     old: Existing Account
   upload:
     over1mb: Upload is over 1MB
+  sidebar:
+    profile: Profile
+    journals: Journals
+    new_user: New User
+    login: Login
+    journey: Journey
