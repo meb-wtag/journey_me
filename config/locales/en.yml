@@ -71,11 +71,15 @@ en:
   login:
     new: Create an Account 
     old: Existing Account
+    required: You must be logged in to access this page.
   upload:
-    over1mb: Upload is over 1MB
+    profile_picture:
+      success: Profile picture uploaded successfully
+      no_user: User not found
+      invalid: Invalid file
   sidebar:
     profile: Profile
     journals: Journals
     new_user: New User
     login: Login
-    journey: Journey
+    journey: Journey    

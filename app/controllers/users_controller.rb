@@ -38,12 +38,12 @@ class UsersController < ApplicationController
       if current_user
         @user = current_user
         @user.profile_picture.attach(params[:user][:profile_picture])
-        render json: { message: 'Profile picture uploaded successfully' }
+        render json: { message: 'upload.success' }
       else
-        render json: { error: 'User not found' }, status: :not_found
+        render json: { error: 'upload.no_user' }, status: :not_found
       end
     else
-      render json: { error: 'Invalid file' }, status: :unprocessable_entity
+      render json: { error: 'upload.invalid' }, status: :unprocessable_entity
     end
     redirect_to user_path(@user)
   end

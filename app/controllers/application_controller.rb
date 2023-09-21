@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   def require_login
     user_id = params[:id].to_i
     unless current_user == @user
-      flash[:error] = "You must be logged in to access this page."
+      flash[:error] = t('login.required')
       session[:user_id] = nil
       redirect_to root_path
     end
