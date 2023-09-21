@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe UserSessionsController, type: :controller do
-  let(:user) { FactoryBot.create(:user, username: 'test', password: 'password123', password_confirmation: 'password123') }
+  let(:user) do
+    FactoryBot.create(:user, username: 'test', password: 'password123', password_confirmation: 'password123')
+  end
 
   describe 'GET #new' do
     it 'renders the new template' do

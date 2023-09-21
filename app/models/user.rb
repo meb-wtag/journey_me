@@ -6,5 +6,6 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
   validates :password, presence: true, on: :create
   validates :password_confirmation, presence: true, on: :create
-  validates :profile_picture, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 0..(5.megabytes) }    
+  validates :profile_picture,
+            blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 0..(5.megabytes) }
 end

@@ -1,11 +1,11 @@
 require 'rails_helper'
 RSpec.describe JournalsController, type: :controller do
   let!(:user) { FactoryBot.create(:user) }
-  let(:journal) { FactoryBot.create(:journal, user: user) }
+  let(:journal) { FactoryBot.create(:journal, user:) }
   let(:valid_params) { FactoryBot.attributes_for(:journal) }
 
   describe 'GET #index' do
-    let(:journal2) { FactoryBot.create(:journal, user: user) }
+    let(:journal2) { FactoryBot.create(:journal, user:) }
 
     it 'populates an array of all Journals' do
       get :index, params: { user_id: user.id, journal: valid_params }
@@ -19,7 +19,7 @@ RSpec.describe JournalsController, type: :controller do
   end
 
   describe 'GET #new' do
-    let!(:journal3) { FactoryBot.create(:journal, user: user) }
+    let!(:journal3) { FactoryBot.create(:journal, user:) }
 
     it 'assigns a new Journal to @journal' do
       get :new, params: { user_id: user.id }
