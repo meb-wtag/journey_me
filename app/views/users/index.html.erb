@@ -1,6 +1,0 @@
-<% if current_user %>
-  <h1>Welcome, <%= current_user.username %></h1>
-<% else %>
-  <h1>This is the index page</h1>
-  <%= link_to t('user_session.action.add'), new_user_path %><br>
-<% end %>

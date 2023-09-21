@@ -64,7 +64,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_19_064605) do
     t.string "username", null: false
     t.string "first_name"
     t.string "last_name"
-    t.integer "role", default: 2
     t.string "password_digest", null: false
     t.string "password_confirmation"
     t.text "description"

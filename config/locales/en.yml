@@ -6,6 +6,7 @@ en:
       delete: Delete
       show: Show
     message:
+      welcome: Welcome
       confirm: Are you sure?
       error:
         create: There was an error creating the Entry
@@ -41,6 +42,12 @@ en:
       title: Title
       updated_at: Updated at
   user:
+    show:
+      adress: Adress
+      email: Email
+      full_name: Full Name
+      dob: Date of Birth
+      phone: Phone
     action:
       add: New User
       delete: Delete
@@ -82,4 +89,5 @@ en:
     journals: Journals
     new_user: New User
     login: Login
-    journey: Journey    
+    journey: Journey
+       

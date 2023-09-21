@@ -7,9 +7,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login
-    params[:id].to_i
     return if current_user == @user
-
     flash[:error] = t('login.required')
     session[:user_id] = nil
     redirect_to root_path
