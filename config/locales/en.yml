@@ -90,4 +90,8 @@ en:
     new_user: New User
     login: Login
     journey: Journey
-       
+  profile:
+    edit: Edit Profile
+  profile_picture:
+    update: Update
+    profile_picture: Profile Picture

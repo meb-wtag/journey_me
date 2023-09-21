@@ -19,7 +19,7 @@
                     <i class="fa fa-camera fa-2x"></i>
                   </div>
                   <div class="text-uppercase">
-                    Update <br /> Profile Photo
+                    <%= t('profile_picture.update') %> <br /> <%= t('profile_picture.profile_picture') %>
                   </div>
                   <Input class="uploadProfileInput" type="file" name="profile_pic" id="newProfilePhoto" accept="image/*" style="opacity: 0;" />
                 </div>
@@ -30,10 +30,10 @@
           <p class="text-muted mb-1"><%= @user.description %></p>
           <p class="text-muted mb-4"><%= @user.country %> <%= @user.city %></p>
           <div class="d-flex justify-content-center mb-2">
-            <%= link_to 'Edit Profile', edit_user_path(@user), class: "btn btn-primary"%>
+            <%= link_to t('user_session.action.delete'), edit_user_path(@user), class: "btn btn-primary"%>
           </div>
           <div class="d-flex justify-content-center mb-2">
-          <%= link_to "Log out", logout_path, class: "btn btn-danger", data: {
+          <%= link_to t('profile.edit'), logout_path, class: "btn btn-danger", data: {
                   turbo_method: :delete,
                   turbo_confirm: "Are you sure?"
                 } %>
@@ -76,7 +76,7 @@
               <p class="mb-0"><%= t('user.show.adress') %></p>
             </div>
             <div class="col-sm-9">
-              <p class="text-muted mb-0"><%= @user.country %>, adress...</p>
+              <p class="text-muted mb-0"><%= @user.country %></p>
             </div>
           </div>
           <hr>
