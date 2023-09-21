@@ -69,7 +69,6 @@ class UsersController < ApplicationController
                                  :last_name,
                                  :password,
                                  :password_confirmation,
-                                 :role,
                                  :description,
                                  :email,
                                  :mobile,
@@ -78,6 +77,5 @@ class UsersController < ApplicationController
                                  :city,
                                  :date_of_birth,
                                  :profile_picture)
-          .tap { |whitelisted| whitelisted[:role] = params[:user][:role].to_i }
   end
 end
