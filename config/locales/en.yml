@@ -6,6 +6,7 @@ en:
       delete: Delete
       show: Show
     message:
+      welcome: Welcome
       confirm: Are you sure?
       error:
         create: There was an error creating the Entry
@@ -40,3 +41,58 @@ en:
       id: ID
       title: Title
       updated_at: Updated at
+  user:
+    show:
+      adress: Adress
+      email: Email
+      full_name: Full Name
+      dob: Date of Birth
+      phone: Phone
+    action:
+      add: New User
+      delete: Delete
+      show: Show
+    message:
+      confirm: Are you sure?
+      error:
+        create: There was an error creating the User
+        delete: There was an error deleting the User
+        update: Error in saving changes
+      success:
+        create: User was created successfully
+        delete: User was deleted successfully
+        update: Changes saved successfully
+  user_session:
+    action:
+      add: Log in
+      delete: Log out
+    message:
+      confirm: Are you sure?
+      error:
+        create: There was an error loging in
+        delete: There was an error loging out
+        no_user: You have to log in
+      success:
+        create: Loged in successfully
+        delete: Loged out deleted successfully
+  login:
+    new: Create an Account 
+    old: Existing Account
+    required: You must be logged in to access this page.
+  upload:
+    profile_picture:
+      success: Profile picture uploaded successfully
+      no_user: User not found
+      invalid: Invalid file
+  sidebar:
+    profile: Profile
+    journals: Journals
+    new_user: New User
+    login: Login
+    journey: Journey
+  profile:
+    edit: Edit Profile
+  profile_picture:
+    update: Update
+    profile_picture: Profile Picture
+ 

@@ -1,10 +1,12 @@
 class JournalEntriesController < ApplicationController
-  before_action :find_journal, only: %i[new create index show destroy update]
+  before_action :find_user, only: %i[new create index show destroy update find_journal]
+  before_action :find_journal, only: %i[new create index show destroy update find_entry]
   before_action :find_entry, only: %i[show destroy update]
+  before_action :require_login
 
   def index
-    @journal_entries = JournalEntry.all
-    redirect_to journal_path(@journal)
+    @journal_entries = @journal.journal_entries
+    redirect_to user_journal_path(@user, @journal)
   end
 
   def new
@@ -15,7 +17,7 @@ class JournalEntriesController < ApplicationController
     @journal_entry = @journal.journal_entries.new(journal_entry_params)
     if @journal_entry.save
       flash[:success] = t('entry.message.success.create')
-      redirect_to journal_path(@journal)
+      redirect_to user_journal_path(@user, @journal)
     else
       flash[:error] = t('entry.message.error.create')
       render :new
@@ -28,7 +30,7 @@ class JournalEntriesController < ApplicationController
     else
       flash[:error] = t('entry.message.error.delete')
     end
-    redirect_to journal_path(@journal)
+    redirect_to user_journal_path(@user, @journal)
   end
 
   def show; end
@@ -39,13 +41,17 @@ class JournalEntriesController < ApplicationController
     else
       flash[:error] = t('entry.message.error.update')
     end
-    redirect_to journal_path(@journal)
+    redirect_to user_journal_path(@user, @journal)
   end
 
   private
 
+  def find_user
+    @user = User.find(params[:user_id])
+  end
+
   def find_journal
-    @journal = Journal.find(params[:journal_id])
+    @journal = @user.journals.find(params[:journal_id])
   end
 
   def find_entry

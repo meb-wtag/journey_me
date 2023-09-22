@@ -1,0 +1,95 @@
+<h1><%= t('message.welcome') %> <%= @user.username %></h1>
+<section style="background-color: #eee;">
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="card mb-4">
+        <div class="card-body text-center">
+          <div class="profile-pic-wrapper">
+            <div class="pic-holder">
+              <% if @user.profile_picture.attached? %>
+                <image src="<%= url_for(@user.profile_picture) %>" alt="avatar"
+                class="rounded-circle img-fluid" style="width: 150px;">
+              <% else %>
+                <image src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                class="rounded-circle img-fluid" style="width: 150px;">
+              <% end %>
+              <label for="newProfilePhoto" class="upload-file-block">
+                <div class="text-center">
+                  <div class="mb-2">
+                    <i class="fa fa-camera fa-2x"></i>
+                  </div>
+                  <div class="text-uppercase">
+                    <%= t('profile_picture.update') %> <br /> <%= t('profile_picture.profile_picture') %>
+                  </div>
+                  <Input class="uploadProfileInput" type="file" name="profile_pic" id="newProfilePhoto" accept="image/*" style="opacity: 0;" />
+                </div>
+              </label>
+            </div>
+          </div>
+          <h5 class="my-3"><%= @user.username %></h5>
+          <p class="text-muted mb-1"><%= @user.description %></p>
+          <p class="text-muted mb-4"><%= @user.country %> <%= @user.city %></p>
+          <div class="d-flex justify-content-center mb-2">
+            <%= link_to t('user_session.action.delete'), edit_user_path(@user), class: "btn btn-primary"%>
+          </div>
+          <div class="d-flex justify-content-center mb-2">
+          <%= link_to t('profile.edit'), logout_path, class: "btn btn-danger", data: {
+                  turbo_method: :delete,
+                  turbo_confirm: t('user.message.confirm')
+                } %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0"><%= t('user.show.full_name') %></p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0"><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0"><%= t('user.show.email') %></p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0"><%= @user.email %></p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0"><%= t('user.show.phone') %></p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0"><%= @user.mobile %></p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0"><%= t('user.show.adress') %></p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0"><%= @user.country %></p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0"><%= t('user.show.dob') %></p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0"><%= @user.date_of_birth %></p>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>

@@ -12,20 +12,19 @@
           </tr>
         </thead>
         <tbody>
-          <% @journals.each do |journal| %>
+          <% @user.journals.each do |journal| %>
           <tr>
             <td><%= journal.title %></td>
             <td><%= journal.description %></td>
             <td><%= journal.created_at.to_formatted_s(:short) %></td>
             <td><%= journal.id %></td>
             <td>
-              <%= link_to t('journal.action.show'), journal_path(journal), class: "btn btn-primary"%>
+              <%= link_to t('journal.action.show'), user_journal_path(@user, journal), class: "btn btn-primary"%>
 
-              <%= link_to t('journal.action.delete'), journal_path(journal), class: "btn btn-danger", data: {
+              <%= link_to t('journal.action.delete'), user_journal_path(@user, journal), class: "btn btn-danger", data: {
                     turbo_method: :delete,
                     turbo_confirm: t('journal.message.confirm')
                   } %>
-
             </td>
           </tr>
           <% end %>
@@ -43,7 +42,7 @@
     <% end %>
   </div>
   <a>
-    <%= link_to(t('journal.action.add'), new_journal_path,
+    <%= link_to(t('journal.action.add'), new_user_journal_path(@user),
             {class:"btn btn-primary"})%> 
   </a>
 </div

@@ -23,9 +23,9 @@
             <td><%= entry.updated_at.to_formatted_s(:short) %></td>
             <td><%= entry.created_at.to_formatted_s(:short) %></td>
             <td>
-            <%= link_to t('entry.action.show'), journal_journal_entry_path(@journal,entry), class: "btn btn-primary"%>
+            <%= link_to t('entry.action.show'), user_journal_journal_entry_path(@user,@journal,entry), class: "btn btn-primary"%>
 
-            <%= link_to t('entry.action.delete'), journal_journal_entry_path(@journal,entry), class: "btn btn-danger", data: {
+            <%= link_to t('entry.action.delete'), user_journal_journal_entry_path(@user,@journal,entry), class: "btn btn-danger", data: {
                 turbo_method: :delete,
                 turbo_confirm: t('entry.message.confirm')
             } %>
@@ -46,7 +46,7 @@
     <% end %>
   </div>
   <a>
-    <%= link_to(t('entry.action.add'), new_journal_journal_entry_path(@journal),
+    <%= link_to(t('entry.action.add'), new_user_journal_journal_entry_path(@user, @journal),
             {class:"btn btn-primary"})%> 
   </a>
 </div>
