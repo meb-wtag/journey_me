@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Welcome Mail</title>
+  </head>
+  <body >
+  <div class="container">
+    <h1 class="h3 fw-700 text-center">
+      Welcome, <%= @user.username.capitalize %>
+    </h1>
+    <p class="mt-5 text-center mb-5">
+      This is a test Welcoming Email which is sent to all the new logins which are getting created.
+    </p>
+    <a class="btn btn-primary p-3 fw-700" href="<%= user_url(@user) %>">Confirm and Access</a>
+  </div>
+</body>
+</html>

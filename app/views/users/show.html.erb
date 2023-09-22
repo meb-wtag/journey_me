@@ -30,10 +30,10 @@
           <p class="text-muted mb-1"><%= @user.description %></p>
           <p class="text-muted mb-4"><%= @user.country %> <%= @user.city %></p>
           <div class="d-flex justify-content-center mb-2">
-            <%= link_to t('user_session.action.delete'), edit_user_path(@user), class: "btn btn-primary"%>
+            <%= link_to t('profile.edit'), edit_user_path(@user), class: "btn btn-primary"%>
           </div>
           <div class="d-flex justify-content-center mb-2">
-          <%= link_to t('profile.edit'), logout_path, class: "btn btn-danger", data: {
+          <%= link_to t('user_session.action.delete'), logout_path, class: "btn btn-danger", data: {
                   turbo_method: :delete,
                   turbo_confirm: t('user.message.confirm')
                 } %>

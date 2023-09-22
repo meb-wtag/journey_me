@@ -12,6 +12,7 @@ gem 'i18n-tasks', '~> 1.0.12'
 gem 'importmap-rails'
 gem 'jbuilder'
 gem 'pg'
+gem 'postmark-rails'
 gem 'puma', '~> 5.0'
 gem 'webpacker'
 gem 'rails', '~> 7.0.7'
@@ -33,6 +34,7 @@ end
 
 group :development do
   gem 'web-console'
+  gem 'letter_opener'
 end
 
 group :test do
