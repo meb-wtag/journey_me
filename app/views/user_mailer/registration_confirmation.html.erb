@@ -13,7 +13,8 @@
     <p class="mt-5 text-center mb-5">
       This is a test Welcoming Email which is sent to all the new logins which are getting created.
     </p>
-    <a class="btn btn-primary p-3 fw-700" href="<%= user_url(@user) %>">Confirm and Access</a>
+    <a class="btn btn-primary p-3 fw-700" href="<%= confirm_email_user_url(id: @user.id, confirm_token: @user.confirm_token) %>">Confirm and Access</a>
   </div>
 </body>
 </html>
+

@@ -8,8 +8,8 @@ class UserMailer < ApplicationMailer
       :track_opens => 'true')
   end
 
-  def signup_email
-    @user = params[:user] 
-    mail(to: @user.email, subject: 'Welcome to Journey!') 
-  end 
+  def registration_confirmation(user)
+    @user = user
+    mail(:to => "#{user.username} <#{user.email}>", :subject => "Registration Confirmation")
+ end
 end

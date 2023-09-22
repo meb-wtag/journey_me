@@ -12,9 +12,10 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.confirm_token = @user.confirmation_token
     if @user.save
-      session[:user_id] = @user.id
-      flash[:success] = t('user.message.success.create')
+      UserMailer.registration_confirmation(@user).deliver
+      flash[:success] = "Please confirm your email address to continue"
       redirect_to user_path(@user)
     else
       flash[:error] = t('user.message.error.create')
@@ -56,6 +57,19 @@ class UsersController < ApplicationController
     end
     redirect_to new_user_path
   end
+
+  def confirm_email
+  @user = User.find_by(confirm_token: params[:confirm_token])
+  if @user
+    @user.email_activate
+    flash[:success] = "Welcome to the Sample App! Your email has been confirmed.
+    Please sign in to continue."
+    redirect_to new_user_session_path
+  else
+    flash[:error] = "Sorry. User does not exist"
+    redirect_to root_url
+  end
+end
 
   private
 
