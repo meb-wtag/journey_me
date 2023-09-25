@@ -98,6 +98,4 @@ en:
   mail_conf:
     welcome: Welcome to Journey! Your Email is confirmed!
     please_confirm: Please confirm your email address to continue
-    not_found: User with this Email does not exist
-
- 
+    not_found: User with this Email does not exists
