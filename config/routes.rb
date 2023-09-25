@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :user_sessions, only: [:new, :create] 
   delete :user_sessions, to: 'user_sessions#destroy', as: :logout
 
+  resources :assigned_tos
+  resources :tasks
   resources :users do
     post :upload_profile_picture, to: 'users#upload_profile_picture', on: :collection
     resources :journals do
