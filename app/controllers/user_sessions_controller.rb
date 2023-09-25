@@ -14,7 +14,7 @@ class UserSessionsController < ApplicationController
         flash[:success] = t('user_session.message.success.create')
         redirect_to user_path(@user)
       else
-        flash[:error] = t('Please confirm Mail')
+        flash[:error] = t('mail_conf.please_confirm')
       end
     else
       flash[:error] = t('user_session.message.error.create')

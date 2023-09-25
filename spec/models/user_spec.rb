@@ -37,4 +37,13 @@ RSpec.describe UsersController, type: :model do
   it 'is not valid when naming 2 users with same username' do
     expect(user6.save).to be_falsey
   end
+
+  let(:user7) do
+      FactoryBot.create(:user)
+    end
+  it 'generates and saves a confirmation token' do
+    expect(user7.persisted?).to be_truthy
+    expect(user7.confirm_token).to be_nil
+  end
+
 end
