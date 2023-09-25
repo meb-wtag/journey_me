@@ -37,4 +37,11 @@ RSpec.describe UsersController, type: :model do
   it 'is not valid when naming 2 users with same username' do
     expect(user6.save).to be_falsey
   end
+
+  let(:user7) do
+    FactoryBot.build(:user)
+  end
+  it 'when creating a user it has the role of a user' do
+    expect(user7.role).to eq 'user'
+  end
 end

@@ -13,6 +13,9 @@
         </thead>
         <tbody>
           <% @users.each do |user| %>
+            <% if user == current_user %>
+              <% next %>
+            <% end %>
           <tr>
           	<td><% if user.profile_picture.attached? %>
                 <image src="<%= url_for(@user.profile_picture) %>" alt="avatar"
