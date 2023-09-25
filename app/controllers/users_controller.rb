@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    head :ok
   end
 
   def new
@@ -59,7 +60,7 @@ class UsersController < ApplicationController
   end
 
   def confirm_email
-  @user = User.find_by(confirm_token: params[:confirm_token])
+    @user = User.find_by(confirm_token: params[:confirm_token])
     if @user
       @user.email_activate
       flash[:success] = t('mail_conf.welcome')

@@ -1,9 +1,9 @@
- Welcome to example.com, <%= @user.username %>
-===============================================
+Welcome, <%= @user.username.capitalize %>
 
-You have successfully signed up to example.com,
-your username is: <%= @user.username %>.
 
-To login to the site, just follow this link: <%= @url %>.
+This is a test Welcoming Email which is sent to all the new logins which are getting created.
 
-Thanks for joining and have a great day!
+
+To login to the site, just follow this link:
+
+<%= confirm_email_user_url(id: @user.id, confirm_token: @user.confirm_token) %>

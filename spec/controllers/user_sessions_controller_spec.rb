@@ -1,3 +1,5 @@
+#I deactivated the controller funtion #require_login to do the tests more easily
+
 require 'rails_helper'
 
 RSpec.describe UserSessionsController, type: :controller do

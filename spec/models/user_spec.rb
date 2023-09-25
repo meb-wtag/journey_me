@@ -38,12 +38,34 @@ RSpec.describe UsersController, type: :model do
     expect(user6.save).to be_falsey
   end
 
-  let(:user7) do
-      FactoryBot.create(:user)
+  let(:user7) { FactoryBot.create(:user) }
+
+  describe '#confirmation_token' do
+    it 'generates a confirmation token if it is blank' do
+      user7.confirm_token = nil
+      user7.confirmation_token
+      expect(user7.confirm_token).not_to be_nil
     end
-  it 'generates and saves a confirmation token' do
-    expect(user7.persisted?).to be_truthy
-    expect(user7.confirm_token).to be_nil
+
+    it 'does not generate a new token if one already exists' do
+      existing_token = 'existing_token'
+      user7.confirm_token = existing_token
+      user7.confirmation_token
+      expect(user7.confirm_token).to eq(existing_token)
+    end
   end
 
+  describe '#email_activate' do
+    it 'marks the user as email_confirmed' do
+      user7.email_confirmed = false
+      user7.email_activate
+      expect(user7.email_confirmed).to be(true)
+    end
+
+    it 'clears the confirmation token' do
+      user7.confirm_token = 'some_token'
+      user7.email_activate
+      expect(user7.confirm_token).to be_nil
+    end
+  end
 end
