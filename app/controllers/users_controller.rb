@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :find_user, only: %i[show destroy update edit]
-  before_action :require_login, except: %i[new create upload_profile_picture]
+  before_action :require_login, except: %i[index new create upload_profile_picture]
 
   def index
     @users = User.all
@@ -54,7 +54,11 @@ class UsersController < ApplicationController
     else
       flash[:error] = t('user.message.error.delete')
     end
-    redirect_to new_user_path
+    if current_user.role == 'admin'
+      redirect_to users_path
+    else
+      redirect_to new_user_path
+    end
   end
 
   private

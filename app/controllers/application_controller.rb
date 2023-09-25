@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login
-    return if current_user == @user
+    return if current_user
     
     flash[:error] = t('login.required')
     session[:user_id] = nil

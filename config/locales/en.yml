@@ -42,6 +42,9 @@ en:
       title: Title
       updated_at: Updated at
   user:
+    table:
+      username: Username
+      role: Role
     show:
       adress: Adress
       email: Email
@@ -90,9 +93,11 @@ en:
     new_user: New User
     login: Login
     journey: Journey
+    all_users: All Users
   profile:
     edit: Edit Profile
   profile_picture:
     update: Update
     profile_picture: Profile Picture
+
  
