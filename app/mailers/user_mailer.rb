@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-	def welcome_mail
+  def welcome_mail
     mail(
       :subject => 'Welcome to Journey',
       :to  => @user.email,
