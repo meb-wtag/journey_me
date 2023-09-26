@@ -12,9 +12,9 @@ class TasksController < ApplicationController
 
   def create
     @task = @user.tasks.new(task_params)
-    if @journal_entry.save
+    if @task.save
       flash[:success] = t('entry.message.success.create')
-      redirect_to user_journal_path(@user, @journal)
+      redirect_to user_task_path(@user, @task)
     else
       flash[:error] = t('entry.message.error.create')
       render :new
@@ -47,6 +47,7 @@ class TasksController < ApplicationController
 
   def task_params
     params.require(:task).permit(:title,
-                                 :description)
+                                 :content,
+                                 :user_id)
   end
 end
