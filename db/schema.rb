@@ -42,11 +42,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_25_103841) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "java_scripts", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "journal_entries", force: :cascade do |t|
     t.integer "journal_id", null: false
     t.string "title", null: false
