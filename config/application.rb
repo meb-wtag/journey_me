@@ -10,6 +10,8 @@ module JourneyMe
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
+    config.active_record.schema_migrations_table_name = 'public.schema_migrations'
+
 
     # Configuration for the application, engines, and railties goes here.
     #
