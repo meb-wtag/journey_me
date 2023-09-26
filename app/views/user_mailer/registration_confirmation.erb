@@ -1,9 +1,9 @@
-Welcome, <%= @user.username.capitalize %>
+<%= t('entry.message.welcome') %>, <%= @user.username.capitalize %>
 
 
-This is a test Welcoming Email which is sent to all the new logins which are getting created.
+<%= t('entry.message.welcome')%>
 
 
-To login to the site, just follow this link:
+<%= t('mailer.confirm')%>:
 
 <%= confirm_email_user_url(id: @user.id, confirm_token: @user.confirm_token) %>

@@ -1,4 +1,3 @@
----
 en:
   entry:
     action:
@@ -99,7 +98,7 @@ en:
     welcome: Welcome to Journey! Your Email is confirmed!
     please_confirm: Please confirm your email address to continue
     not_found: User with this Email does not exists
-    subject: Welcome to Journey
-    from: example@gmail.com
+    subject: Registration Confirmation
+    from: from@example.com
     content:  a test Welcoming Email which is sent to all the new logins which are created
     confirm: Confirm and Access
