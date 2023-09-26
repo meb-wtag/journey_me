@@ -8,10 +8,6 @@ class JournalsController < ApplicationController
     @journals = Journal.order(params[:sort])
   end
 
-  def new
-    @journal = @user.journals.new
-  end
-
   def create
     @journal = @user.journals.new(journal_params)
     if @journal.save

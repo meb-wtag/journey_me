@@ -8,17 +8,14 @@ class ApplicationController < ActionController::Base
 
   def require_login
     if current_user
-      if current_user.role == 'admin'
-        return
-      elsif current_user == @user
+      if current_user.role == 'admin' || current_user == @user
         return
       else
-        flash[:error] = t('login.required')
-        session[:user_id] = nil
-        redirect_to root_path
+        redirect_to user_path(current_user)
       end
     else
-      flash[:error] = t('user_session.success.delete')
+      session[:user_id] = nil
+      redirect_to new_user_path
     end
   end
 end
