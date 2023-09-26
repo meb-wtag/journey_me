@@ -10,7 +10,7 @@ Rails.application.configure do
 
   # Do not eager load code on boot.
   config.eager_load = false
-
+  config.action_mailer.default_url_options = { only_path: true }
   # Show full error reports.
   config.consider_all_requests_local = true
 
