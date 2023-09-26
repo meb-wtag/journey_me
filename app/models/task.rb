@@ -1,6 +1,5 @@
 class Task < ApplicationRecord
-  has_many :assignments
-  has_many :users, through: :assignments
+  belongs_to :user, inverse_of: :tasks
 
   after_initialize :set_default_importance, if: :new_record?
   after_initialize :set_default_status, if: :new_record?

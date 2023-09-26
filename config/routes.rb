@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :users do
     post :upload_profile_picture, to: 'users#upload_profile_picture', on: :collection
-    resources :tasks do;end
+    resources :tasks
     resources :journals do
       resources :journal_entries do
       end

@@ -1,7 +1,7 @@
 <%= simple_form_for([@user, @task], wrapper: :vertical_range) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-  <h1 class="text-center"><%= 'Create a Task' %></h1>
+  <h1 class="text-center"><%= t('task.action.add') %></h1>
   <br>
   <div class="form-inputs d-flex flex-column">
     <%= f.input :title %>

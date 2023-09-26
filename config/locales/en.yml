@@ -41,6 +41,24 @@ en:
       id: ID
       title: Title
       updated_at: Updated at
+  task:
+    action:
+      add: Create a Task
+      delete: Delete
+      show: Show
+    message:
+      confirm: Are you sure?
+      error:
+        create: There was an error creating the Task
+        delete: There was an error deleting the Task
+      no_task: You still dont have any Tasks
+      success:
+        create: Task was created successfully
+        delete: Task was deleted successfully
+    table:
+      content: Content
+      id: ID
+      title: Title
   user:
     show:
       adress: Adress
@@ -85,6 +103,7 @@ en:
       no_user: User not found
       invalid: Invalid file
   sidebar:
+    tasks: Tasks
     profile: Profile
     journals: Journals
     new_user: New User
