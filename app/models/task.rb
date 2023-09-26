@@ -1,21 +1,21 @@
 class Task < ApplicationRecord
-  has_many :assigned_tos
-  has_many :users, through: :assigned_tos
+  has_many :assignments
+  has_many :users, through: :assignments
 
   after_initialize :set_default_importance, if: :new_record?
   after_initialize :set_default_status, if: :new_record?
 
   validates :title, presence: true
-  validates :description, presence: true
+  validates :content, presence: true
 
-  enum importance: %i[unimportant medium important]
+  enum importance: %i[low medium high]
   enum status: %i[todo progress done]
 
   def set_default_importance
-    self.importance ||= :user
+    self.importance ||= :medium
   end
 
   def set_default_status
-    self.status ||= :user
+    self.status ||= :todo
   end
 end

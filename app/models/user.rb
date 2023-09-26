@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  has_many :assigned_tos
-  has_many :tasks, through: :assigned_tos
+  has_many :assignments
+  has_many :tasks, through: :assignments
 
   has_many :journals, dependent: :destroy, inverse_of: :user
 
@@ -12,4 +12,8 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, on: :create
   validates :profile_picture,
             blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 0..(5.megabytes) }
+
+  def create_task(title, description)
+    tasks.create(title: title, description: description)
+  end
 end
