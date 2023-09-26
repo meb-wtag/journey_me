@@ -54,7 +54,7 @@ class UsersController < ApplicationController
     else
       flash[:error] = t('user.message.error.delete')
     end
-    if current_user.role == 'admin'
+    if current_user.admin?
       redirect_to users_path
     else
       redirect_to new_user_path

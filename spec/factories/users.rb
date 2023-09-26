@@ -5,6 +5,7 @@ FactoryBot.define do
   factory :user do
     username { FFaker::Lorem.sentence }
     last_name { FFaker::Lorem.sentence }
+    role { I18n.t('test.roles.user') }
     password { password }
     password_confirmation { password }
   end

@@ -1,5 +1,9 @@
 ---
 en:
+  test:
+    roles:
+      user: user
+      admin: admin
   entry:
     action:
       add: Add Entry
