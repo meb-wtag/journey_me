@@ -1,7 +1,4 @@
 class Task < ApplicationRecord
-  has_many :assigned_tos
-  has_many :users, through: :assigned_tos
-
   after_initialize :set_default_importance, if: :new_record?
   after_initialize :set_default_status, if: :new_record?
 

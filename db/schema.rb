@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_25_150950) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_25_145442) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,15 +40,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_25_150950) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
-  end
-
-  create_table "assigned_tos", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "task_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["task_id"], name: "index_assigned_tos_on_task_id"
-    t.index ["user_id"], name: "index_assigned_tos_on_user_id"
   end
 
   create_table "java_scripts", force: :cascade do |t|
@@ -106,6 +97,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_25_150950) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "assigned_tos", "tasks"
-  add_foreign_key "assigned_tos", "users"
 end
