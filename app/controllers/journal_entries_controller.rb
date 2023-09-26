@@ -30,8 +30,6 @@ class JournalEntriesController < ApplicationController
     redirect_to user_journal_path(@user, @journal)
   end
 
-  def show; end
-
   def update
     if @journal_entry.update(journal_entry_params)
       flash[:success] = t('entry.message.success.update')
