@@ -5,8 +5,8 @@ class Ability
     if user.present?
       can %i(create read update destroy), Journal
       can %i(create read update destroy), JournalEntry
-      can %i(create read), User
-      can :update, User, id: user.id
+      can %i(create show new ), User
+      can :all, UserSession
 
       if user.admin?
         can :manage, :all

@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
   def require_login
     if current_user
-      if current_user.role == 'admin' || current_user == @user
+      if current_user.admin? || current_user == @user
         return
       else
         redirect_to user_path(current_user)

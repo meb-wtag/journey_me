@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :find_user, only: %i[show destroy update edit]
   before_action :require_login, except: %i[index new create upload_profile_picture]
+  load_and_authorize_resource
 
   def index
     @users = User.all
@@ -80,6 +81,7 @@ class UsersController < ApplicationController
                                  :country,
                                  :city,
                                  :date_of_birth,
-                                 :profile_picture)
+                                 :profile_picture,
+                                 :role)
   end
 end
