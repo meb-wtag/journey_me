@@ -14,7 +14,7 @@
         <tbody>
           <% @users.each { |user| next if user == current_user %>
           <tr>
-          	<td>
+            <td>
               <% if user.profile_picture.attached? %>
                 <image src="<%= url_for(@user.profile_picture) %>" alt="avatar"
                 class="rounded-circle img-fluid" style="width: 25px;">
