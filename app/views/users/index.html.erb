@@ -12,10 +12,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @users.each do |user| %>
-            <% if user == current_user %>
-              <% next %>
-            <% end %>
+          <% @users.each { |user| next if user == current_user %>
           <tr>
           	<td>
               <% if user.profile_picture.attached? %>
@@ -37,9 +34,11 @@
                   } %>
             </td>
           </tr>
-          <% end %>
+          <% } %>
         </tbody>
       </table>
     </div>
   </div>
 </div>
+
+
