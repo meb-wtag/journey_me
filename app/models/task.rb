@@ -5,7 +5,7 @@ class Task < ApplicationRecord
   after_initialize :set_default_status, if: :new_record?
 
   validates :title, presence: true
-  validates :content, presence: true
+  validates :description, presence: true
 
   enum importance: %i[low medium high]
   enum status: %i[todo progress done]

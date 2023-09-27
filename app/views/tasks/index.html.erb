@@ -1,39 +1,14 @@
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th><%= link_to t('task.table.title'), sort: :title %> </th>
-            <th><%= link_to t('task.table.description'), sort: :description %> </th>
-            <th><%= link_to t('task.table.id'), sort: :id %> </th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @user.tasks.each do |task| %>
-          <tr>
-            <td><%= task.title %></td>
-            <td><%= task.content %></td>
-            <td><%= task.id %></td>
-            <td>
-              <%= link_to t('task.action.show'), user_task_path(@user, task), class: "btn btn-primary"%>
-
-              <%= link_to t('task.action.delete'), user_task_path(@user, task), class: "btn btn-danger", data: {
-                    turbo_method: :delete,
-                    turbo_confirm: t('task.message.confirm')
-                  } %>
-            </td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
+<% @user.tasks.each do |task| %>
+  <div class="card text-white bg-dark m-3" style="max-width: 18rem;">
+    <div class="card-header">Assigned by: <%= User.find(task.user_id).username %></div>
+    <div class="card-body">
+      <h5 class="card-title"><%= task.title %></h5>
+      <p class="card-text"><%= task.description %></p>
     </div>
   </div>
-</div>
+<% end %>
 
-
-<div>
+<div class="m-3">
   <div>
     <% if @tasks.empty? %>
       <%= t('task.message.no_task') %>
@@ -44,16 +19,3 @@
             {class:"btn btn-primary"})%>
   </a>
 </div>
-
-
-<% @user.tasks.each do |task| %>
-  <div class="card text-white bg-dark m-3" style="max-width: 18rem;">
-    <div class="card-header">Assigned by: <%= User.find(task.user_id).username %></div>
-    <div class="card-body">
-      <h5 class="card-title"><%= task.title %></h5>
-      <p class="card-text"><%= task.content %></p>
-    </div>
-  </div>
-<% end %>
-
-

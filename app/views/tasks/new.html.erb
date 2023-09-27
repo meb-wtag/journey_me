@@ -5,7 +5,7 @@
   <br>
   <div class="form-inputs d-flex flex-column">
     <%= f.input :title %>
-    <%= f.input :content %>
+    <%= f.input :description %>
     <%= f.input :user_ids, collection: User.all.map { |u| [u.username, u.id] }, input_html: { multiple: true } %>
 
   </div>
