@@ -44,3 +44,16 @@
             {class:"btn btn-primary"})%>
   </a>
 </div>
+
+
+<% @user.tasks.each do |task| %>
+  <div class="card text-white bg-dark m-3" style="max-width: 18rem;">
+    <div class="card-header">Assigned by: <%= User.find(task.user_id).username %></div>
+    <div class="card-body">
+      <h5 class="card-title"><%= task.title %></h5>
+      <p class="card-text"><%= task.content %></p>
+    </div>
+  </div>
+<% end %>
+
+

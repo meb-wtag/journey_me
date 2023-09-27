@@ -4,6 +4,8 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @task = @user.tasks.find(params[:task_id])
+    @task_users = Assignment.where(task_id: @task.id).pluck(:user_id)
   end
 
   def new
