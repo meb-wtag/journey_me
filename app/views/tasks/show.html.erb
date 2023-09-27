@@ -2,10 +2,23 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
+  <div class="form-inputs mt-3">
     <%= f.input :title, {class: "form-control"} %>
     <%= f.input :description, as: :text %>
     <%= f.input :content, as: :text %>
+    <% if !@task.files.attached? %>
+      <ul>
+        <% @task.files.each do |file| %>
+          <%= if file.previewable? %>
+            <li>
+              <%= image_tag file.preview(resize_to_limit: [100, 100]) %>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    <% else %>
+      <%= f.input :files, as: :file, input_html: { multiple: true } %>
+    <% end %>
   </div>
 
   <div class="form-actions">

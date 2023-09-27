@@ -55,6 +55,7 @@ en:
       success:
         create: Task was created successfully
         delete: Task was deleted successfully
+        update: Task was updated successfully
     table:
       content: Content
       id: ID

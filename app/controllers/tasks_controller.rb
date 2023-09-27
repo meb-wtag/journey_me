@@ -60,6 +60,7 @@ class TasksController < ApplicationController
     params.require(:task).permit(:title,
                                  :description,
                                  :content,
+                                 files: [],
                                  user_ids: [])
   end
 end
