@@ -12,7 +12,7 @@ class Ability
         cannot :index, User
       end
     else
-      can %i(create show new), User
+      can %i(create new), User
     end
   end
 end
