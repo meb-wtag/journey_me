@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :tasks, dependent: :destroy, inverse_of: :user
+  has_and_belongs_to_many :tasks, join_table: :assignments
 
   has_many :journals, dependent: :destroy, inverse_of: :user
 
