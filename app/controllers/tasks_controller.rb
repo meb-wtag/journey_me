@@ -35,6 +35,7 @@ class TasksController < ApplicationController
   end
 
   def update
+    @task.files.attach(params[:task][:files])
     if @task.update(task_params)
       flash[:success] = t('task.message.success.update')
     else

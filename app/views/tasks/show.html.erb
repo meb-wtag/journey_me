@@ -6,22 +6,13 @@
     <%= f.input :title, {class: "form-control"} %>
     <%= f.input :description, as: :text %>
     <%= f.input :content, as: :text %>
-    <% if !@task.files.attached? %>
-      <ul>
-        <% @task.files.each do |file| %>
-          <%= if file.previewable? %>
-            <li>
-              <%= image_tag file.preview(resize_to_limit: [100, 100]) %>
-            </li>
-          <% end %>
-        <% end %>
-      </ul>
-    <% else %>
-      <%= f.input :files, as: :file, input_html: { multiple: true } %>
-    <% end %>
-  </div>
+    <%= f.input :files, as: :file, input_html: { multiple: true } %>
 
   <div class="form-actions">
     <%= f.button :submit, class: "btn btn-primary" %>
   </div>
+
+  <% @task.files.each do |file| %>
+    <p><%= file.filename %></p>
+  <% end %>
 <% end %>
