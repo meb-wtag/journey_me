@@ -12,6 +12,7 @@ RSpec.describe UsersController, type: :controller do
     end
 
     it 'populates an array of all Users' do
+      sign_in_as!(user)
       get :index
       expect(assigns(:users)).to match_array [user, user2]
     end
@@ -24,22 +25,20 @@ RSpec.describe UsersController, type: :controller do
     end
 
     it 'renders the :new template' do
+      sign_in_as!(user)
       get :new
       expect(response).to render_template :new
     end
   end
 
   describe 'GET #show' do
-    before do
-      sign_in_as! user
-    end
-
     it 'displays the requested User to @user' do
       get :show, params: { id: user.id }
       expect(assigns(:user)).to eq user
     end
 
     it 'renders the :show template' do
+      sign_in_as!(user)
       get :show, params: { id: user.id }
       expect(response).to render_template :show
     end
