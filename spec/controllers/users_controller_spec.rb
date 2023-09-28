@@ -3,7 +3,7 @@ require 'spec_helper'
 require 'rails_helper'
 RSpec.describe UsersController, type: :controller do
   let!(:user) do
-    FactoryBot.create(:user, role: :admin)
+    FactoryBot.create(:user)
   end
 
   describe 'GET #index' do
@@ -12,7 +12,7 @@ RSpec.describe UsersController, type: :controller do
     end
 
     it 'populates an array of all Users' do
-      sign_in_as!(user)
+      sign_in_as!(user2)
       get :index
       expect(assigns(:users)).to match_array [user, user2]
     end
