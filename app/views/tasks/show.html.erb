@@ -1,18 +1,23 @@
-<%= simple_form_for([@user, @task], wrapper: :horizontal_form) do |f| %>
+<%= simple_form_for([@user, @task], wrapper: :vertical_range) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-  <div class="form-inputs mt-3">
-    <%= f.input :title, {class: "form-control"} %>
-    <%= f.input :description, as: :text %>
+  <h1 class="text-center"><%= t('task.action.add') %></h1>
+  <br>
+  <div class="form-inputs d-flex flex-column">
+    <%= f.input :title %>
+    <%= f.input :description %>
     <%= f.input :content, as: :text %>
-    <%= f.input :files, as: :file, input_html: { multiple: true } %>
-
-  <div class="form-actions">
-    <%= f.button :submit, class: "btn btn-primary" %>
+    <%= f.input :user_ids, collection: User.all.map { |u| [u.username, u.id] }, input_html: { multiple: true } %>
+    <br>
   </div>
+  <div class="btn btn-primary d-flex justify-content-center mt-3">
+    <%= f.button :submit, {class: "form-check"} %>
+  </div>
+<% end %>
 
-  <% @task.files.each do |file| %>
-    <p><%= file.filename %></p>
-  <% end %>
+<h1 class="text-center mt-5">Uploaded Files:</h1>
+<% @task.files.each do |file| %>
+  <div class="d-flex justify-content-center mb-2">
+    <%= link_to file.filename, file, class: "btn btn-primary"%>
+  </div>
 <% end %>
