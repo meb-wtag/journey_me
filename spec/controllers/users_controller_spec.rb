@@ -1,10 +1,9 @@
 #I deactivated the controller funtion #require_login to do the tests more easily.
-#I added only_path: true, to test the create function which is using the mailer.
-
+require 'spec_helper'
 require 'rails_helper'
 RSpec.describe UsersController, type: :controller do
   let!(:user) do
-    FactoryBot.create(:user)
+    FactoryBot.create(:user, role: :admin)
   end
 
   describe 'GET #index' do
@@ -31,6 +30,10 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe 'GET #show' do
+    before do
+      sign_in_as! user
+    end
+
     it 'displays the requested User to @user' do
       get :show, params: { id: user.id }
       expect(assigns(:user)).to eq user

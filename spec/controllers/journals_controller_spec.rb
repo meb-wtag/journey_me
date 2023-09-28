@@ -2,7 +2,10 @@
 
 require 'rails_helper'
 RSpec.describe JournalsController, type: :controller do
-  let!(:user) { FactoryBot.create(:user) }
+  let!(:user) do
+    FactoryBot.create(:user, role: :admin)
+  end
+
   let(:journal) { FactoryBot.create(:journal, user:) }
   let(:valid_params) { FactoryBot.attributes_for(:journal) }
 
