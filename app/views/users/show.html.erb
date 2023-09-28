@@ -42,9 +42,9 @@
           <% else %>
             <div class="d-flex justify-content-center mb-2">
               <%= link_to t('user.action.delete'), user_path(@user), class: "btn btn-danger", data: {
-                      turbo_method: :delete,
-                      turbo_confirm: t('user.message.confirm')
-                    } %>
+                    turbo_method: :delete,
+                    turbo_confirm: t('user.message.confirm')
+                  } %>
             </div>
           <% end %>
         </div>
