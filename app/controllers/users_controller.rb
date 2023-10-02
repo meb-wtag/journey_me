@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :find_user, only: %i[show destroy update edit]
-  before_action :require_login, except: %i[new create upload_profile_picture]
+  before_action :require_login, except: %i[new create upload_profile_picture confirm_email find_user show]
 
   def index
     @users = User.all
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     if @user.save
       UserMailer.registration_confirmation(@user).deliver
       flash[:success] = t('mail_conf.please_confirm')
-      redirect_to user_path(@user)
+      redirect_to new_user_session_path
     else
       flash[:error] = t('user.message.error.create')
       redirect_to new_user_path
@@ -63,11 +63,10 @@ class UsersController < ApplicationController
     if @user
       @user.email_activate
       flash[:success] = t('mail_conf.welcome')
-      redirect_to new_user_session_path
     else
       flash[:error] = t('mail_conf.not_found')
-      redirect_to root_url
     end
+    redirect_to new_user_session_path
   end
 
   private

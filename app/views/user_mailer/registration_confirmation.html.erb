@@ -13,7 +13,7 @@
     <p class="mt-5 text-center mb-5">
       <%= t('mailer.content')%>
     </p>
-    <a class="btn btn-primary p-3 fw-700" href="<%= confirm_email_user_url(id: @user.id, confirm_token: @user.confirm_token, only_path: true) %>">
+    <a class="btn btn-primary p-3 fw-700" href="<%= confirm_email_user_url(id: @user.id, confirm_token: @user.confirm_token) %>">
       <%= t('mailer.confirm')%></a>
   </div>
 </body>
