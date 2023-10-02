@@ -57,19 +57,31 @@ RSpec.describe TasksController, type: :controller do
     end
   end
 
-  describe 'DELETE #destroy' do
+  describe '#destroy' do
     before do
       session[:user_id] = user.id
     end
 
-    it 'deletes the journal' do
-      delete :destroy, params: { user_id: user.id, id: task.id }
-      expect { task.reload }.to raise_error(ActiveRecord::RecordNotFound)
+    it 'destroys the task' do
+      expect {
+        delete :destroy, params: { id: task.id }
+      }.to change(Task, :count).by(-1)
     end
 
-    it 'renders the :show template' do
-      delete :destroy, params: { user_id: user.id, id: task.id }
-      expect(response).to redirect_to user_tasks_path
+    it 'redirects to user_tasks_path' do
+      delete :destroy, params: { id: task.id }
+      expect(response).to redirect_to(user_tasks_path)
+    end
+
+    context 'when the task cannot be destroyed' do
+      before do
+        allow_any_instance_of(Task).to receive(:destroy).and_return(false)
+      end
+
+      it 'redirects to user_tasks_path' do
+        delete :destroy, params: { id: task.id }
+        expect(response).to redirect_to(user_tasks_path)
+      end
     end
   end
 
