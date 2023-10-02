@@ -20,7 +20,7 @@ RSpec.describe UserSessionsController, type: :controller do
     end
 
     it 'displays an error message and redirects to the login page' do
-      post :create, params: { user: { username: user.username, password: 'wrongpassword' } }
+      post :create, params: { user: { username: user.username, password: 'wrong_pw' } }
       expect(session[:user_id]).to be_nil
       expect(response).to redirect_to new_user_session_path
     end
