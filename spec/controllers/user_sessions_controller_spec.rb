@@ -1,10 +1,8 @@
-#I deactivated the controller funtion #require_login to do the tests more easily
-
 require 'rails_helper'
 
 RSpec.describe UserSessionsController, type: :controller do
-  let(:user) do
-    FactoryBot.create(:user, username: 'test', password: 'password123', password_confirmation: 'password123')
+  let!(:user) do
+    FactoryBot.create(:user)
   end
 
   describe 'GET #new' do
@@ -16,7 +14,7 @@ RSpec.describe UserSessionsController, type: :controller do
 
   describe 'POST #create' do
     it 'creates a session and redirects to the user profile' do
-      post :create, params: { user: { username: user.username, password: 'password123' } }
+      post :create, params: { user: { username: user.username, password: user.password } }
       expect(session[:user_id]).to eq(user.id)
       expect(response).to redirect_to user_path(user)
     end
@@ -30,10 +28,10 @@ RSpec.describe UserSessionsController, type: :controller do
 
   describe 'DELETE #destroy' do
     it 'destroys the session and redirects to the root page' do
-      session[:user_id] = user.id
+      sign_in_as!(user)
       delete :destroy
       expect(session[:user_id]).to be_nil
-      expect(response).to redirect_to new_user_path
+      expect(response).to redirect_to root_path
     end
   end
 end
