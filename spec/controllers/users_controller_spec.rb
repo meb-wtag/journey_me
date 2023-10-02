@@ -1,4 +1,3 @@
-#I deactivated the controller funtion #require_login to do the tests more easily.
 require 'spec_helper'
 require 'rails_helper'
 RSpec.describe UsersController, type: :controller do
@@ -12,7 +11,6 @@ RSpec.describe UsersController, type: :controller do
     end
 
     it 'populates an array of all Users' do
-      sign_in_as!(user2)
       get :index
       expect(assigns(:users)).to match_array [user, user2]
     end
@@ -25,7 +23,6 @@ RSpec.describe UsersController, type: :controller do
     end
 
     it 'renders the :new template' do
-      sign_in_as!(user)
       get :new
       expect(response).to render_template :new
     end
@@ -46,6 +43,7 @@ RSpec.describe UsersController, type: :controller do
 
   describe 'DELETE #destroy' do
     it 'deletes the user' do
+      sign_in_as!(user)
       expect do
         delete :destroy, params: { id: user.id }
       end.to change(User, :count).by(-1)
@@ -59,7 +57,8 @@ RSpec.describe UsersController, type: :controller do
           user: {
             username: 'newuser',
             password: 'password',
-            password_confirmation: 'password'
+            password_confirmation: 'password',
+            email: 'abc'
           }
         }
       end
@@ -84,7 +83,7 @@ RSpec.describe UsersController, type: :controller do
       it 'redirects to the users profile page' do
         post :create, params: valid_params
         user = User.last
-        expect(response).to redirect_to(user_path(user))
+        expect(response).to redirect_to(new_user_session_path)
       end
     end
 
@@ -123,17 +122,20 @@ RSpec.describe UsersController, type: :controller do
     end
 
     it 'updates a User with params and saves it' do
+      sign_in_as!(user3)
       expect do
         patch :update, params: { id: user3.id, user: { first_name: 'Name123' } }
       end.to change { user3.reload.first_name }.to 'Name123'
     end
 
     it 'renders the :edit template when succedes' do
+      sign_in_as!(user)
       get :update, params: { id: user.id, user: { username: 'test' } }
       expect(response).to redirect_to user_path(user)
     end
 
     it 'renders the :edit template when fails' do
+      sign_in_as!(user)
       get :update, params: { id: user.id, user: { username: nil } }
       expect(response).to redirect_to edit_user_path(user)
     end
@@ -143,6 +145,7 @@ RSpec.describe UsersController, type: :controller do
     let(:user5) do
       FactoryBot.create(:user, confirm_token: 'valid_token')
     end
+
     context 'with a valid confirmation token' do
       it 'activates the users email' do
         get :confirm_email, params: { id: user5.id, confirm_token: 'valid_token' }
@@ -164,7 +167,7 @@ RSpec.describe UsersController, type: :controller do
     context 'with an invalid confirmation token' do
       it 'redirects to the root URL' do
         get :confirm_email, params: { id: user5.id, confirm_token: 'invalid_token' }
-        expect(response).to redirect_to(root_url)
+        expect(response).to redirect_to(new_user_session_path)
       end
 
       it 'sets an error flash message' do
