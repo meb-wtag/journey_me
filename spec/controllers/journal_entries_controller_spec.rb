@@ -1,11 +1,13 @@
-#I deactivated the controller funtion #require_login to do the tests more easily
-
 require 'rails_helper'
 RSpec.describe JournalEntriesController, type: :controller do
   let!(:user) { FactoryBot.create(:user) }
   let!(:journal) { FactoryBot.create(:journal, user:) }
   let!(:entry) { FactoryBot.create(:journal_entry, journal:) }
   let!(:valid_params) { FactoryBot.attributes_for(:journal_entry) }
+
+  before do
+    sign_in_as!(user)
+  end
 
   describe 'GET #index' do
     let(:entry2) { FactoryBot.create(:journal_entry, journal:) }

@@ -4,6 +4,10 @@ RSpec.describe JournalsController, type: :controller do
     FactoryBot.create(:user, role: :admin)
   end
 
+  before do
+    sign_in_as!(user)
+  end
+
   let(:journal) { FactoryBot.create(:journal, user:) }
   let(:valid_params) { FactoryBot.attributes_for(:journal) }
 
