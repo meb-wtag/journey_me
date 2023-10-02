@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     @user.confirm_token = @user.confirmation_token
     if @user.save
       UserMailer.registration_confirmation(@user).deliver
-      flash[:success] = t('mail_conf.please_confirm')
+      flash[:success] = t('mailer.please_confirm')
       redirect_to new_user_session_path
     else
       flash[:error] = t('user.message.error.create')
@@ -63,9 +63,9 @@ class UsersController < ApplicationController
     @user = User.find_by(confirm_token: params[:confirm_token])
     if @user
       @user.email_activate
-      flash[:success] = t('mail_conf.welcome')
+      flash[:success] = t('mailer.welcome')
     else
-      flash[:error] = t('mail_conf.not_found')
+      flash[:error] = t('mailer.not_found')
     end
     redirect_to new_user_session_path
   end
