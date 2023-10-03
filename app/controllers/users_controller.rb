@@ -1,15 +1,7 @@
 class UsersController < ApplicationController
   before_action :find_user, only: %i[show destroy update edit]
-  before_action :require_login, except: %i[new create upload_profile_picture confirm_email find_user show]
-
-  def index
-    @users = User.all
-    head :ok
-  end
-
-  def new
-    @user = User.new
-  end
+  before_action :require_login, except: %i[index new create upload_profile_picture]
+  load_and_authorize_resource
 
   def create
     @user = User.new(user_params)
@@ -56,7 +48,11 @@ class UsersController < ApplicationController
     else
       flash[:error] = t('user.message.error.delete')
     end
-    redirect_to new_user_path
+    if current_user.admin?
+      redirect_to users_path
+    else
+      redirect_to new_user_path
+    end
   end
 
   def confirm_email
@@ -89,6 +85,7 @@ class UsersController < ApplicationController
                                  :country,
                                  :city,
                                  :date_of_birth,
-                                 :profile_picture)
+                                 :profile_picture,
+                                 :role)
   end
 end

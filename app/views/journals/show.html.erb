@@ -26,9 +26,9 @@
             <%= link_to t('entry.action.show'), user_journal_journal_entry_path(@user,@journal,entry), class: "btn btn-primary"%>
 
             <%= link_to t('entry.action.delete'), user_journal_journal_entry_path(@user,@journal,entry), class: "btn btn-danger", data: {
-                turbo_method: :delete,
-                turbo_confirm: t('entry.message.confirm')
-            } %>
+                  turbo_method: :delete,
+                  turbo_confirm: t('entry.message.confirm')
+                } %>
             </td>
           </tr>
           <% end %>

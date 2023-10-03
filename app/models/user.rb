@@ -5,9 +5,13 @@ class User < ApplicationRecord
 
   validates :username, presence: true, uniqueness: true
   validates :password, presence: true, on: :create
+  validates :role, presence: true
   validates :password_confirmation, presence: true, on: :create
   validates :profile_picture,
             blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 0..(5.megabytes) }
+
+
+  enum role: { user: 0, admin: 1 }
 
   def confirmation_token
     if self.confirm_token.blank?

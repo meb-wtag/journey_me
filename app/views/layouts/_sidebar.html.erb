@@ -13,12 +13,11 @@
     <li>
   		<%= link_to( t('sidebar.profile'), user_path(current_user), {class:"nav-link link-dark"} )%><br> 
     </li>
-    <li>
-    	<%= link_to( t('sidebar.login'), new_user_session_path, {class:"nav-link link-dark"} )%><br> 
-    </li>
-    <li>
-    	<%= link_to( t('sidebar.login'), new_user_session_path, {class:"nav-link link-dark"} )%><br> 
-    </li>
+    <% if current_user.admin? %>
+      <li>
+        <%= link_to( t('users.all_users'), users_path, {class:"nav-link link-dark"} )%><br>
+      </li>
+    <% end %>
   </ul>
   <hr>
 </div>

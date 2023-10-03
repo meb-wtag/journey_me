@@ -7,6 +7,7 @@ gem 'activestorage-validator'
 gem 'bootsnap', require: false
 gem 'bootstrap', '~> 5.3.1'
 gem 'bcrypt', '~> 3.1.7'
+gem 'cancancan'
 gem 'country_select'
 gem 'i18n-tasks', '~> 1.0.12'
 gem 'importmap-rails'
@@ -24,6 +25,7 @@ gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'zeitwerk', '~> 2.6.12'
 
 group :development, :test do
   gem 'capybara'
