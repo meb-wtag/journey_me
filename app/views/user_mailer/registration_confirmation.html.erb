@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title><%= t('entry.message.welcome')%></title>
+  </head>
+  <body >
+  <div class="container">
+    <h1 class="h3 fw-700 text-center">
+     <%= t('entry.message.welcome')%>, <%= @user.username.capitalize %>
+    </h1>
+    <p class="mt-5 text-center mb-5">
+      <%= t('mailer.content')%>
+    </p>
+    <a class="btn btn-primary p-3 fw-700" href="<%= confirm_email_user_url(id: @user.id, confirm_token: @user.confirm_token) %>">
+      <%= t('mailer.confirm')%></a>
+  </div>
+</body>
+</html>

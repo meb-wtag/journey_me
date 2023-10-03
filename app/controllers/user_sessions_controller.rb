@@ -9,9 +9,13 @@ class UserSessionsController < ApplicationController
     @user = User.find_by(username: params[:user][:username])
 
     if @user&.authenticate(params[:user][:password])
-      session[:user_id] = @user.id
-      flash[:success] = t('user_session.message.success.create')
-      redirect_to user_path(@user)
+      if @user.email_confirmed
+        session[:user_id] = @user.id
+        flash[:success] = t('user_session.message.success.create')
+        redirect_to user_path(@user)
+      else
+        flash[:error] = t('mail_conf.please_confirm')
+      end
     else
       flash[:error] = t('user_session.message.error.create')
       redirect_to new_user_session_path
