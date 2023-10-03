@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   before_action :find_user, only: %i[new create index show destroy update find_task]
   before_action :find_task, only: %i[show destroy update]
+  load_and_authorize_resource
 
   def index
     @tasks = Task.all
@@ -47,7 +48,7 @@ class TasksController < ApplicationController
   private
 
   def find_task
-    @task = @user.tasks.find(params[:id])
+    @task = Task.find(params[:id])
   end
 
     def find_user

@@ -8,13 +8,7 @@
     	<%= link_to( t('sidebar.journals'), user_journals_path(current_user), {class:"nav-link link-dark"} )%><br> 
     </li>
     <li>
-      <%= link_to( t('sidebar.new_user'), new_user_path, {class:"nav-link link-dark"} )%><br> 
-    </li>
-    <li>
   		<%= link_to( t('sidebar.profile'), user_path(current_user), {class:"nav-link link-dark"} )%><br> 
-    </li>
-    <li>
-    	<%= link_to( t('sidebar.login'), new_user_session_path, {class:"nav-link link-dark"} )%><br> 
     </li>
     <li>
     	<%= link_to( t('sidebar.tasks'), user_tasks_path(current_user), {class:"nav-link link-dark"} )%><br>

@@ -1,15 +1,28 @@
-<% @user.tasks.each do |task| %>
-  <a class="btn" href="<%= user_task_path(@user,task.id)%>">
-    <div class="card text-white bg-dark m-3" style="max-width: 18rem;">
-      <div class="card-header">Assigned by: <%= User.find(task.user_id).username %></div>
-      <div class="card-body">
-        <h5 class="card-title"><%= task.title %></h5>
-        <p class="card-text"><%= task.description %></p>
+<% if current_user.admin? %>
+  <% @tasks.each do |task| %>
+    <a class="btn" href="<%= user_task_path(@user,task.id)%>">
+      <div class="card text-white bg-dark m-3" style="max-width: 18rem;">
+        <div class="card-header">Assigned by: <%= User.find(task.user_id).username %></div>
+        <div class="card-body">
+          <h5 class="card-title"><%= task.title %></h5>
+          <p class="card-text"><%= task.description %></p>
+        </div>
       </div>
-    </div>
-  </a>
+    </a>
+  <% end %>
+<% else %>
+  <% @user.tasks.each do |task| %>
+    <a class="btn" href="<%= user_task_path(@user,task.id)%>">
+      <div class="card text-white bg-dark m-3" style="max-width: 18rem;">
+        <div class="card-header">Assigned by: <%= User.find(task.user_id).username %></div>
+        <div class="card-body">
+          <h5 class="card-title"><%= task.title %></h5>
+          <p class="card-text"><%= task.description %></p>
+        </div>
+      </div>
+    </a>
+  <% end %>
 <% end %>
-
 <div class="m-3">
   <div>
     <% if @tasks.empty? %>

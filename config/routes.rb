@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   root 'users#new'
-  resources :user_sessions, only: [:new, :create] 
-  delete :user_sessions, to: 'user_sessions#destroy', as: :logout
+  resources :user_sessions, only: [:new, :create] do
+    delete :logout, to: 'user_sessions#destroy', on: :collection, as: :logout
+  end
 
   resources :users do
     get 'users/confirm_email/:id/:confirm_token', to: 'users#confirm_email', as: 'confirm_email', on: :member

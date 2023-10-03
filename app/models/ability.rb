@@ -10,6 +10,7 @@ class Ability
         can %i(create show new), User
         can :update, User, id: user.id
         cannot :index, User
+        can %i(show index), Task
       end
     else
       can %i(create new confirm_email), User
