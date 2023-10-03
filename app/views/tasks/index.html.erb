@@ -24,13 +24,10 @@
   <% end %>
 <% end %>
 <div class="m-3">
-  <div>
-    <% if @tasks.empty? %>
-      <%= t('task.message.no_task') %>
-    <% end %>
-  </div>
-  <a>
-    <%= link_to(t('task.action.add'), new_user_task_path(@user),
-            {class:"btn btn-primary"})%>
-  </a>
+  <% if current_user.admin? %>
+    <a>
+      <%= link_to(t('task.action.add'), new_user_task_path(@user),
+              {class:"btn btn-primary"})%>
+    </a>
+  <% end %>
 </div>

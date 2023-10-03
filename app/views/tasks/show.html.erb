@@ -10,9 +10,11 @@
     <%= f.input :user_ids, collection: User.all.map { |u| [u.username, u.id] }, input_html: { multiple: true } %>
     <br>
   </div>
-  <div class="btn btn-primary d-flex justify-content-center mt-3">
-    <%= f.button :submit, {class: "form-check"} %>
-  </div>
+  <% if current_user.admin? %>
+    <div class="btn btn-primary d-flex justify-content-center mt-3">
+      <%= f.button :submit, {class: "form-check"} %>
+    </div>
+  <% end %>
 <% end %>
 
 <h1 class="text-center mt-5">Uploaded Files:</h1>

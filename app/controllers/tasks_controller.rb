@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   before_action :find_user, only: %i[new create index show destroy update find_task]
   before_action :find_task, only: %i[show destroy update]
+  before_action :require_login
   load_and_authorize_resource
 
   def index
