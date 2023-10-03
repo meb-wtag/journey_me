@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :find_user, only: %i[show destroy update edit]
-  before_action :require_login, except: %i[index new create upload_profile_picture]
+  before_action :require_login, except: %i[index new create upload_profile_picture confirm_email]
   load_and_authorize_resource
 
   def create
@@ -63,7 +63,7 @@ class UsersController < ApplicationController
     else
       flash[:error] = t('mailer.not_found')
     end
-    redirect_to new_user_session_path
+    redirect_to user_path(@user)
   end
 
   private

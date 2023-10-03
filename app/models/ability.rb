@@ -12,7 +12,7 @@ class Ability
         cannot :index, User
       end
     else
-      can %i(create new), User
+      can %i(create new confirm_email), User
     end
   end
 end
