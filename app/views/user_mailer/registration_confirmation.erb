@@ -1,0 +1,9 @@
+<%= t('entry.message.welcome') %>, <%= @user.username.capitalize %>
+
+
+<%= t('entry.message.welcome')%>
+
+
+<%= t('mailer.confirm')%>:
+
+<%= confirm_email_user_url(id: @user.id, confirm_token: @user.confirm_token) %>

@@ -1,23 +1,15 @@
 class UsersController < ApplicationController
   before_action :find_user, only: %i[show destroy update edit]
-  before_action :require_login, except: %i[new create upload_profile_picture]
-
-  def index
-    @users = User.all
-    @task = @user.tasks.find(params[:task_id])
-    @task_users = Assignment.where(task_id: @task.id).pluck(:user_id)
-  end
-
-  def new
-    @user = User.new
-  end
+  before_action :require_login, except: %i[index new create upload_profile_picture confirm_email]
+  load_and_authorize_resource
 
   def create
     @user = User.new(user_params)
+    @user.confirm_token = @user.confirmation_token
     if @user.save
-      session[:user_id] = @user.id
-      flash[:success] = t('user.message.success.create')
-      redirect_to user_path(@user)
+      UserMailer.registration_confirmation(@user).deliver
+      flash[:success] = t('mailer.please_confirm')
+      redirect_to new_user_session_path
     else
       flash[:error] = t('user.message.error.create')
       redirect_to new_user_path
@@ -56,7 +48,22 @@ class UsersController < ApplicationController
     else
       flash[:error] = t('user.message.error.delete')
     end
-    redirect_to new_user_path
+    if current_user.admin?
+      redirect_to users_path
+    else
+      redirect_to new_user_path
+    end
+  end
+
+  def confirm_email
+    @user = User.find_by(confirm_token: params[:confirm_token])
+    if @user
+      @user.email_activate
+      flash[:success] = t('mailer.welcome')
+    else
+      flash[:error] = t('mailer.not_found')
+    end
+    redirect_to user_path(@user)
   end
 
   private
@@ -78,6 +85,7 @@ class UsersController < ApplicationController
                                  :country,
                                  :city,
                                  :date_of_birth,
-                                 :profile_picture)
+                                 :profile_picture,
+                                 :role)
   end
 end

@@ -3,14 +3,11 @@ class JournalEntriesController < ApplicationController
   before_action :find_journal, only: %i[new create index show destroy update find_entry]
   before_action :find_entry, only: %i[show destroy update]
   before_action :require_login
+  load_and_authorize_resource
 
   def index
     @journal_entries = @journal.journal_entries
     redirect_to user_journal_path(@user, @journal)
-  end
-
-  def new
-    @journal_entry = @journal.journal_entries.new
   end
 
   def create
@@ -32,8 +29,6 @@ class JournalEntriesController < ApplicationController
     end
     redirect_to user_journal_path(@user, @journal)
   end
-
-  def show; end
 
   def update
     if @journal_entry.update(journal_entry_params)

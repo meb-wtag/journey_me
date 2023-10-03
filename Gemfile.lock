@@ -97,6 +97,7 @@ GEM
     cairo-gobject (4.2.0)
       cairo (>= 1.16.2)
       glib2 (= 4.2.0)
+    cancancan (3.5.0)
     capybara (3.39.2)
       addressable
       matrix
@@ -125,7 +126,7 @@ GEM
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
     ffaker (2.23.0)
-    ffi (1.15.5)
+    ffi (1.16.2)
     fiddle (1.1.1)
     gio2 (4.2.0)
       fiddle
@@ -163,6 +164,10 @@ GEM
       activesupport (>= 5.0.0)
     json (2.6.3)
     language_server-protocol (3.17.0.3)
+    launchy (2.5.2)
+      addressable (~> 2.8)
+    letter_opener (1.8.1)
+      launchy (>= 2.2, < 3)
     loofah (2.21.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -200,6 +205,11 @@ GEM
     poppler (4.2.0)
       cairo-gobject (= 4.2.0)
       gio2 (= 4.2.0)
+    postmark (1.24.1)
+      json
+    postmark-rails (0.22.1)
+      actionmailer (>= 3.0.0)
+      postmark (>= 1.21.3, < 2.0)
     psych (5.1.0)
       stringio
     public_suffix (5.0.3)
@@ -273,7 +283,7 @@ GEM
       rspec-mocks (~> 3.12)
       rspec-support (~> 3.12)
     rspec-support (3.12.1)
-    rubocop (1.56.3)
+    rubocop (1.56.4)
       base64 (~> 0.1.1)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
@@ -330,7 +340,7 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unaccent (0.4.0)
-    unicode-display_width (2.4.2)
+    unicode-display_width (2.5.0)
     web-console (4.2.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -351,7 +361,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.11)
+    zeitwerk (2.6.12)
 
 PLATFORMS
   arm64-darwin-22
@@ -361,6 +371,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap
   bootstrap (~> 5.3.1)
+  cancancan
   capybara
   country_select
   debug
@@ -369,8 +380,10 @@ DEPENDENCIES
   i18n-tasks (~> 1.0.12)
   importmap-rails
   jbuilder
+  letter_opener
   pg
   poppler
+  postmark-rails
   puma (~> 5.0)
   rails (~> 7.0.7)
   rails-controller-testing
@@ -387,6 +400,7 @@ DEPENDENCIES
   web-console
   webdrivers
   webpacker
+  zeitwerk (~> 2.6.12)
 
 RUBY VERSION
    ruby 3.2.2p53
