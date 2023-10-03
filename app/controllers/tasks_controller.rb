@@ -44,9 +44,6 @@ class TasksController < ApplicationController
     redirect_to user_tasks_path
   end
 
-  def show
-  end
-
   private
 
   def find_task
