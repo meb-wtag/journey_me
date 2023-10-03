@@ -1,5 +1,5 @@
 require 'rails_helper'
-require "cancan/matchers"
+require 'cancan/matchers'
 
 RSpec.describe Ability do
   subject(:ability) { Ability.new(user) }
