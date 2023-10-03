@@ -8,7 +8,7 @@ class Task < ApplicationRecord
 
   validates :title, presence: true
   validates :description, presence: true
-  validates :files, blob: { content_type: ['image/png', 'application/pdf'], size_range: 0..(5.megabytes) }
+  validates :files, blob: { content_type: ['image/png','image/jpg','image/jpeg','application/pdf'], size_range: 0..(5.megabytes) }
 
   enum importance: %i[low medium high]
   enum status: %i[todo progress done]
