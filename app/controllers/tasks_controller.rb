@@ -17,6 +17,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
+    @task.assignments.destroy_all
     if @task.destroy
       flash[:success] = t('task.message.success.delete')
     else

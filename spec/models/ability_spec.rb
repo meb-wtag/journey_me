@@ -27,6 +27,9 @@ RSpec.describe Ability do
     it { is_expected.to be_able_to(:show, User) }
     it { is_expected.to be_able_to(:new, User) }
     it { is_expected.to be_able_to(:update, User, id: user.id) }
+
+    it { is_expected.to be_able_to(:index, Task) }
+    it { is_expected.to be_able_to(:show, Task) }
   end
 
   describe 'for guests' do
