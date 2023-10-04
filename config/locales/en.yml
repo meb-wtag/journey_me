@@ -64,6 +64,7 @@ en:
       id: ID
       title: Title
   user:
+    all_users: All Users
     table:
       username: Username
       role: Role
