@@ -50,6 +50,6 @@ class TasksController < ApplicationController
                                  :description,
                                  :content,
                                  files: [],
-                                 user_ids: [])
+                                 assignments: [])
   end
 end

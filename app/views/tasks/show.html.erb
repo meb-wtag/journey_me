@@ -7,7 +7,7 @@
     <%= f.input :title %>
     <%= f.input :description %>
     <%= f.input :content, as: :text %>
-    <%= f.input :user_ids, collection: User.all.map { |u| [u.username, u.id] }, input_html: { multiple: true } %>
+    <%= f.input :assignments, collection: User.all.map { |u| [u.username, u.id] }, input_html: { multiple: true } %>
     <br>
   </div>
   <% if current_user.admin? %>
