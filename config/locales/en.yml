@@ -63,6 +63,7 @@ en:
       content: Content
       id: ID
       title: Title
+      assigned_by: Assigned by
   user:
     all_users: All Users
     table:
@@ -131,3 +132,6 @@ en:
     from: from@example.com
     content:  a test Welcoming Email which is sent to all the new logins which are created
     confirm: Confirm and Access
+  file:
+    add: Add a File
+    uploaded: Uploaded Files

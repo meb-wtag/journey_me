@@ -9,9 +9,9 @@
     <%= f.input :content, as: :text %>
     <%= f.input :user_ids, collection: User.all.map { |u| [u.username, u.id] }, input_html: { multiple: true } %>
     <br>
-    <h1>Add some Files:</h1>
+    <h1><%= t('file.add') %></h1>
     <%= f.input :files, as: :file, label: false, input_html: { multiple: true, direct_upload: true } %>
-    <h1>Uploaded Files:</h1>
+    <h1><%= t('file.uploaded') %>:</h1>
     <% @task.files.each do |file| %>
       <%= link_to file.filename, file %>
     <% end %>

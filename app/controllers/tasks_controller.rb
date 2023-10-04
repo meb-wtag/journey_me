@@ -4,17 +4,6 @@ class TasksController < ApplicationController
   before_action :require_login
   load_and_authorize_resource
 
-  def index
-    @tasks = Task.all
-    @user_tasks = Assignment.where(user_id: current_user.id).pluck(:task_id)
-    @user_tasks = Task.where(id: @user_tasks)
-  end
-
-  def new
-    @task = @user.tasks.new
-    @users = User.all
-  end
-
   def create
     @task = @user.tasks.new(task_params)
     @task.users = User.where(id: params[:task][:user_ids])
@@ -52,7 +41,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
 
-    def find_user
+  def find_user
     @user = User.find(params[:user_id])
   end
 
