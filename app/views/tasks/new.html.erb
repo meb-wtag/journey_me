@@ -7,7 +7,7 @@
     <%= f.input :title %>
     <%= f.input :description %>
     <%= f.input :content, as: :text %>
-    <%= f.input :assignments, collection: User.all.map { |u| [u.username, u.id] }, input_html: { multiple: true } %>
+    <%= f.input :assignments, collection: User.all.map { |u| [u.username, u.id] },include_hidden: false, input_html: { multiple: true } %>
     <br>
     <h1><%= t('file.add') %></h1>
     <%= f.input :files, as: :file, label: false, input_html: { multiple: true, direct_upload: true } %>
