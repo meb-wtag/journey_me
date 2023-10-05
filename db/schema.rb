@@ -73,7 +73,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_25_150950) do
   end
 
   create_table "tasks", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.integer "creator_id", null: false
     t.string "title", null: false
     t.text "description", null: false
     t.text "content"
@@ -82,7 +82,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_25_150950) do
     t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_tasks_on_user_id"
+    t.index ["creator_id"], name: "index_tasks_on_creator_id"
   end
 
   create_table "users", force: :cascade do |t|

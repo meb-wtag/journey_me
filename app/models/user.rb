@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :assignments
+  has_many :created_tasks, class_name: 'Task', foreign_key: 'creator_id'
   has_many :tasks, through: :assignments
   has_many :journals, dependent: :destroy, inverse_of: :user
 

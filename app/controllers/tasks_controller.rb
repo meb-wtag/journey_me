@@ -7,7 +7,7 @@ class TasksController < ApplicationController
   def create
     @task = @user.tasks.new(task_params)
     @task.users = User.where(id: params[:task][:user_ids])
-    @task.user_id = @user.id
+    @task.creator_id = @user.id
     if @task.save
       flash[:success] = t('task.message.success.create')
     else

@@ -2,7 +2,7 @@
   <% @tasks.each do |task| %>
     <a class="btn" href="<%= user_task_path(@user,task.id)%>">
       <div class="card text-white bg-dark m-3" style="max-width: 18rem;">
-        <div class="card-header">Assigned by: <%= User.find(task.user_id).username %></div>
+        <div class="card-header">Assigned by: <%= User.find(task.creator_id).username %></div>
         <div class="card-body">
           <h5 class="card-title"><%= task.title %></h5>
           <p class="card-text"><%= task.description %></p>
@@ -14,7 +14,7 @@
   <% @user.tasks.each do |task| %>
     <a class="btn" href="<%= user_task_path(@user,task.id)%>">
       <div class="card text-white bg-dark m-3" style="max-width: 18rem;">
-        <div class="card-header"><%= t('task.action.add') %>: <%= User.find(task.user_id).username %></div>
+        <div class="card-header"><%= t('task.action.add') %>: <%= User.find(task.creator_id).username %></div>
         <div class="card-body">
           <h5 class="card-title"><%= task.title %></h5>
           <p class="card-text"><%= task.description %></p>
