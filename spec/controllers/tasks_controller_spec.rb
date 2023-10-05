@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe TasksController, type: :controller do
-  let!(:user) { FactoryBot.create(:user, role: :admin) }
-  let!(:task) { FactoryBot.create(:task, user_id: user.id, user_ids: user.id) }
+  let(:user) { FactoryBot.create(:user, role: :admin) }
+  let!(:task) { FactoryBot.create(:task, creator: user, user_ids: user.id) }
   let(:valid_params) { FactoryBot.attributes_for(:task) }
 
   describe 'GET #index' do
-    let(:task2) { FactoryBot.create(:task, user_id: user.id) }
+    let(:task2) { FactoryBot.create(:task, creator: user, user_ids: user.id) }
 
     before do
       session[:user_id] = user.id
@@ -24,7 +24,7 @@ RSpec.describe TasksController, type: :controller do
   end
 
   describe 'GET #new' do
-    let!(:task3) { FactoryBot.create(:task, user_id: user.id) }
+    let!(:task3) { FactoryBot.create(:task, creator: user, user_ids: user.id) }
 
     before do
       session[:user_id] = user.id
