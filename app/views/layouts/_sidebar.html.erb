@@ -2,31 +2,30 @@
   <div class="s-item"> <!-- Journals -->
     <div class="item-title">  <!-- title -->
       <div>
-        <h1>Journals</h1>
+        <h2>Journals</h2>
         <!-- Icon -->
       </div>
-      <hr style="border-width: 5px">
     </div>
     <div class="item-cards"> <!-- cards -->
       <% @user.journals.each do |journal| %>
-        <div class="card">
-          <div class="card-logo">
-            <!-- Icon -->
+        <a href="<%= user_journal_path(@user, journal) %>" class="card-link">
+          <div class="card">
+            <div class="card-logo">
+              <!-- Icon -->
+            </div>
+            <div class="card-title">
+              <h3><%= journal.title %></h3>
+            </div>
           </div>
-          <div class="card-title">
-            <h2>Card title</h2>
-          </div>
-        </div>
+        </a>
       <% end %>
     </div>
   </div>
   <div class="s-item"> <!-- Tasks -->
   <div class="item-title">  <!-- title -->
     <div>
-      <h1>Tasks</h1>
-      <!-- Icon -->
+      <h2>Tasks</h2>
     </div>
-    <hr style="border-width: 5px">
   </div>
   <div class="item-cards"> <!-- cards -->
     <% @user.journals.each do |task| %>
@@ -35,7 +34,7 @@
           <!-- Icon -->
         </div>
         <div class="card-title">
-          <h2>Card title</h2>
+          <h3>Card title</h3>
         </div>
       </div>
     <% end %>

@@ -18,14 +18,6 @@
             <td><%= journal.description %></td>
             <td><%= journal.created_at.to_formatted_s(:short) %></td>
             <td><%= journal.id %></td>
-            <td>
-              <%= link_to t('journal.action.show'), user_journal_path(@user, journal), class: "btn btn-primary"%>
-
-              <%= link_to t('journal.action.delete'), user_journal_path(@user, journal), class: "btn btn-danger", data: {
-                    turbo_method: :delete,
-                    turbo_confirm: t('journal.message.confirm')
-                  } %>
-            </td>
           </tr>
           <% end %>
         </tbody>
