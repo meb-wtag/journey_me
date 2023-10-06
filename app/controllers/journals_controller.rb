@@ -2,13 +2,10 @@ class JournalsController < ApplicationController
   before_action :find_user, only: %i[new create index show destroy update]
   before_action :find_journal, only: %i[show destroy update find_journal]
   before_action :require_login
+  load_and_authorize_resource
 
   def index
     @journals = Journal.order(params[:sort])
-  end
-
-  def new
-    @journal = @user.journals.new
   end
 
   def create

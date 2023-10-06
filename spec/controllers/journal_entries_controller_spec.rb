@@ -5,6 +5,10 @@ RSpec.describe JournalEntriesController, type: :controller do
   let!(:entry) { FactoryBot.create(:journal_entry, journal:) }
   let!(:valid_params) { FactoryBot.attributes_for(:journal_entry) }
 
+  before do
+    sign_in_as!(user)
+  end
+
   describe 'GET #index' do
     let(:entry2) { FactoryBot.create(:journal_entry, journal:) }
 
