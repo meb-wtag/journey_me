@@ -32,7 +32,9 @@
   <% end %>
   <div class="parent">
     <div class="section1">
-      <%= render 'layouts/sidebar'%>
+      <% if current_user %>
+        <%= render 'layouts/sidebar'%>
+      <% end %>
     </div>
     <div class="section2">
       <%= yield %>
