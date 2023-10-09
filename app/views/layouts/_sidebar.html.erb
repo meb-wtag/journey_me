@@ -1,44 +1,24 @@
 <div class="s-body">
-  <div class="s-item"> <!-- Journals -->
+  <div class="s-item"> <!-- Tasks -->
     <div class="item-title">  <!-- title -->
-      <div>
-        <h2>Journals</h2>
-        <!-- Icon -->
-      </div>
+      <h2>Tasks</h2>
     </div>
+    <hr style="margin:2%;">
     <div class="item-cards"> <!-- cards -->
       <% @user.journals.each do |journal| %>
         <div class="card">
           <a href="<%= user_journal_path(@user, journal) %>" class="card-link">
-            <div class="card-logo">
-              <!-- Icon -->
-            </div>
-            <div class="card-title">
-              <h3><%= journal.title %></h3>
+            <div class="card-content">
+              <div class="card-logo">
+                <!-- Icon -->
+              </div>
+              <div class="card-title">
+                <%= journal.title %>
+              </div>
             </div>
           </a>
         </div>
       <% end %>
     </div>
   </div>
-  <div class="s-item"> <!-- Tasks -->
-  <div class="item-title">  <!-- title -->
-    <div>
-      <h2>Tasks</h2>
-    </div>
-  </div>
-  <div class="item-cards"> <!-- cards -->
-    <% @user.journals.each do |task| %>
-      <div class="card">
-        <div class="card-logo">
-          <!-- Icon -->
-        </div>
-        <div class="card-title">
-          <h3>Card title</h3>
-        </div>
-      </div>
-    <% end %>
-  </div>
 </div>
-
-

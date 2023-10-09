@@ -6,10 +6,35 @@ body{
 
 .main-header {
   display: flex;
-  width: 746px;
-  height: 952px;
-  flex-direction: column;
+  width: 100%;
+  padding: 48px 30px 0px 30px;
+  justify-content: center;
   align-items: flex-start;
-  gap: 20px;
+}
+
+.main-image {
+  display: flex;
+  align-items: flex-start;
+}
+
+.header-information {
+  display: flex;
+  width: 320px;
+  height: 250px;
+  padding: 15px 0px 0px 15px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
   flex-shrink: 0;
+}
+
+.image {
+  background-color: black;
+  color: var(--colors-white, #FFF);
+  font-family: Inter;
+  font-size: 36.364px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
+  letter-spacing: 0.364px;
 }
