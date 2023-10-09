@@ -45,22 +45,22 @@
         </thead>
         <tbody>
           <% @journal.journal_entries.each do |entry| %>
-          <tr>
-            <td><%= entry.id %></td>
-            <td><%= entry.title %></td>
-            <td><%= entry.content %></td>
-            <td><%= entry.created_at.to_formatted_s(:short) %></td>
-          </tr>
+          <a href="<%= user_journal_journal_entry_path(@journal,entry) %>" class="card-link">
+            <tr>
+              <td><%= entry.id %></td>
+              <td><%= entry.title %></td>
+              <td><%= entry.content %></td>
+              <td><%= entry.created_at.to_formatted_s(:short) %></td>
+            </tr>
+          </a>
           <% end %>
         </tbody>
       </table>
-    </div>
-    <div>
-      <a>
-        <%= link_to(t('entry.action.add'), new_user_journal_journal_entry(@user,@journal),{class:"btn btn-primary"})%>
-      </a>
+      <div>
+        <%= link_to(t('entry.action.add'), new_user_journal_journal_entry_path(@user, @journal),
+        {class:"btn btn-primary"})%>
+      </div>
     </div>
   <div class="main-information">
   </div>
 </div>
-
