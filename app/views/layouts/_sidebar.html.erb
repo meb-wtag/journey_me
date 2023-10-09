@@ -8,16 +8,16 @@
     </div>
     <div class="item-cards"> <!-- cards -->
       <% @user.journals.each do |journal| %>
-        <a href="<%= user_journal_path(@user, journal) %>" class="card-link">
-          <div class="card">
+        <div class="card">
+          <a href="<%= user_journal_path(@user, journal) %>" class="card-link">
             <div class="card-logo">
               <!-- Icon -->
             </div>
             <div class="card-title">
               <h3><%= journal.title %></h3>
             </div>
-          </div>
-        </a>
+          </a>
+        </div>
       <% end %>
     </div>
   </div>

@@ -27,18 +27,16 @@
 <body>
   <% flash.each do |type, message| %>
     <div class="alert alert-<%= type %> text-center">
-      <%= message %>
+       <%= message %>
     </div>
   <% end %>
   <div class="parent">
-    <% if current_user %>
-      <div class="div1">
-        <%= render 'layouts/sidebar'%>
-      </div>
-    <% end %>
+    <div class="section1">
+      <%= render 'layouts/sidebar'%>
+    </div>
   </div>
-  <div>
-    <%= yield %>
+  <div class="section2">
+     <%= yield %>
   </div>
 </body>
 </html>
