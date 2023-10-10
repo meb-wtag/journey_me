@@ -1,0 +1,30 @@
+table {
+  width: 100%;
+  color: var(--Text, #020005);
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
+  letter-spacing: 0.14px;
+}
+
+td,th {
+  width: 22.5%;
+}
+
+tr {
+  display: flex;
+  padding: 15px 0px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2.5%;
+  align-self: stretch;
+  text-decoration: none;
+}
+
+thead {
+}
+
+
