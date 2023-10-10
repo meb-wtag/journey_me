@@ -21,26 +21,27 @@
     <%= stylesheet_link_tag "tables", "data-turbo-track": "reload" %>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap">
+    <%= stylesheet_link_tag "direct_upload", "data-turbo-track": "reload" %>
+
 
     <%= javascript_importmap_tags %>
     <%= csrf_meta_tags %>
   </head>
-
-<body>
-  <% flash.each do |type, message| %>
-    <div class="alert alert-<%= type %> text-center">
-       <%= message %>
+  <body>
+    <% flash.each do |type, message| %>
+      <div class="alert alert-<%= type %> text-center">
+         <%= message %>
+      </div>
+    <% end %>
+    <div class="parent">
+      <div class="section1">
+        <% if current_user %>
+          <%= render 'layouts/sidebar'%>
+        <% end %>
+      </div>
+      <div class="section2">
+        <%= yield %>
+      </div>
     </div>
-  <% end %>
-  <div class="parent">
-    <div class="section1">
-      <% if current_user %>
-        <%= render 'layouts/sidebar'%>
-      <% end %>
-    </div>
-    <div class="section2">
-      <%= yield %>
-    </div>
-  </div>
-</body>
+  </body>
 </html>

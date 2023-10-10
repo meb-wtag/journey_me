@@ -63,7 +63,7 @@ class UsersController < ApplicationController
     else
       flash[:error] = t('mailer.not_found')
     end
-    redirect_to user_path(@user)
+    redirect_to new_user_session_path
   end
 
   private
