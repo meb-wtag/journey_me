@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :find_user, only: %i[show destroy update edit]
-  before_action :require_login, except: %i[index new create upload_profile_picture]
+  before_action :require_login, except: %i[index new create upload_profile_picture confirm_email]
   load_and_authorize_resource
 
   def create

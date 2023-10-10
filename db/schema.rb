@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_25_103841) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_25_150950) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_25_103841) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "assignments", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "task_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_assignments_on_task_id"
+    t.index ["user_id"], name: "index_assignments_on_user_id"
+  end
+
   create_table "journal_entries", force: :cascade do |t|
     t.integer "journal_id", null: false
     t.string "title", null: false
@@ -60,6 +69,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_25_103841) do
     t.integer "user_id", null: false
   end
 
+  create_table "schema_migrations", primary_key: "version", id: :string, force: :cascade do |t|
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.integer "creator_id", null: false
+    t.string "title", null: false
+    t.text "description", null: false
+    t.text "content"
+    t.date "deadline"
+    t.integer "priority", default: 1, null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["creator_id"], name: "index_tasks_on_creator_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username", null: false
     t.string "first_name"
@@ -76,11 +101,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_25_103841) do
     t.date "joining_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "role", default: 0, null: false
     t.boolean "email_confirmed", default: false
     t.string "confirm_token"
+    t.integer "role", default: 0, null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "assignments", "tasks"
+  add_foreign_key "assignments", "users"
 end
