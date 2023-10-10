@@ -29,7 +29,6 @@ development:
   pool: 5
   username: admin
   password: 12345678
-  schema_search_path: public
 
 
   # The specified database role being used to connect to postgres.
