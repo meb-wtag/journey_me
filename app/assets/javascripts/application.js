@@ -1,4 +1,3 @@
-require "activestorage"
 import "@hotwired/turbo-rails"
 const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
