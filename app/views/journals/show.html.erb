@@ -44,7 +44,7 @@
           <div>Created</div>
         </li>
         <% @journal.journal_entries.each do |entry| %>
-          <li class="table-row clickable-row" data-href='url://'>
+          <li class="table-row clickable-row" data-href="<%= user_journal_journal_entry_path(@user, @journal, entry) %>">
             <div class="id"><%= entry.id %></div>
             <div><%= entry.title %></div>
             <div><%= entry.updated_at.to_formatted_s(:short) %></div>
