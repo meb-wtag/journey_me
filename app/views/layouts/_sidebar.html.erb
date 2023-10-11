@@ -2,9 +2,11 @@
   <div class="s-item"> <!-- Tasks -->
     <div class="item-title">  <!-- title -->
       <h2>Journals</h2>
-      <%= link_to new_user_journal_journal_entry_path(@user, @journal) do %>
-        <img src="<%= asset_path('add_entry.svg') %>" alt="Add Entry" style="width: 25px; height: 25px;"></img>
-      <% end %>
+      <div>
+        <%= link_to new_user_journal_path(@user) do %>
+          <img src="<%= asset_path('add_entry.svg') %>" alt="Add Entry" style="width: 25px; height: 25px;"></img>
+        <% end %>
+      </div>
     </div>
     <hr style="margin:2%;">
     <div class="item-cards"> <!-- cards -->
@@ -27,6 +29,11 @@
   <div class="s-item"> <!-- Tasks -->
     <div class="item-title">  <!-- title -->
       <h2>Tasks</h2>
+      <div>
+        <%= link_to new_user_task_path(@user) do %>
+          <img src="<%= asset_path('add_entry.svg') %>" alt="Add Entry" style="width: 25px; height: 25px;"></img>
+        <% end %>
+      </div>
     </div>
     <hr style="margin:2%;">
     <div class="item-cards"> <!-- cards -->

@@ -17,13 +17,22 @@
 }
 
 .item-title {
+  display: flex;
   padding-top: 20%;
+  margin-left: 3%;
   color: var(--text-color);
   width: 100%;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: row;
 }
+
+.item-title > h2 {
+  width: 80%;
+}
+
+.item-title > div {
+  margin-top: 1%;
+}
+
 
 .item-cards {
   width: 100%;
