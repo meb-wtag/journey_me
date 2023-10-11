@@ -1,3 +1,8 @@
+.main-content {
+	border-radius: 10px;
+	background: var(--secondary-color);
+}
+
 .main-header {
   display: flex;
   width: 100%;
@@ -45,6 +50,7 @@
 
 .author-name {
 	font-family: Inter;
+	color: var(--text-color);
 	font-size: 24px;
 	font-style: normal;
 	font-weight: 600;
@@ -79,6 +85,8 @@
 }
 
 .main-information {
+	border-radius: 10px;
+	background: var(--secondary-color);
 	display: grid;
 	width: 100%;
 	height: 100%;

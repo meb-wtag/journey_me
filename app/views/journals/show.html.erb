@@ -30,10 +30,12 @@
           </a>
       </div>
       <div class="header-actions">
-        <img src="<%= asset_path('add_entry.svg') %>" alt="Add Entry"
-              class="rounded-circle img-fluid" style="width: 25px;"></img>
-        <img src="<%= asset_path('edit.svg') %>" alt="Edit Journal"
-              class="rounded-circle img-fluid" style="width: 25px;"></img>
+        <%= link_to new_user_journal_journal_entry_path(@user, @journal) do %>
+          <img src="<%= asset_path('add_entry.svg') %>" alt="Add Entry" style="width: 25px; height: 25px;"></img>
+        <% end %>
+        <%= link_to user_journal_path(@user, @journal) do %>
+          <img src="<%= asset_path('edit.svg') %>" alt="Edit Entry" style="width: 25px; height: 25px;"></img>
+        <% end %>
       </div>
     </div>
     <div class="content">
@@ -53,10 +55,6 @@
           </li>
         <% end %>
       </ul>
-      <div>
-        <%= link_to(t('entry.action.add'), new_user_journal_journal_entry_path(@user, @journal),
-        {class:"btn btn-primary"})%>
-      </div>
     </div>
   </div>
   <div class="main-information">
