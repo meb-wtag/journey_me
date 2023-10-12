@@ -3,5 +3,4 @@
 //= link_tree ../../../vendor/javascript .js
 //= link_directory ../javascripts .js
 //= require activestorage
-//= link add_entry.svg
-//= link edit.svg
+//= link_directory ../icons .svg

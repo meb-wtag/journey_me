@@ -111,15 +111,9 @@
 	flex-shrink: 0;
 }
 
-.information-attached-files {
-	width: 100%;
-  margin-top: 10%;
-	display: flex;
+.information-files-attached {
 	width: 100%;
 	height: 100%;
-	flex-direction: column;
-	align-items: flex-start;
-	gap: 20px;
 }
 
 .files-items {
@@ -156,4 +150,9 @@
   background-color: var(--background-color);
 }
 
-
+.information-actions {
+	display: flex;
+	flex-direction: row-reverse;
+	gap: 15px;
+	align-items: right;
+}
