@@ -27,6 +27,16 @@ class JournalsController < ApplicationController
     redirect_to user_journals_path
   end
 
+  def upload_file
+    if params[:files].present?
+      @journal.files.attach(params[:files])
+      render json: { message: 'upload.success' }
+    else
+      render json: { error: 'upload.no_user' }, status: :not_found
+    end
+    redirect_to user_journal_path(@user, @journal)
+  end
+
   private
 
   def find_journal
