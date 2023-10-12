@@ -82,14 +82,14 @@
       </div>
       <hr style="margin:2%;">
       <div class="files-items">
-        <% @journal.journal_entries.each do |entry| %>
+        <% @journal.files.each do |file| %>
           <div class="file">
             <div>
               <img src="<%= asset_path('edit.svg') %>" alt="Edit Entry" style="width: 25px; height: 25px;"></img>
             </div>
-            <div>
-              Filename
-            </div>
+            <a>
+              <%= link_to file.filename, file %>
+            </a>
           </div>
         <% end %>
       </div>
