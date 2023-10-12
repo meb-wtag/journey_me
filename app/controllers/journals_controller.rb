@@ -15,7 +15,7 @@ class JournalsController < ApplicationController
     else
       flash[:error] = t('journal.message.error.create')
     end
-    redirect_to user_journals_path(@user)
+    redirect_to user_journal_path(@user, @journal)
   end
 
   def destroy
@@ -38,6 +38,6 @@ class JournalsController < ApplicationController
   end
 
   def journal_params
-    params.require(:journal).permit(:title, :description)
+    params.require(:journal).permit(:title, :description, files: [])
   end
 end
