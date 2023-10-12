@@ -46,6 +46,7 @@
           <div>Updated</div>
           <div>Created</div>
         </li>
+        <hr>
         <% @journal.journal_entries.each do |entry| %>
           <li class="table-row clickable-row" data-href="<%= user_journal_journal_entry_path(@user, @journal, entry) %>">
             <div class="id"><%= entry.id %></div>
@@ -60,11 +61,33 @@
   <div class="main-information">
     <div class="information-description">
       <div class="description-title"></div>
-      <div class="description-content"></div>
+        <h3>Description</h3>
+        <hr>
+      <div class="description-content">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+      </div>
     </div>
     <div class="information-files-attached">
-      <div class="files-title"></div>
-      <div class="files-items"></div>
+      <div class="files-title">
+        <h3>Files Attached</h3>
+        <hr>
+      </div>
+      <div class="files-items">
+        <div></div>
+        <div></div>
+      </div>
     </div>
   </div>
 </div>
