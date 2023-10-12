@@ -42,7 +42,7 @@
       <ul class="responsive-table">
         <li class="table-header">
           <div class="id">#</div>
-          <div>Title</div>
+          <div class="row-title">Title</div>
           <div>Updated</div>
           <div>Created</div>
         </li>
@@ -50,7 +50,7 @@
         <% @journal.journal_entries.each do |entry| %>
           <li class="table-row clickable-row" data-href="<%= user_journal_journal_entry_path(@user, @journal, entry) %>">
             <div class="id"><%= entry.id %></div>
-            <div><%= entry.title %></div>
+            <div class="row-title"><%= entry.title %></div>
             <div><%= entry.updated_at.to_formatted_s(:short) %></div>
             <div><%= entry.created_at.to_formatted_s(:short) %></div>
           </li>
@@ -60,10 +60,11 @@
   </div>
   <div class="main-information">
     <div class="information-description">
-      <div class="description-title"></div>
+      <div class="item-title">
         <h3>Description</h3>
-        <hr style="width: 100%;">
+      </div>
       <div class="description-content">
+      <hr style="margin:2%;">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -72,21 +73,25 @@
           cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
           proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </p>
       </div>
     </div>
     <div class="information-files-attached">
-      <div class="files-title">
+      <div class="item-title">
         <h3>Files Attached</h3>
-        <hr>
       </div>
+      <hr style="margin:2%;">
       <div class="files-items">
-        <div></div>
-        <div></div>
+        <% @journal.journal_entries.each do |entry| %>
+          <div class="file">
+            <div>
+              <img src="<%= asset_path('edit.svg') %>" alt="Edit Entry" style="width: 25px; height: 25px;"></img>
+            </div>
+            <div>
+              Filename
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
