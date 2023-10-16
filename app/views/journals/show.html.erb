@@ -57,6 +57,16 @@
             <div class="row-title"><%= entry.title %></div>
             <div><%= entry.updated_at.to_formatted_s(:short) %></div>
             <div><%= entry.created_at.to_formatted_s(:short) %></div>
+            <div>
+              <div class="delete-button">
+                <%= link_to user_journal_journal_entry_path(@user, @journal, entry), data: {
+                      turbo_method: :delete,
+                      turbo_confirm: t('user.message.confirm')
+                    } do %>
+                  <img src="<%= asset_path('delete.svg') %>" alt="Add Entry" style="width: 25px; height: 25px;"></img>
+                <% end %>
+              </div>
+            </div>
           </li>
         <% end %>
       </ul>
@@ -85,9 +95,15 @@
             <div>
               <img src="<%= asset_path('image.svg') %>" alt="Edit Entry" style="width: 25px; height: 25px;"></img>
             </div>
-            <a>
-              <%= link_to file.filename, file %>
-            </a>
+            <%= link_to file.filename, file %>
+            <div class="delete-button">
+              <%= link_to delete_file_user_journal_path(@user, @journal, file.id), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: t('user.message.confirm')
+                  } do %>
+                <img src="<%= asset_path('delete.svg') %>" alt="Add Entry" style="width: 25px; height: 25px;"></img>
+              <% end %>
+            </div>
           </div>
         <% end %>
       </div>
@@ -101,7 +117,7 @@
         <img id="imageTrigger" class="magnetic"
              src="<%= asset_path('attach.svg') %>"
              alt="Click to Upload"
-             style="cursor: pointer;"
+             style="cursor: pointer; width: 25px; height: 25px;"
              data-uid="<%= @user.id %>"
              data-jid="<%= @journal.id %>"
             >

@@ -137,7 +137,7 @@
 	overflow: hidden;
 }
 
-.file > a {
+.file > * {
 	text-decoration: none;
 	font-family: Inter;
 	font-size: 20px;
@@ -147,9 +147,22 @@
 	color: var(--text-color);
 }
 
+.file > a {
+	width: 70%;
+}
+
 .file:hover {
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   background-color: var(--background-color);
+}
+
+.file > .delete-button {
+  opacity: 0%;
+  transition: opacity 0.5s;
+}
+
+.file:hover > .delete-button {
+  opacity: 100%;
 }
 
 .information-actions {

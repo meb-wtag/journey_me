@@ -28,8 +28,8 @@ class JournalsController < ApplicationController
   end
 
   def upload_file
-  @user = User.find(params[:user_id])
-  @journal = @user.journals.find(params[:id])
+    @user = User.find(params[:user_id])
+    @journal = @user.journals.find(params[:id])
     if params[:files].present?
       params[:files].each do |file|
         @journal.files.attach(file)
@@ -37,6 +37,15 @@ class JournalsController < ApplicationController
       render json: { message: 'upload.success' }
     else
       render json: { error: 'upload.no_user' }, status: :not_found
+    end
+  end
+
+  def delete_file
+    @file = @journal.files.find(params[:file_id])
+    if @file.purge
+      flash[:success] = "File deleted successfully."
+    else
+      flash[:error] = "Failed to delete the file."
     end
   end
 
