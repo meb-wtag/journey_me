@@ -7,7 +7,7 @@
       </div>
       <div class="header-information">
         <div class="type">
-          Journal
+          <%= t('journal.journal') %>
         </div>
         <div class="title">
           <%= @journal.title %>
@@ -53,10 +53,10 @@
     <div class="content">
       <ul class="responsive-table">
         <li class="table-header">
-          <div class="id">#</div>
-          <div class="row-title">Title</div>
-          <div>Updated</div>
-          <div>Created</div>
+          <div class="id"><%= t('journal.table.id') %></div>
+          <div class="row-title"><%= t('journal.table.title') %></div>
+          <div><%= t('entry.table.updated_at') %></div>
+          <div><%= t('entry.table.created_at') %></div>
         </li>
         <hr>
         <% @journal.journal_entries.each do |entry| %>
@@ -83,7 +83,7 @@
   <div class="main-information">
     <div class="information-description">
       <div class="item-title">
-        <h3>Description</h3>
+        <h3><%= t('journal.table.description') %></h3>
       </div>
       <div class="description-content">
         <hr style="margin:2%;">
@@ -94,7 +94,7 @@
     </div>
     <div class="information-files-attached">
       <div class="item-title">
-        <h3>Files Attached</h3>
+        <h3><%= t('file.attached') %></h3>
       </div>
       <hr style="margin:2%;">
       <div class="files-items">

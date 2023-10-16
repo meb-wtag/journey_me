@@ -1,7 +1,7 @@
 <div class="s-body">
-  <div class="s-item"> <!-- Tasks -->
-    <div class="item-title">  <!-- title -->
-      <h3>Journals</h3>
+  <div class="s-item">
+    <div class="item-title">
+      <h3><%= t('journal.journal') %></h3>
       <div>
         <%= link_to new_user_journal_path(current_user) do %>
           <img src="<%= asset_path('add_entry.svg') %>" alt="Add Entry" class="magnetic" style="width: 25px; height: 25px;"></img>
@@ -9,7 +9,7 @@
       </div>
     </div>
     <hr style="margin:2%;">
-    <div class="item-cards"> <!-- cards -->
+    <div class="item-cards">
       <% current_user.journals.each do |journal| %>
         <div class="card">
           <a href="<%= user_journal_path(current_user, journal) %>" class="card-link">
@@ -26,9 +26,9 @@
       <% end %>
     </div>
   </div>
-  <div class="s-item"> <!-- Tasks -->
-    <div class="item-title">  <!-- title -->
-      <h3>Tasks</h3>
+  <div class="s-item">
+    <div class="item-title">
+      <h3><%= t('task.task') %></h3>
       <div>
         <%= link_to new_user_task_path(current_user) do %>
           <img src="<%= asset_path('add_entry.svg') %>" alt="Add Entry" class="magnetic" style="width: 25px; height: 25px;"></img>
@@ -36,7 +36,7 @@
       </div>
     </div>
     <hr style="margin:2%;">
-    <div class="item-cards"> <!-- cards -->
+    <div class="item-cards">
       <% current_user.tasks.each do |task| %>
         <div class="card">
           <a href="<%= user_task_path(current_user, task) %>" class="card-link">

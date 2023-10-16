@@ -26,6 +26,7 @@ en:
       title: Title
       updated_at: Updated at
   journal:
+    journal: Journal
     action:
       add: Add Journal
       delete: Delete
@@ -45,6 +46,7 @@ en:
       title: Title
       updated_at: Updated at
   task:
+    task: Task
     action:
       add: Create a Task
       delete: Delete
@@ -133,5 +135,9 @@ en:
     content:  a test Welcoming Email which is sent to all the new logins which are created
     confirm: Confirm and Access
   file:
+    attached: Attached Files
     add: Add a File
     uploaded: Uploaded Files
+    delete:
+      success: File deleted successfully.
+      fail: Failed to delete the file.

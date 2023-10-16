@@ -43,9 +43,9 @@ class JournalsController < ApplicationController
   def delete_file
     @file = @journal.files.find(params[:file_id])
     if @file.purge
-      flash[:success] = "File deleted successfully."
+      flash[:success] = t('file.delete.success')
     else
-      flash[:error] = "Failed to delete the file."
+      flash[:error] = t('file.delete.fail')
     end
   end
 
