@@ -12,7 +12,7 @@ imageTrigger.addEventListener("click", function () {
 // Add an event listener to the file input to handle the selected file
 fileInput.addEventListener("change", function () {
   // Access the selected file using fileInput.files[0]
-  const selectedFile = fileInput.files[];
+  const selectedFile = fileInput.files[0];
 
   // Create a FormData object and append the file to it
   let formData = new FormData();
