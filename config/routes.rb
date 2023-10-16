@@ -8,9 +8,11 @@ Rails.application.routes.draw do
     post :upload_profile_picture, to: 'users#upload_profile_picture', on: :collection
     resources :tasks
     resources :journals do
-      post :upload_file, to: 'users/journals/upload_file', on: :collection
+      post :upload_file, to: 'journals#upload_file', on: :member
       resources :journal_entries do
       end
     end
   end
 end
+
+

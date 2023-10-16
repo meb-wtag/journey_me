@@ -1,6 +1,6 @@
 class JournalsController < ApplicationController
-  before_action :find_user, only: %i[new create index show destroy update]
-  before_action :find_journal, only: %i[show destroy update find_journal]
+  before_action :find_user, only: %i[new create index show destroy update find_journal]
+  before_action :find_journal, only: %i[show destroy update upload_file]
   before_action :require_login
   load_and_authorize_resource
 
@@ -34,17 +34,17 @@ class JournalsController < ApplicationController
     else
       render json: { error: 'upload.no_user' }, status: :not_found
     end
-    redirect_to user_journal_path(@user, @journal)
   end
 
   private
 
-  def find_journal
-    @journal = @user.journals.find(params[:id])
-  end
-
   def find_user
     @user = User.find(params[:user_id])
+  end
+
+  def find_journal
+    @user = User.find(params[:user_id])
+    @journal = @user.journals.find(params[:id])
   end
 
   def journal_params

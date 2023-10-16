@@ -21,7 +21,7 @@ fileInput.addEventListener("change", function () {
   // Send an AJAX POST request to the server
   $.ajax({
     type: "POST",
-    url: "/users/:user_id/journals/upload_file",
+    url: "/users/:user_id/journals/:id/upload_file",
     data: formData,
     processData: false, // Prevent jQuery from processing the data
     contentType: false, // Set the content type to false for file uploads

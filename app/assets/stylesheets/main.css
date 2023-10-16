@@ -83,7 +83,6 @@
 .header-actions {
 	display: flex;
 	flex-direction: row;
-	width: 15%;
 	overflow: hidden;
 }
 
