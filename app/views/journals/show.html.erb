@@ -102,7 +102,7 @@
           <div class="file">
             <div>
               <img src="<%= asset_path('image.svg') %>" alt="Edit Entry" style="width: 25px; height: 25px;"></img>
-            </div>
+            </div class="file-filename">
             <%= link_to file.filename, file %>
             <div class="delete-button">
               <%= link_to delete_file_user_journal_path(@user, @journal, file.id), data: {

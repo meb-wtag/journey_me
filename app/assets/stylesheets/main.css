@@ -148,7 +148,8 @@
 }
 
 .file > a {
-	width: 70%;
+	width: 100%;
+	overflow: hidden;
 }
 
 .file:hover {

@@ -22,11 +22,12 @@ en:
         delete: Entry was deleted successfully
         update: Entry was updated successfully
     table:
-      created_at: Created at
+      created_at: Created
       title: Title
-      updated_at: Updated at
+      updated_at: Updated
   journal:
     journal: Journal
+    journals: Journals
     action:
       add: Add Journal
       delete: Delete
@@ -47,6 +48,7 @@ en:
       updated_at: Updated at
   task:
     task: Task
+    tasks: Tasks
     action:
       add: Create a Task
       delete: Delete

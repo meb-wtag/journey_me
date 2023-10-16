@@ -1,7 +1,7 @@
 <div class="s-body">
   <div class="s-item">
     <div class="item-title">
-      <h3><%= t('journal.journal') %></h3>
+      <h3><%= t('journal.journals') %></h3>
       <div>
         <%= link_to new_user_journal_path(current_user) do %>
           <img src="<%= asset_path('add_entry.svg') %>" alt="Add Entry" class="magnetic" style="width: 25px; height: 25px;"></img>
@@ -28,7 +28,7 @@
   </div>
   <div class="s-item">
     <div class="item-title">
-      <h3><%= t('task.task') %></h3>
+      <h3><%= t('task.tasks') %></h3>
       <div>
         <%= link_to new_user_task_path(current_user) do %>
           <img src="<%= asset_path('add_entry.svg') %>" alt="Add Entry" class="magnetic" style="width: 25px; height: 25px;"></img>
