@@ -31,7 +31,9 @@ class JournalsController < ApplicationController
   @user = User.find(params[:user_id])
   @journal = @user.journals.find(params[:id])
     if params[:files].present?
-      @journal.files.attach(params[:files])
+      params[:files].each do |file|
+        @journal.files.attach(file)
+      end
       render json: { message: 'upload.success' }
     else
       render json: { error: 'upload.no_user' }, status: :not_found
