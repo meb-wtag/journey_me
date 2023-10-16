@@ -40,6 +40,14 @@
             <img src="<%= asset_path('edit.svg') %>" alt="Edit Journal" class="magnetic" style="width: 25px; height: 25px;"></img>
           <% end %>
         </div>
+        <div>
+          <%= link_to user_journal_path(@user, @journal), data: {
+                turbo_method: :delete,
+                turbo_confirm: t('user.message.confirm')
+              } do %>
+            <img src="<%= asset_path('delete.svg') %>" alt="Add Entry" class="magnetic" style="width: 30px; height: 30px;"></img>
+          <% end %>
+        </div>
       </div>
     </div>
     <div class="content">

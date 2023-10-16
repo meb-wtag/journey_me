@@ -24,7 +24,7 @@ class JournalsController < ApplicationController
     else
       flash[:error] = t('journal.message.error.delete')
     end
-    redirect_to user_journals_path
+    redirect_to user_path
   end
 
   def upload_file
