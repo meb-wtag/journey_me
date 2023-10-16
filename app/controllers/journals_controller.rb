@@ -1,6 +1,6 @@
 class JournalsController < ApplicationController
   before_action :find_user, only: %i[new create index show destroy update find_journal]
-  before_action :find_journal, only: %i[show destroy update upload_file]
+  before_action :find_journal, only: %i[show destroy update]
   before_action :require_login
   load_and_authorize_resource
 
@@ -28,6 +28,8 @@ class JournalsController < ApplicationController
   end
 
   def upload_file
+  @user = User.find(params[:user_id])
+  @journal = @user.journals.find(params[:id])
     if params[:files].present?
       @journal.files.attach(params[:files])
       render json: { message: 'upload.success' }
@@ -43,7 +45,6 @@ class JournalsController < ApplicationController
   end
 
   def find_journal
-    @user = User.find(params[:user_id])
     @journal = @user.journals.find(params[:id])
   end
 

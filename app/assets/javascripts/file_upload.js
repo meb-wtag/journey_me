@@ -12,16 +12,19 @@ imageTrigger.addEventListener("click", function () {
 // Add an event listener to the file input to handle the selected file
 fileInput.addEventListener("change", function () {
   // Access the selected file using fileInput.files[0]
-  const selectedFile = fileInput.files[0];
+  const selectedFile = fileInput.files[];
 
   // Create a FormData object and append the file to it
   let formData = new FormData();
-  formData.append("file", selectedFile);
+  formData.append("files[]", selectedFile);
+
+  const user_id = imageTrigger.getAttribute("data-uid");
+  const journal_id = imageTrigger.getAttribute("data-jid");
 
   // Send an AJAX POST request to the server
   $.ajax({
     type: "POST",
-    url: "/users/:user_id/journals/:id/upload_file",
+    url: "/users/" + user_id + "/journals/" + journal_id + "/upload_file",
     data: formData,
     processData: false, // Prevent jQuery from processing the data
     contentType: false, // Set the content type to false for file uploads

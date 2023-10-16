@@ -97,11 +97,14 @@
         <img src="<%= asset_path('share.svg') %>" alt="Share Journal" class="magnetic" style="width: 25px; height: 25px;"></img>
       </div>
       <div>
-        <img src="<%= asset_path('attach.svg') %>" alt="Edit Entry" class="magnetic" style="width: 25px; height: 25px;"></img>
-      </div>
-      <div>
-        <input type="file" id="fileInput" style="display: none;">
-        <img id="imageTrigger" src="<%= asset_path('attach.svg') %>" alt="Click to Upload" style="cursor: pointer;">
+        <input type="file" id="fileInput" style="display: none;" multiple>
+        <img id="imageTrigger" class="magnetic"
+             src="<%= asset_path('attach.svg') %>"
+             alt="Click to Upload"
+             style="cursor: pointer;"
+             data-uid="<%= @user.id %>"
+             data-jid="<%= @journal.id %>"
+            >
       </div>
     </div>
   </div>
