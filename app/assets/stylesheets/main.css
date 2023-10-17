@@ -1,4 +1,4 @@
-.content {
+.main {
 	display:flex;
 	flex-direction: column;
 	width: 70%;
@@ -6,7 +6,7 @@
 	background: var(--secondary-color);
 }
 
-.content > :first-child {
+.main-header {
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -15,7 +15,7 @@
   padding: 48px 30px 0px 30px;
 }
 
-.content > :last-child {
+.main-content {
 	display: flex;
 	width: 100%;
 	height: 100%;

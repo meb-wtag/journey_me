@@ -35,13 +35,13 @@
         <%= render 'layouts/header'%>
       <% end %>
     </header>
-    <div class="parent">
-      <div class="section1">
+    <div class="content">
+      <div>
         <% if current_user %>
           <%= render 'layouts/sidebar'%>
         <% end %>
       </div>
-      <div class="section2">
+      <div>
         <%= yield %>
       </div>
     </div>

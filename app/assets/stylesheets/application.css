@@ -14,23 +14,23 @@ body {
 
 header {
   height: 5%;
+  display: flex;
+  flex-direction: row;
 }
 
-.parent {
-  display: grid;
-  grid-template-columns: repeat(24, 1fr);
-  grid-template-rows: 1fr;
-  grid-column-gap: 12px;
+.content {
+  display: flex;
+  gap: 12px;
   height: 96%;
   min-width: 500px;
 }
 
-.section1 {
-  grid-area: 1 / 1 / 6 / 6;
+.content >:first-child {
+  width: 24%;
   min-width: 175px;
 }
-.section2 {
-  grid-area: 1 / 6 / 6 / 25;
+.content >:last-child {
+  width: 76;
   min-width: 450px;
   overflow: hidden;
   display: flex;
