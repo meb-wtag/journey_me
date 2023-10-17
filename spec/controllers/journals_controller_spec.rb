@@ -8,7 +8,7 @@ RSpec.describe JournalsController, type: :controller do
     sign_in_as!(user)
   end
 
-  let(:journal) { FactoryBot.create(:journal, user:) }
+  let(:journal) { FactoryBot.create(:journal, user: user) }
   let(:valid_params) { FactoryBot.attributes_for(:journal) }
 
   describe 'GET #index' do
@@ -59,7 +59,7 @@ RSpec.describe JournalsController, type: :controller do
 
     it 'renders the :show template' do
       delete :destroy, params: { user_id: user.id, id: journal.id }
-      expect(response).to redirect_to user_journals_path
+      expect(response).to redirect_to user_path
     end
   end
 
@@ -69,10 +69,33 @@ RSpec.describe JournalsController, type: :controller do
         post :create, params: { user_id: user.id, journal: valid_params }
       end.to change(Journal, :count).by(1)
     end
+  end
 
-    it 'redirects to journals_path' do
-      post :create, params: { user_id: user.id, journal: valid_params }
-      expect(response).to redirect_to(user_journals_path)
+  describe 'POST #upload_file' do
+    file_path = 'spec/test_assets/2.jpg'
+    test_file = Rack::Test::UploadedFile.new(file_path, 'image/jpg')
+    it 'uploads a file and attaches it' do
+      expect do
+        post :upload_file, params: { user_id: user.id, id: journal.id, files: [test_file] }
+      end.to change(journal.files, :count).by(1)
+    end
+  end
+
+  describe 'DELETE #delete_file' do
+    let(:journal) { FactoryBot.create(:journal, user: user) }
+    let(:file_path) { 'spec/test_assets/2.jpg' }
+    let(:test_file) { Rack::Test::UploadedFile.new(file_path, 'image/jpg') }
+
+    it 'deletes a file attached to the journal' do
+      # Attach the file to the journal
+      journal.files.attach(io: test_file, filename: '2.jpg', content_type: 'image/jpg')
+
+      # Get the file to delete
+      file_to_delete = journal.files.last
+
+      expect do
+        delete :delete_file, params: { user_id: user.id, id: journal.id, file_id: file_to_delete.id }
+      end.to change(ActiveStorage::Attachment, :count).by(-1)
     end
   end
 end

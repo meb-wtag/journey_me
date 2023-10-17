@@ -5,7 +5,7 @@ class JournalsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @journals = Journal.order(params[:sort])
+    @journals = @user.journals.order(params[:sort])
   end
 
   def create
