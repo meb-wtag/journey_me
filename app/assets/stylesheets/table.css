@@ -19,7 +19,6 @@
   background-color: var(--background-color);
 }
 
-
 .table-header {
   width: 100%;
   padding: 1% 4% 1% 4%;
@@ -69,4 +68,3 @@
   font-weight: bold;
   padding-left: 0;
 }
-

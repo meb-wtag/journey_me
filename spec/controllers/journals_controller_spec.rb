@@ -87,10 +87,7 @@ RSpec.describe JournalsController, type: :controller do
     let(:test_file) { Rack::Test::UploadedFile.new(file_path, 'image/jpg') }
 
     it 'deletes a file attached to the journal' do
-      # Attach the file to the journal
       journal.files.attach(io: test_file, filename: '2.jpg', content_type: 'image/jpg')
-
-      # Get the file to delete
       file_to_delete = journal.files.last
 
       expect do

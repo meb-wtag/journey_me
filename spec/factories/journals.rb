@@ -4,5 +4,3 @@ FactoryBot.define do
     description { FFaker::Lorem.sentence }
   end
 end
-
-
