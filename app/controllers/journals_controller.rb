@@ -34,9 +34,9 @@ class JournalsController < ApplicationController
       params[:files].each do |file|
         @journal.files.attach(file)
       end
-      render json: { message: t('upload.success') }
+      render json: { message: 'upload.success' }
     else
-      render json: { error: t('upload.no_user') }, status: :not_found
+      render json: { error: 'upload.no_user' }, status: :not_found
     end
   end
 
