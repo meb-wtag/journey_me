@@ -78,6 +78,7 @@ RSpec.describe JournalsController, type: :controller do
       expect do
         post :upload_file, params: { user_id: user.id, id: journal.id, files: [test_file] }
       end.to change(journal.files, :count).by(1)
+      expect(journal.reload.files).to be_attached
     end
   end
 
@@ -93,6 +94,7 @@ RSpec.describe JournalsController, type: :controller do
       expect do
         delete :delete_file, params: { user_id: user.id, id: journal.id, file_id: file_to_delete.id }
       end.to change(ActiveStorage::Attachment, :count).by(-1)
+      expect(journal.reload.files).to_not be_attached
     end
   end
 end
