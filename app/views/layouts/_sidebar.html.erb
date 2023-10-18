@@ -4,11 +4,11 @@
       <h3><%= t('journal.journals') %></h3>
       <div>
         <%= link_to new_user_journal_path(current_user) do %>
-          <img src="<%= asset_path('add_entry.svg') %>" alt="Add Entry" class="magnetic" style="width: 25px; height: 25px;"></img>
+          <img src="<%= asset_path('add_entry.svg') %>" alt="Add Entry" class="magnetic">
         <% end %>
       </div>
     </div>
-    <hr style="margin:2%;">
+    <hr>
     <div class="item-cards">
       <% current_user.journals.each do |journal| %>
         <div class="card">
@@ -31,11 +31,11 @@
       <h3><%= t('task.tasks') %></h3>
       <div>
         <%= link_to new_user_task_path(current_user) do %>
-          <img src="<%= asset_path('add_entry.svg') %>" alt="Add Entry" class="magnetic" style="width: 25px; height: 25px;"></img>
+          <img src="<%= asset_path('add_entry.svg') %>" alt="Add Entry" class="magnetic">
         <% end %>
       </div>
     </div>
-    <hr style="margin:2%;">
+    <hr>
     <div class="item-cards">
       <% current_user.tasks.each do |task| %>
         <div class="card">

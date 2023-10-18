@@ -15,14 +15,14 @@
           <div class="author">
             <div class="author-icon">
               <% if @user.profile_picture.attached? %>
-                <image src="<%= url_for(@user.profile_picture) %>" alt="avatar"
-                class="rounded-circle img-fluid" style="width: 25px;">
+                <img src="<%= url_for(@user.profile_picture) %>" alt="avatar"
+                class="rounded-circle img-fluid">
               <% else %>
-                <image src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-                class="rounded-circle img-fluid" style="width: 25px;">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                class="rounded-circle img-fluid">
               <% end %>
             </div>
-            <div class="author-name" style="margin: 0;">
+            <div class="author-name">
               <%= @user.username %>
             </div>
           </div>
@@ -31,12 +31,12 @@
     <div class="header-actions">
       <div>
         <%= link_to new_user_journal_journal_entry_path(@user, @journal) do %>
-          <img src="<%= asset_path('add_entry.svg') %>" class="magnetic" alt="Add Entry" style="width: 25px; height: 25px;"></img>
+          <img src="<%= asset_path('add_entry.svg') %>" class="magnetic" alt="Add Entry">
         <% end %>
       </div>
       <div>
         <%= link_to user_journal_path(@user, @journal) do %>
-          <img src="<%= asset_path('edit.svg') %>" alt="Edit Journal" class="magnetic" style="width: 25px; height: 25px;"></img>
+          <img src="<%= asset_path('edit.svg') %>" alt="Edit Journal" class="magnetic">
         <% end %>
       </div>
       <div>
@@ -44,7 +44,7 @@
               turbo_method: :delete,
               turbo_confirm: t('user.message.confirm')
             } do %>
-          <img src="<%= asset_path('delete.svg') %>" alt="Add Entry" class="magnetic" style="width: 30px; height: 30px;"></img>
+          <img src="<%= asset_path('delete.svg') %>" alt="Add Entry" class="magnetic">
         <% end %>
       </div>
     </div>
@@ -70,7 +70,7 @@
                     turbo_method: :delete,
                     turbo_confirm: t('user.message.confirm')
                   } do %>
-                <img src="<%= asset_path('delete.svg') %>" alt="Add Entry" style="width: 25px; height: 25px;"></img>
+                <img src="<%= asset_path('delete.svg') %>" alt="Add Entry">
               <% end %>
             </div>
           </div>
@@ -95,20 +95,20 @@
     <div class="item-title">
       <h3><%= t('file.attached') %></h3>
     </div>
-    <hr style="margin:2%;">
+    <hr>
     <div class="files-items">
       <% @journal.files.each do |file| %>
         <div class="file">
           <div>
-            <img src="<%= asset_path('image.svg') %>" alt="Edit Entry" style="width: 25px; height: 25px;"></img>
-          </div class="file-filename">
+            <img src="<%= asset_path('image.svg') %>" alt="Edit Entry">
+          </div>
           <%= link_to file.filename, file %>
           <div class="delete-button">
             <%= link_to delete_file_user_journal_path(@user, @journal, file.id), data: {
                   turbo_method: :delete,
                   turbo_confirm: t('user.message.confirm')
                 } do %>
-              <img src="<%= asset_path('delete.svg') %>" alt="Add Entry" style="width: 25px; height: 25px;"></img>
+              <img src="<%= asset_path('delete.svg') %>" alt="Add Entry">
             <% end %>
           </div>
         </div>
@@ -117,14 +117,14 @@
   </div>
   <div class="information-actions">
     <div>
-      <img src="<%= asset_path('share.svg') %>" alt="Share Journal" class="magnetic" style="width: 25px; height: 25px;"></img>
+      <img src="<%= asset_path('share.svg') %>" alt="Share Journal" class="magnetic">
     </div>
     <div>
       <input type="file" id="fileInput" style="display: none;" multiple>
       <img id="imageTrigger" class="magnetic"
            src="<%= asset_path('attach.svg') %>"
            alt="Click to Upload"
-           style="cursor: pointer; width: 25px; height: 25px;"
+           style="cursor: pointer;"
            data-uid="<%= @user.id %>"
            data-jid="<%= @journal.id %>"
           >
