@@ -22,6 +22,7 @@ header {
   display: flex;
   gap: 12px;
   height: 96%;
+  width: 100%;
   min-width: 500px;
 }
 
@@ -30,7 +31,7 @@ header {
   min-width: 175px;
 }
 .content >:last-child {
-  width: 76;
+  width: 76%;
   min-width: 450px;
   overflow: hidden;
   display: flex;
