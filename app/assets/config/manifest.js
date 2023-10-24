@@ -3,3 +3,4 @@
 //= link_directory ../javascripts .js
 //= require activestorage
 //= link_directory ../icons .svg
+//= link_directory ../stylesheets .css
