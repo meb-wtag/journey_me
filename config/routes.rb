@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'users#new'
+  get 'search', to: 'search#index'
   resources :user_sessions, only: [:new, :create]
   delete 'user_sessions', to: 'user_sessions#destroy', as: :logout
 

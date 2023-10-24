@@ -1,10 +1,16 @@
 class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :authenticate_user
+  before_action :set_query
 
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = error.message
     redirect_to root_url
+  end
+
+  def set_query
+    @journalQuery = Journal.ransack(params[:q])
+    @entryQuery = JournalEntry.ransack(params[:q])
   end
 
   def current_user

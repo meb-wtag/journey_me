@@ -20,6 +20,7 @@ gem 'webpacker'
 gem 'rails', '~> 7.0.7'
 gem 'rails-controller-testing'
 gem 'rails-i18n', '~> 7.0.7'
+gem 'ransack'
 gem 'rubocop', require: false
 gem 'simple_form'
 gem 'sprockets-rails'

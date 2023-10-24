@@ -1,0 +1,6 @@
+<%= search_form_for(@journalQuery, url: search_path,
+method: :get) do |f| %>
+  <%= f.label :search_in_Journals %>
+  <%= f.search_field :title_cont %>
+  <%= f.submit class: 'btn-success'%>
+<% end %>
