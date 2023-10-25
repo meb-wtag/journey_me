@@ -5,7 +5,7 @@
   <div style="display: none;" id="journalSearch">
   <%= search_form_for(@entryQuery, url: search_path,
   method: :get) do |f| %>
-    <%= f.search_field :title_cont%>
+    <%= f.search_field :title_or_description_cont%>
     <%= f.submit%>
   <% end %>
   </div>
