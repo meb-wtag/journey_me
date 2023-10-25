@@ -314,6 +314,8 @@ GEM
     semantic_range (3.0.0)
     shoulda-matchers (5.3.0)
       activesupport (>= 5.2.0)
+    simple_calendar (3.0.2)
+      rails (>= 6.1)
     simple_form (5.2.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
@@ -392,6 +394,7 @@ DEPENDENCIES
   rubocop
   selenium-webdriver
   shoulda-matchers (~> 5.0)
+  simple_calendar
   simple_form
   sprockets-rails
   stimulus-rails

@@ -30,6 +30,11 @@
     </div>
     <div class="header-actions">
       <div>
+        <%= link_to user_journal_calendar_path(@user, @journal) do %>
+          <img src="<%= asset_path('calendar.svg') %>" alt="Add Entry" class="magnetic">
+        <% end %>
+      </div>
+      <div>
         <%= link_to new_user_journal_journal_entry_path(@user, @journal) do %>
           <img src="<%= asset_path('add_entry.svg') %>" class="magnetic" alt="Add Entry">
         <% end %>

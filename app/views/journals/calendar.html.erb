@@ -1,0 +1,11 @@
+<div class="container mt-5 text-center">
+	<h1>Your Calendar</h1>
+	<%= month_calendar(events: @journal.journal_entries) do |date, journals| %>
+		<div class="day">
+			<%= date.day %>
+		</div>
+		<div>
+			<%= date.day %>
+		</div>
+	<% end %>
+</div>

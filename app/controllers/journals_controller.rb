@@ -1,6 +1,6 @@
 class JournalsController < ApplicationController
   before_action :find_user, only: %i[new create index show destroy update find_journal]
-  before_action :find_journal, only: %i[show destroy update]
+  before_action :find_journal, only: %i[show destroy update calendar]
   before_action :require_login
   load_and_authorize_resource
 
@@ -47,6 +47,10 @@ class JournalsController < ApplicationController
     else
       flash[:error] = t('file.delete.fail')
     end
+  end
+
+  def calendar
+    @events = JournalEntry.all
   end
 
   private

@@ -22,6 +22,7 @@ gem 'rails-controller-testing'
 gem 'rails-i18n', '~> 7.0.7'
 gem 'rubocop', require: false
 gem 'simple_form'
+gem 'simple_calendar'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
