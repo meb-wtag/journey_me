@@ -1,17 +1,17 @@
 <div class="header-actions">
 	<div>
     <%= link_to user_path(current_user) do %>
-      <img src="<%= asset_path('account.svg') %>" class="magnetic" alt="Add Entry" style="width: 35px; height: 35px;"></img>
+      <img src="<%= asset_path('account.svg') %>" class="magnetic h-img" alt="Add Entry"></img>
     <% end %>
   </div>
   <div>
     <%= link_to users_path do %>
-      <img src="<%= asset_path('friends.svg') %>" class="magnetic" alt="All Friends" style="width: 35px; height: 35px;"></img>
+      <img src="<%= asset_path('friends.svg') %>" class="magnetic h-img" alt="All Friends"></img>
     <% end %>
   </div>
   <div>
 	  <%= link_to users_path do %>
-	    <img src="<%= asset_path('add_friend.svg') %>" class="magnetic" alt="Add Friend" style="width: 35px; height: 35px;"></img>
+	    <img src="<%= asset_path('add_friend.svg') %>" class="magnetic h-img" alt="Add Friend"></img>
 	  <% end %>
 	</div>
 	<div id="search-options">
