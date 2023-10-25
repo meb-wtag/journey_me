@@ -1,6 +1,24 @@
-<%= search_form_for(@journalQuery, url: search_path,
-method: :get) do |f| %>
-  <%= f.label :search_in_Journals %>
-  <%= f.search_field :title_cont %>
-  <%= f.submit class: 'btn-success'%>
-<% end %>
+<div>
+  <img src="<%= asset_path('vector.svg') %>" class="magnetic" alt="Add Entry" style="width: 35px; height: 35px;"></img>
+</div>
+<div>
+  <div style="display: none;" id="journalSearch">
+  <%= search_form_for(@entryQuery, url: search_path,
+  method: :get) do |f| %>
+    <%= f.search_field :title_cont%>
+    <%= f.submit%>
+  <% end %>
+  </div>
+</div>
+
+<script>
+  const journalSearch = document.getElementById('journalSearch');
+  $(document).ready(function() {
+    $('#search-options').on('mouseenter', function() {
+      journalSearch.style.display = 'block';
+    });
+    $('#search-options').on('mouseleave', function() {
+      journalSearch.style.display = 'none';
+    });
+  });
+</script>

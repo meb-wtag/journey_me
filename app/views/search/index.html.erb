@@ -1,5 +1,4 @@
 <div style="display: flex; flex-direction: column;">
-  <%= render 'search/journalSearch' %>
   <div style="margin-top: 30px;">
     <%  @journals.each do |journal| %>
       <div class="card">
@@ -13,6 +12,19 @@
             </div>
           </div>
         </a>
+      </div>
+    <% end %>
+  </div>
+    <%  @entries.each do |entry| %>
+      <div class="card">
+        <div class="card-content">
+          <div class="card-logo">
+            <!-- Icon -->
+          </div>
+          <div class="card-title">
+            <%= entry.title %>
+          </div>
+        </div>
       </div>
     <% end %>
   </div>
