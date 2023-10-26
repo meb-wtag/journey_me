@@ -50,8 +50,8 @@ class JournalsController < ApplicationController
   end
 
   def calendar
-    @user = User.find(params[:user_id])
-    @journal = @user.journals.find(params[:journal_id])
+    @journal = current_user.journals.find(params[:journal_id])
+    @entries = @journal.journal_entries
   end
 
   private

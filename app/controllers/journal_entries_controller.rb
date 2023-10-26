@@ -39,12 +39,6 @@ class JournalEntriesController < ApplicationController
     redirect_to user_journal_path(@user, @journal)
   end
 
-  def calendar
-    @events = JournalEntry.where{
-      start_time: Time.now.beginning_of_month.beginning_of_week..Time.now.end_of_month.end_of_week
-    }
-  end
-
   private
 
   def find_user

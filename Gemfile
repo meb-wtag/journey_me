@@ -28,6 +28,7 @@ gem 'stimulus-rails'
 gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'zeitwerk', '~> 2.6.12'
+gem 'sassc-rails'
 
 group :development, :test do
   gem 'capybara'

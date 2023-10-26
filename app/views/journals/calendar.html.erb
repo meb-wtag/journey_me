@@ -1,11 +1,15 @@
 <div class="container mt-5 text-center">
-	<h1>Your Calendar</h1>
-	<%= month_calendar(events: @journal.journal_entries) do |date, journals| %>
-		<div class="day">
-			<%= date.day %>
-		</div>
-		<div>
-			<%= date.day %>
-		</div>
-	<% end %>
+  <h1>Your Calendar</h1>
+  <%= month_calendar(events: @entries) do |date, entries| %>
+    <div class="day">
+      <%= date.day %>
+    </div>
+    <div>
+      <% entries.each do |entry| %>
+        <div class="card-header">
+        	entry.title
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
