@@ -17,10 +17,13 @@ gem 'poppler'
 gem 'postmark-rails'
 gem 'puma', '~> 5.0'
 gem 'webpacker'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 gem 'rails', '~> 7.0.7'
 gem 'rails-controller-testing'
 gem 'rails-i18n', '~> 7.0.7'
 gem 'rubocop', require: false
+gem 'sassc-rails'
 gem 'simple_form'
 gem 'simple_calendar'
 gem 'sprockets-rails'
@@ -28,7 +31,6 @@ gem 'stimulus-rails'
 gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'zeitwerk', '~> 2.6.12'
-gem 'sassc-rails'
 
 group :development, :test do
   gem 'capybara'
