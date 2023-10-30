@@ -1,61 +1,73 @@
-<div class="main">
-  <div class="main-header">
-    <div>
-      <div class="profile-pic-wrapper">
-        <div class="pic-holder">
-          <% if @user.profile_picture.attached? %>
-            <image src="<%= url_for(@user.profile_picture) %>" alt="avatar"
-            class="rounded-circle img-fluid" style="width: 150px;">
-          <% else %>
-            <image src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-            class="rounded-circle img-fluid" style="width: 150px;">
-          <% end %>
-          <label for="newProfilePhoto" class="upload-file-block">
-            <div class="text-center">
-              <div>
-                <i class="fa fa-camera fa-2x"></i>
-              </div>
-              <div>
-                <%= t('profile_picture.update') %> <br /> <%= t('profile_picture.profile_picture') %>
-              </div>
-              <Input class="uploadProfileInput" type="file" name="profile_pic" id="newProfilePhoto" accept="image/*" style="opacity: 0;" />
+<div class="user-profile">
+  <div class="user-picture">
+    <div class="profile-pic-wrapper">
+      <div class="pic-holder">
+        <% if @user.profile_picture.attached? %>
+          <img src="<%= url_for(@user.profile_picture) %>" alt="avatar"
+          class="rounded-circle img-fluid" style="width: 150px;">
+        <% else %>
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+          class="rounded-circle img-fluid" style="width: 150px;">
+        <% end %>
+        <label for="newProfilePhoto" class="upload-file-block">
+          <div class="text-center">
+            <div>
+              <i class="fa fa-camera fa-2x"></i>
             </div>
-          </label>
-        </div>
+            <div>
+              <%= t('profile_picture.update') %> <br /> <%= t('profile_picture.profile_picture') %>
+            </div>
+            <Input class="uploadProfileInput" type="file" name="profile_pic" id="newProfilePhoto" accept="image/*" style="opacity: 0;" />
+          </div>
+        </label>
       </div>
-      <h5><%= @user.username %></h5>
-      <p><%= @user.description %></p>
-      <p><%= @user.country %> <%= @user.city %></p>
-      <div>
-        <%= link_to t('profile.edit'), edit_user_path(@user), class: "btn btn-primary"%>
-      </div>
-      <% if current_user == @user %>
-        <div>
-          <%= link_to t('user_session.action.delete'), logout_path, class: "btn btn-danger", data: {
-                turbo_method: :delete,
-                turbo_confirm: t('user.message.confirm')
-              } %>
-        </div>
-      <% else %>
-        <div>
-          <%= link_to t('user.action.delete'), user_path(@user), class: "btn btn-danger", data: {
-                turbo_method: :delete,
-                turbo_confirm: t('user.message.confirm')
-              } %>
-        </div>
-      <% end %>
     </div>
   </div>
-  <div class="main-content">
+  <div class="user-description">
+    <h5><%= @user.username %></h5>
+    <p><%= @user.description %></p>
+  </div>
+  <div class="user-actions">
+    <div>
+      <%= link_to t('profile.edit'), edit_user_path(@user), class: "btn btn-primary"%>
+    </div>
+    <% if current_user == @user %>
+      <div>
+        <%= link_to t('user_session.action.delete'), logout_path, class: "btn btn-danger", data: {
+              turbo_method: :delete,
+              turbo_confirm: t('user.message.confirm')
+            } %>
+      </div>
+    <% else %>
+      <div>
+        <%= link_to t('user.action.delete'), user_path(@user), class: "btn btn-danger", data: {
+              turbo_method: :delete,
+              turbo_confirm: t('user.message.confirm')
+            } %>
+      </div>
+    <% end %>
   </div>
 </div>
-<div class="information">
-  <div class="description">
-    <div class="item-title">
-      <h3><%= t('journal.table.description') %></h3>
+<div class="user-information">
+  <% if @user.first_name %>
+    <p>
+      <%= @user.first_name.capitalize %>
+    </p>
+  <% end %>
+  <% if @user.last_name %>
+    <p>
+      <%= @user.last_name.capitalize %>
+    </p>
+  <% end %>
+  <% if @user.adress %>
+    <div>
+      <h1>
+        Adress:
+      </h1>
+      <p>
+        <%= @user.adress %> <%= @user.city %> <%= @user.country %>
+      </p>
     </div>
-    <div class="description-content">
-    </div>
-  </div>
+  <% end %>
 </div>
 
