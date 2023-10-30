@@ -6,7 +6,7 @@ class JournalEntriesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @journal_entries = @journal.journal_entries
+    @journal_entries = @journal.journal_entries.order(params[:sort])
     redirect_to user_journal_path(@user, @journal)
   end
 

@@ -1,52 +1,133 @@
-<div class= "mt-30">  
-  <h1 style="text-align: center"><%= @journal.title %></h1>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <table class="table table-striped">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">ID</th>
-            <th><%= link_to t('entry.table.title'), sort: :title %> </th>
-            <th><%= link_to t('entry.table.updated_at'), sort: :updated_at %> </th>
-            <th><%= link_to t('entry.table.created_at'), sort: :created_at %> </th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @journal.journal_entries.each do |entry| %>
-          <tr>
-            <td><%= entry.id %></td>
-            <td><%= entry.title %></td>
-            <td><%= entry.updated_at.to_formatted_s(:short) %></td>
-            <td><%= entry.created_at.to_formatted_s(:short) %></td>
-            <td>
-            <%= link_to t('entry.action.show'), user_journal_journal_entry_path(@user,@journal,entry), class: "btn btn-primary"%>
-
-            <%= link_to t('entry.action.delete'), user_journal_journal_entry_path(@user,@journal,entry), class: "btn btn-danger", data: {
-                  turbo_method: :delete,
-                  turbo_confirm: t('entry.message.confirm')
-                } %>
-            </td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
+<div class="main">
+  <div class="main-header">
+    <div class="header-image">
+      <div>
+      </div>
+    </div>
+    <div class="header-information">
+      <div class="type">
+        <%= t('journal.journal') %>
+      </div>
+      <div class="title">
+        <%= @journal.title %>
+      </div>
+        <a href="<%= user_path(@user) %>" class="card-link">
+          <div class="author">
+            <div class="author-icon">
+              <% if @user.profile_picture.attached? %>
+                <img src="<%= url_for(@user.profile_picture) %>" alt="avatar"
+                class="rounded-circle img-fluid">
+              <% else %>
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                class="rounded-circle img-fluid">
+              <% end %>
+            </div>
+            <div class="author-name">
+              <%= @user.username %>
+            </div>
+          </div>
+        </a>
+    </div>
+    <div class="header-actions">
+      <div>
+        <%= link_to new_user_journal_journal_entry_path(@user, @journal) do %>
+          <img src="<%= asset_path('add_entry.svg') %>" class="magnetic" alt="Add Entry">
+        <% end %>
+      </div>
+      <div>
+        <%= link_to user_journal_path(@user, @journal) do %>
+          <img src="<%= asset_path('edit.svg') %>" alt="Edit Journal" class="magnetic">
+        <% end %>
+      </div>
+      <div>
+        <%= link_to user_journal_path(@user, @journal), data: {
+              turbo_method: :delete,
+              turbo_confirm: t('user.message.confirm')
+            } do %>
+          <img src="<%= asset_path('delete.svg') %>" alt="Add Entry" class="magnetic">
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
-
-
-<div>
-  <div>
-    <% if @journal.journal_entries.empty? %>
-      <%= t('entry.message.no_entry') %>
-    <% end %>
+  <div class="main-content">
+    <ul class="responsive-table">
+      <li class="table-header">
+        <div class="id"><%= t('entry.table.id') %></div>
+        <div class="row-title"><%= t('journal.table.title') %></div>
+        <div><%= t('entry.table.updated_at') %></div>
+        <div><%= t('entry.table.created_at') %></div>
+      </li>
+      <hr>
+      <% @journal.journal_entries.each do |entry| %>
+        <li class="table-row clickable-row" data-href="<%= user_journal_journal_entry_path(@user, @journal, entry) %>">
+          <div class="id"><%= entry.id %></div>
+          <div class="row-title"><%= entry.title %></div>
+          <div><%= entry.updated_at.to_formatted_s(:short) %></div>
+          <div><%= entry.created_at.to_formatted_s(:short) %></div>
+          <div>
+            <div class="delete-button">
+              <%= link_to user_journal_journal_entry_path(@user, @journal, entry), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: t('user.message.confirm')
+                  } do %>
+                <img src="<%= asset_path('delete.svg') %>" alt="Add Entry">
+              <% end %>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
   </div>
-  <a>
-    <%= link_to(t('entry.action.add'), new_user_journal_journal_entry_path(@user, @journal),
-            {class:"btn btn-primary"})%> 
-  </a>
+</div>
+<div class="information">
+  <div class="description">
+    <div class="item-title">
+      <h3><%= t('journal.table.description') %></h3>
+    </div>
+    <div class="description-content">
+      <hr style="margin:2%;">
+      <p>
+        <%= @journal.description %>
+      </p>
+    </div>
+  </div>
+  <div class="information-files-attached">
+    <div class="item-title">
+      <h3><%= t('file.attached') %></h3>
+    </div>
+    <hr>
+    <div class="files-items">
+      <% @journal.files.each do |file| %>
+        <div class="file">
+          <div>
+            <img src="<%= asset_path('image.svg') %>" alt="Edit Entry">
+          </div>
+          <%= link_to file.filename, file %>
+          <div class="delete-button">
+            <%= link_to delete_file_user_journal_path(@user, @journal, file.id), data: {
+                  turbo_method: :delete,
+                  turbo_confirm: t('user.message.confirm')
+                } do %>
+              <img src="<%= asset_path('delete.svg') %>" alt="Add Entry">
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="information-actions">
+    <div>
+      <img src="<%= asset_path('share.svg') %>" alt="Share Journal" class="magnetic">
+    </div>
+    <div>
+      <input type="file" id="fileInput" style="display: none;" multiple>
+      <img id="imageTrigger" class="magnetic"
+           src="<%= asset_path('attach.svg') %>"
+           alt="Click to Upload"
+           style="cursor: pointer;"
+           data-uid="<%= @user.id %>"
+           data-jid="<%= @journal.id %>"
+          >
+    </div>
+  </div>
 </div>

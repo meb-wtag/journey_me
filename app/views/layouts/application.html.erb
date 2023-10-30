@@ -10,33 +10,35 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
-    
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "grid", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "profile_picture", "data-turbo-track": "reload" %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload", "media": "all" %>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap">
     <%= stylesheet_link_tag "direct_upload", "data-turbo-track": "reload" %>
+
 
     <%= javascript_importmap_tags %>
     <%= csrf_meta_tags %>
   </head>
-
-<body>
-  <% flash.each do |type, message| %>
-    <div class="alert alert-<%= type %> text-center">
-      <%= message %>
-    </div>
-  <% end %>
-  <div class="parent">
-    <% if current_user %>
-      <div class="div2">
-        <%= render 'layouts/sidebar'%>
+  <body>
+    <header>
+      <% if current_user %>
+        <%= render 'layouts/header'%>
+      <% end %>
+    </header>
+    <div class="content">
+      <div>
+        <% if current_user %>
+          <%= render 'layouts/sidebar'%>
+        <% end %>
       </div>
-    <% end %>
-    <div class="container div1">
-      <%= yield %>
-    </div>  
-  </div>
-</body>
+      <div>
+        <%= yield %>
+      </div>
+    </div>
+  </body>
 </html>

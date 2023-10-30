@@ -1,25 +1,51 @@
-<%= simple_form_for([@user, @task], wrapper: :vertical_range) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-  <h1 class="text-center"><%= t('task.action.add') %></h1>
-  <br>
-  <div class="form-inputs d-flex flex-column">
-    <%= f.input :title %>
-    <%= f.input :description %>
-    <%= f.input :content, as: :text %>
-    <%= f.input :user_ids, collection: User.all.map { |u| [u.username, u.id] }, input_html: { multiple: true } %>
-    <br>
-  </div>
-  <% if current_user.admin? %>
-    <div class="btn btn-primary d-flex justify-content-center mt-3">
-      <%= f.button :submit, {class: "form-check"} %>
+<div class="main">
+  <div class="main-content">
+    <div class="main-header">
+      <div class="header-image">
+        <div>
+        </div>
+      </div>
+      <div class="header-information">
+        <div class="type">
+          Task
+        </div>
+        <div class="title">
+          <%= @task.title %>
+        </div>
+          <a href="<%= user_path(@user) %>" class="card-link">
+            <div class="author">
+              <div class="author-icon">
+                <% if @user.profile_picture.attached? %>
+                  <image src="<%= url_for(@user.profile_picture) %>" alt="avatar"
+                  class="rounded-circle img-fluid" style="width: 25px;">
+                <% else %>
+                  <image src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                  class="rounded-circle img-fluid" style="width: 25px;">
+                <% end %>
+              </div>
+              <div class="author-name" style="margin: 0;">
+                <%= @user.username %>
+              </div>
+            </div>
+          </a>
+      </div>
+      <div class="header-actions">
+        <%= link_to user_task_path(@user, @task) do %>
+          <img src="<%= asset_path('edit.svg') %>" alt="Edit Entry" style="width: 25px; height: 25px;"></img>
+        <% end %>
+      </div>
     </div>
-  <% end %>
-<% end %>
-
-<h1 class="text-center mt-5"><%= t('file.uploaded') %>:</h1>
-<% @task.files.each do |file| %>
-  <div class="d-flex justify-content-center mb-2">
-    <%= link_to file.filename, file, class: "btn btn-primary"%>
+    <div class="content">
+    </div>
   </div>
-<% end %>
+  <div class="main-information">
+    <div class="information-description">
+      <div class="description-title"></div>
+      <div class="description-content"></div>
+    </div>
+    <div class="information-files-attached">
+      <div class="files-title"></div>
+      <div class="files-items"></div>
+    </div>
+  </div>
+</div>
