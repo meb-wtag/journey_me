@@ -1,13 +1,32 @@
 <div class="container mt-5 text-center">
   <h1>Your Calendar</h1>
-  <%= month_calendar(events: @entries) do |date, entries| %>
+  <%= week_calendar(events: @entries) do |date, entries| %>
     <div class="day">
-      <%= date.day %>
+      <h2><%= date.day %></h2>
     </div>
     <div>
-      <% entries.each do |entry| %>
-        <div class="card-header">
-        	entry.title
+      <% entries_for_date = @entries.select { |entry| entry.start_time.to_date == date } %>
+      <% if entries_for_date.any? %>
+        <div class="calendar-entry">
+          <div class="card">
+            <h3>Creations:</h3>
+            <% entries_for_date.each do |entry| %>
+              <p><strong><%= entry.start_time.strftime("%H:%M") %></strong> - <%= entry.title %></p>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div>
+      <% entries_for_date = @entries.select { |entry| entry.end_time.to_date == date } %>
+      <% if entries_for_date.any? %>
+        <div class="calendar-entry">
+          <div class="card">
+            <h3>Updates:</h3>
+            <% entries_for_date.each do |entry| %>
+              <p><strong><%= entry.end_time.strftime("%H:%M") %></strong> - <%= entry.title %></p>
+            <% end %>
+          </div>
         </div>
       <% end %>
     </div>
