@@ -134,5 +134,10 @@
            data-jid="<%= @journal.id %>"
           >
     </div>
+    <div>
+      <%= link_to user_journal_path(@user, @journal, format: :pdf) do %>
+        <img src="<%= asset_path('download.svg') %>" alt="Edit Journal" class="magnetic">
+      <% end %>
+    </div>
   </div>
 </div>
