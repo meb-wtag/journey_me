@@ -47,27 +47,26 @@
       </div>
     <% end %>
   </div>
-</div>
-<div class="user-information">
-  <% if @user.first_name %>
-    <p>
-      <%= @user.first_name.capitalize %>
-    </p>
-  <% end %>
-  <% if @user.last_name %>
-    <p>
-      <%= @user.last_name.capitalize %>
-    </p>
-  <% end %>
-  <% if @user.adress %>
-    <div>
-      <h1>
-        Adress:
-      </h1>
+  <div class="user-information">
+    <% if @user.first_name %>
       <p>
-        <%= @user.adress %> <%= @user.city %> <%= @user.country %>
+        <%= @user.first_name.capitalize %>
       </p>
-    </div>
-  <% end %>
+    <% end %>
+    <% if @user.last_name %>
+      <p>
+        <%= @user.last_name.capitalize %>
+      </p>
+    <% end %>
+    <% if @user.adress %>
+      <div>
+        <h1>
+          Adress:
+        </h1>
+        <p>
+          <%= @user.adress %> <%= @user.city %> <%= @user.country %>
+        </p>
+      </div>
+    <% end %>
+  </div>
 </div>
-
