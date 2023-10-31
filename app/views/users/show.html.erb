@@ -48,21 +48,19 @@
     <% end %>
   </div>
   <div class="user-information">
-    <% if @user.first_name %>
+    <% if @user.first_name || @user.last_name %>
+      <h2>
+        Name:
+      </h2>
       <p>
-        <%= @user.first_name.capitalize %>
+        <%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %>
       </p>
     <% end %>
-    <% if @user.last_name %>
-      <p>
-        <%= @user.last_name.capitalize %>
-      </p>
-    <% end %>
-    <% if @user.adress %>
+    <% if @user.adress || @user.city || @user.country  %>
       <div>
-        <h1>
+        <h2>
           Adress:
-        </h1>
+        </h2>
         <p>
           <%= @user.adress %> <%= @user.city %> <%= @user.country %>
         </p>
