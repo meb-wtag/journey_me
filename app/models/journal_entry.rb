@@ -1,8 +1,6 @@
 class JournalEntry < ApplicationRecord
   belongs_to :journal, inverse_of: :journal_entries
 
-  has_rich_text :content
-
   validates :title, presence: true
   validates :content, presence: true
 
