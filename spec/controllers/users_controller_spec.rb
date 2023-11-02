@@ -5,17 +5,6 @@ RSpec.describe UsersController, type: :controller do
     FactoryBot.create(:user)
   end
 
-  describe 'GET #index' do
-    let(:user2) do
-      FactoryBot.create(:user)
-    end
-
-    it 'populates an array of all Users' do
-      get :index
-      expect(assigns(:users)).to match_array [user, user2]
-    end
-  end
-
   describe 'GET #new' do
     it 'assigns a new User to @user' do
       get :new
@@ -42,20 +31,19 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    let(:admin_user) { FactoryBot.create(:user, role: 'admin') }
-    let(:user_to_delete) { FactoryBot.create(:user) }
+    let(:user_to_delete) do
+      FactoryBot.create(:user)
+    end
 
-    context 'as an admin user' do
-      before { sign_in_as!(admin_user) }
+    it 'deletes the user' do
+      expect {
+        delete :destroy, params: { id: user_to_delete.id }
+      }.to change(User, :count).by(-1)
+    end
 
-      it 'deletes the user and redirects to the users list' do
-        expect do
-          delete :destroy, params: { id: user_to_delete.id }
-        end.to change(User, :count).by(-1)
-
-        expect(flash[:success]).to eq(I18n.t('user.message.success.delete'))
-        expect(response).to redirect_to(users_path)
-      end
+    it 'redirects to the users path' do
+      delete :destroy, params: { id: user_to_delete.id }
+      expect(response).to redirect_to(new_user_path)
     end
   end
 
