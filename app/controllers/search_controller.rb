@@ -1,6 +1,6 @@
 class SearchController < ApplicationController
 	def index
-		@journalQuery = current_user.journals.ransack(params[:q])
-		@journals = @journalQuery.result(distinct: true)
+		@journalEntryQuery = @journal.journal_entries.ransack(params[:q])
+		@entries = @journalEntryQuery.result(distinct: true)
 	end
 end
