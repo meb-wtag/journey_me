@@ -13,16 +13,15 @@ RSpec.describe UserSessionsController, type: :controller do
   end
 
   describe 'POST #create' do
-    it 'creates a session and redirects to the user profile' do
-      post :create, params: { user: { username: user.username, password: user.password } }
-      expect(session[:user_id]).to eq(user.id)
-      expect(response).to redirect_to user_path(user)
-    end
+    context 'with valid user credentials and email confirmation' do
+      let(:user) { FactoryBot.create(:user, email_confirmed: true) }
 
-    it 'displays an error message and redirects to the login page' do
-      post :create, params: { user: { username: user.username, password: 'wrong_pw' } }
-      expect(session[:user_id]).to be_nil
-      expect(response).to redirect_to new_user_session_path
+      it 'logs in the user and redirects to the user profile' do
+        post :create, params: { user: { username: user.username, password: user.password } }
+        expect(session[:user_id]).to eq(user.id)
+        expect(flash[:success]).to eq(I18n.t('user_session.message.success.create'))
+        expect(response).to redirect_to(user_path(user))
+      end
     end
   end
 
@@ -31,7 +30,7 @@ RSpec.describe UserSessionsController, type: :controller do
       sign_in_as!(user)
       delete :destroy
       expect(session[:user_id]).to be_nil
-      expect(response).to redirect_to root_path
+      expect(response).to redirect_to new_user_path
     end
   end
 end

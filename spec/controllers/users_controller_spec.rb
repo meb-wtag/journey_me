@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'rails_helper'
 RSpec.describe UsersController, type: :controller do
-  let!(:user) do
+  let(:user) do
     FactoryBot.create(:user)
   end
 
@@ -42,11 +42,20 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    it 'deletes the user' do
-      sign_in_as!(user)
-      expect do
-        delete :destroy, params: { id: user.id }
-      end.to change(User, :count).by(-1)
+    let(:admin_user) { FactoryBot.create(:user, role: 'admin') }
+    let(:user_to_delete) { FactoryBot.create(:user) }
+
+    context 'as an admin user' do
+      before { sign_in_as!(admin_user) }
+
+      it 'deletes the user and redirects to the users list' do
+        expect do
+          delete :destroy, params: { id: user_to_delete.id }
+        end.to change(User, :count).by(-1)
+
+        expect(flash[:success]).to eq(I18n.t('user.message.success.delete'))
+        expect(response).to redirect_to(users_path)
+      end
     end
   end
 
@@ -77,7 +86,7 @@ RSpec.describe UsersController, type: :controller do
 
       it 'sets a success flash message' do
         post :create, params: valid_params
-        expect(flash[:success]).to eq(I18n.t('mail_conf.please_confirm'))
+        expect(flash[:success]).to eq(I18n.t('mailer.please_confirm'))
       end
 
       it 'redirects to the users profile page' do
@@ -160,7 +169,7 @@ RSpec.describe UsersController, type: :controller do
 
       it 'sets a success flash message' do
         get :confirm_email, params: { id: user5.id, confirm_token: 'valid_token' }
-        expect(flash[:success]).to eq(I18n.t('mail_conf.welcome'))
+        expect(flash[:success]).to eq(I18n.t('mailer.welcome'))
       end
     end
 
@@ -172,7 +181,7 @@ RSpec.describe UsersController, type: :controller do
 
       it 'sets an error flash message' do
         get :confirm_email, params: { id: user5.id, confirm_token: 'invalid_token' }
-        expect(flash[:error]).to eq(I18n.t('mail_conf.not_found'))
+        expect(flash[:error]).to eq(I18n.t('mailer.not_found'))
       end
     end
   end

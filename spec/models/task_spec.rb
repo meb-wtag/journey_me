@@ -1,13 +1,13 @@
 require 'rails_helper'
 RSpec.describe Task, type: :model do
   let!(:user) { FactoryBot.create(:user) }
-  let(:task) { FactoryBot.create(:task, user_id: user.id) }
+  let(:task) { FactoryBot.create(:task, creator_id: user.id) }
 
   describe 'validations' do
     it { should validate_presence_of(:title) }
     it { should validate_presence_of(:description) }
     it 'sets default importance and status' do
-      expect(task.importance).to eq('medium')
+      expect(task.priority).to eq('medium')
       expect(task.status).to eq('todo')
     end
 
@@ -37,6 +37,6 @@ RSpec.describe Task, type: :model do
   end
 
   describe 'associations' do
-    it { should have_and_belong_to_many(:users).join_table(:assignments) }
+    it { should have_many(:users).join_table(:assignments) }
   end
 end
