@@ -50,7 +50,7 @@
   <div class="user-information">
     <% if @user.first_name || @user.last_name %>
       <h2>
-        Name:
+        <%= t('user.name') %>
       </h2>
       <p>
         <%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %>
@@ -59,7 +59,7 @@
     <% if @user.adress || @user.city || @user.country  %>
       <div>
         <h2>
-          Adress:
+          <%= t('user.adress') %>
         </h2>
         <p>
           <%= @user.adress %> <%= @user.city %> <%= @user.country %>
