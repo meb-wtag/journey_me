@@ -10,6 +10,15 @@ class JournalEntriesController < ApplicationController
     redirect_to user_journal_path(@user, @journal)
   end
 
+  def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: @journal_entry.title, template: "journal_entries/pdf_template", formats: [:html]
+      end
+    end
+  end
+
   def create
     @journal_entry = @journal.journal_entries.new(journal_entry_params)
     if @journal_entry.save

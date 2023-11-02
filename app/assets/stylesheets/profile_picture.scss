@@ -1,3 +1,4 @@
+@import "./colors";
 .profile-pic-wrapper {
   position: relative;
   display: flex;
@@ -86,44 +87,44 @@
 }
 
 @-webkit-keyframes fadein {
-  from {
+  0% {
     bottom: 0;
     opacity: 0;
   }
-  to {
+  100% {
     bottom: 30px;
     opacity: 1;
   }
 }
 
 @keyframes fadein {
-  from {
+  0% {
     bottom: 0;
     opacity: 0;
   }
-  to {
+  100% {
     bottom: 30px;
     opacity: 1;
   }
 }
 
 @-webkit-keyframes fadeout {
-  from {
+  0% {
     bottom: 30px;
     opacity: 1;
   }
-  to {
+  100% {
     bottom: 0;
     opacity: 0;
   }
 }
 
 @keyframes fadeout {
-  from {
+  0% {
     bottom: 30px;
     opacity: 1;
   }
-  to {
+  100% {
     bottom: 0;
     opacity: 0;
   }

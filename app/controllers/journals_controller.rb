@@ -4,8 +4,13 @@ class JournalsController < ApplicationController
   before_action :require_login
   load_and_authorize_resource
 
-  def index
-    @journals = @user.journals.order(params[:sort])
+  def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: @journal.title, template: 'journals/pdf_template', formats: [:html]
+      end
+    end
   end
 
   def create
@@ -47,6 +52,11 @@ class JournalsController < ApplicationController
     else
       flash[:error] = t('file.delete.fail')
     end
+  end
+
+  def calendar
+    @journal = current_user.journals.find(params[:journal_id])
+    @entries = @journal.journal_entries
   end
 
   private
