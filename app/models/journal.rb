@@ -5,5 +5,5 @@ class Journal < ApplicationRecord
 
   validates :title, presence: true
   validates :description, presence: true
-  validates :files, blob: { content_type: ['image/png','image/jpg','image/jpeg','image/svg','application/pdf','video/mp4'], size_range: 0..(5.megabytes) }
+  validates :files, blob: { size_range: 0..(10.megabytes) }
 end

@@ -102,7 +102,22 @@
       <% @journal.files.each do |file| %>
         <div class="file">
           <div>
-            <img src="<%= asset_path('image.svg') %>" alt="Edit Entry">
+            <% if File.directory?(file.filename.to_s) %>
+              <%= image_tag('folder.svg', alt: 'Folder Icon') %>
+            <% else %>
+              <% case file.filename.extension_with_delimiter %>
+              <% when '.pdf' %>
+                  <img src="<%= asset_path('pdf.svg') %>">
+              <% when '.jpg', '.jpeg', '.png', '.gif' %>
+                 <img src="<%= asset_path('image.svg') %>">
+              <% when '.mp4', '.avi', '.mov', '.mkv' %>
+                 <img src="<%= asset_path('video.svg') %>">
+              <% when '.css', '.html', '.rb', '.js' %>
+                 <img src="<%= asset_path('code_file.svg') %>">
+              <% else %>
+                 <img src="<%= asset_path('document.svg') %>">
+              <% end %>
+            <% end %>
           </div>
           <%= link_to file.filename, file %>
           <div class="delete-button">
