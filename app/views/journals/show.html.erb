@@ -60,9 +60,9 @@
         <div><%= t('entry.table.created_at') %></div>
       </li>
       <hr>
-      <% @entries.each do |entry| %>
+      <% @entries.each_with_index do |entry, index| %>
         <li class="table-row clickable-row" data-href="<%= user_journal_journal_entry_path(@user, @journal, entry) %>">
-          <div class="id"><%= entry.id %></div>
+          <div class="id"><%= index + 1 %></div>
           <div class="row-title"><%= entry.title %></div>
           <div><%= entry.updated_at.to_formatted_s(:short) %></div>
           <div><%= entry.created_at.to_formatted_s(:short) %></div>
