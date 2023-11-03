@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   root 'users#new'
-  get 'search', to: 'search#index'
   resources :user_sessions, only: [:new, :create]
   delete 'user_sessions', to: 'user_sessions#destroy', as: :logout
 
@@ -9,6 +8,7 @@ Rails.application.routes.draw do
     post :upload_profile_picture, to: 'users#upload_profile_picture', on: :collection
     resources :tasks
     resources :journals do
+      get :search, to: 'journals#show', on: :member
       get 'calendar', to: 'journals#calendar'
       post :upload_file, to: 'journals#upload_file', on: :member
       delete 'delete_file/:file_id', to: 'journals#delete_file', as: :delete_file, on: :member

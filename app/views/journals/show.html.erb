@@ -29,11 +29,6 @@
         </a>
     </div>
     <div class="journal-actions">
-      <div id="search-options">
-        <%= link_to search_path(user_id: @user.id, journal_id: @journal.id) do %>
-          <img src="<%= asset_path('vector.svg') %>" class="magnetic h-img" alt="Add Friend"></img>
-        <% end %>
-      </div>
       <div>
         <%= link_to user_journal_calendar_path(@user, @journal) do %>
           <img src="<%= asset_path('calendar.svg') %>" alt="Add Entry" class="magnetic">
@@ -49,12 +44,9 @@
           <img src="<%= asset_path('edit.svg') %>" alt="Edit Journal" class="magnetic">
         <% end %>
       </div>
-      <div>
-        <%= link_to user_journal_path(@user, @journal), data: {
-              turbo_method: :delete,
-              turbo_confirm: t('user.message.confirm')
-            } do %>
-          <img src="<%= asset_path('delete.svg') %>" alt="Add Entry" class="magnetic">
+      <div class="journal-search">
+        <%= search_form_for(@entryQuery, url: search_user_journal_path(@user, @journal), method: :get) do |f| %>
+          <%= f.search_field :title_cont, class: "search-field" %>
         <% end %>
       </div>
     </div>
@@ -68,7 +60,7 @@
         <div><%= t('entry.table.created_at') %></div>
       </li>
       <hr>
-      <% @journal.journal_entries.each do |entry| %>
+      <% @entries.each do |entry| %>
         <li class="table-row clickable-row" data-href="<%= user_journal_journal_entry_path(@user, @journal, entry) %>">
           <div class="id"><%= entry.id %></div>
           <div class="row-title"><%= entry.title %></div>
@@ -142,6 +134,14 @@
     <div>
       <%= link_to user_journal_path(@user, @journal, format: :pdf), target: '_blank' do %>
         <img src="<%= asset_path('download.svg') %>" alt="Edit Journal" class="magnetic">
+      <% end %>
+    </div>
+    <div>
+      <%= link_to user_journal_path(@user, @journal), data: {
+            turbo_method: :delete,
+            turbo_confirm: t('user.message.confirm')
+          } do %>
+        <img src="<%= asset_path('delete.svg') %>" alt="Delete Journal" class="magnetic">
       <% end %>
     </div>
   </div>

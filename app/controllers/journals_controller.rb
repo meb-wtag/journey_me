@@ -1,10 +1,14 @@
 class JournalsController < ApplicationController
-  before_action :find_user, only: %i[new create index show destroy update find_journal]
+  before_action :find_user, only: %i[new create index show destroy update find_journal set_query]
   before_action :find_journal, only: %i[show destroy update]
   before_action :require_login
   load_and_authorize_resource
 
   def show
+    @journal = @user.journals.find(params[:id])
+    @entryQuery = @journal.journal_entries.ransack(params[:q])
+    @entries = @entryQuery.result(distinct: true)
+
     respond_to do |format|
       format.html
       format.pdf do

@@ -29,7 +29,7 @@
 .header-information {
 	padding: 5% 0px 0px 2%;
   display: flex;
-  width: 50%;
+  width: 30%;
   height: 100%;
   flex-direction: column;
   align-items: flex-start;
@@ -95,16 +95,51 @@
 }
 
 .journal-actions {
-	vertical-align: top;
 	display: flex;
 	flex-direction: row;
 	overflow: hidden;
+
+	img {
+		width: 35px;
+		height: 35px;
+	}
 }
 
 .journal-actions > * {
-	margin-right: 25px;
+	margin-left: 25px;
 }
 
+.journal-search {
+  padding: 0;
+
+  form {
+  	margin: 0;
+	}
+
+	.search-field {
+		background-color: $background-color;
+		height: 35px;
+		width: 100%;
+		border: black solid 3px;
+		border-radius: 10px;
+		transition: border 0.5s;
+	}
+
+	.search-field:hover {
+	  background-color: $background-color;
+	  border: $primary-color solid 3px;
+	  border-radius: 10px;
+		height: 35px;
+		width: 100%;
+	}
+
+	.search-field:focus {
+	  background-color: $background-color;
+	  border: $primary-color solid 3px;
+	  outline: none;
+	}
+
+}
 
 .description {
 	width: 100%;
