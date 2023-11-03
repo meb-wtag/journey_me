@@ -33,7 +33,11 @@ class JournalsController < ApplicationController
     else
       flash[:error] = t('journal.message.error.delete')
     end
-    redirect_to user_path
+    if @journals.count == 0
+      redirect_to user_path(current_user)
+    else
+      redirect_to user_journal_path(id: 1)
+    end
   end
 
   def upload_file
@@ -71,6 +75,7 @@ class JournalsController < ApplicationController
 
   def find_journal
     @journal = @user.journals.find(params[:id])
+    @journals = @user.journals
   end
 
   def journal_params

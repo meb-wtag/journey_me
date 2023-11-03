@@ -5,6 +5,11 @@
   <div class="form-inputs">
   <%= f.input :title, {class: "form-control"}%>
   <%= f.input :description %>
+  <% if @journal.errors[:date].any? %>
+    <span class="validation-error">
+      <%= @journal.errors[:date].join(', ') %>
+    </span>
+  <% end %>
   </div>
   <div>
     <h1><%= t('file.add') %></h1>
