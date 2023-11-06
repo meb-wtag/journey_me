@@ -60,24 +60,26 @@
         <div><%= t('entry.table.created_at') %></div>
       </li>
       <hr>
-      <% @entries.each_with_index do |entry, index| %>
-        <li class="table-row clickable-row" data-href="<%= user_journal_journal_entry_path(@user, @journal, entry) %>">
-          <div class="id"><%= index + 1 %></div>
-          <div class="row-title"><%= entry.title %></div>
-          <div><%= entry.updated_at.to_formatted_s(:short) %></div>
-          <div><%= entry.created_at.to_formatted_s(:short) %></div>
-          <div>
-            <div class="delete-button">
-              <%= link_to user_journal_journal_entry_path(@user, @journal, entry), data: {
-                    turbo_method: :delete,
-                    turbo_confirm: t('user.message.confirm')
-                  } do %>
-                <img src="<%= asset_path('delete.svg') %>" alt="Add Entry">
-              <% end %>
+      <div class="table-content">
+        <% @entries.each_with_index do |entry, index| %>
+          <li class="table-row clickable-row" data-href="<%= user_journal_journal_entry_path(@user, @journal, entry) %>">
+            <div class="id"><%= index + 1 %></div>
+            <div class="row-title"><%= entry.title %></div>
+            <div><%= entry.updated_at.to_formatted_s(:short) %></div>
+            <div><%= entry.created_at.to_formatted_s(:short) %></div>
+            <div>
+              <div class="delete-button">
+                <%= link_to user_journal_journal_entry_path(@user, @journal, entry), data: {
+                      turbo_method: :delete,
+                      turbo_confirm: t('user.message.confirm')
+                    } do %>
+                  <img src="<%= asset_path('delete.svg') %>" alt="Add Entry">
+                <% end %>
+              </div>
             </div>
-          </div>
-        </li>
-      <% end %>
+          </li>
+        <% end %>
+      </div>
     </ul>
   </div>
 </div>
