@@ -1,7 +1,8 @@
 @import "./colors";
 body {
   background-color: $background-color;
-  height: 98vh;
+  height: 100vh;
+  overflow: hidden;
   margin: 0px 10px 10px 10px;
 }
 

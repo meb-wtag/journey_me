@@ -7,12 +7,14 @@
 }
 
 .table-content {
-  overflow-y: scroll;
+  overflow-y: hidden;
 
   li {
     width: 100%;
     border-radius: 5%;
+    height: 45px;
     display: flex;
+    padding: 1% 4% 1% 4%;
     margin-bottom: 2%;
     transition: box-shadow 0.3s;
     transition: background-color 0.5s;
@@ -36,11 +38,6 @@
   padding-left: 4%;
   padding-right: 4%;
   text-align: center;
-}
-
-.table-row {
-  padding: 1% 4% 1% 4%;
-  width: 100%;
 }
 
 .table-row > * {
