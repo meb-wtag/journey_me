@@ -23,7 +23,7 @@ class JournalsController < ApplicationController
       pdf.text entry.title + " (" + entry.created_at.to_formatted_s(:short) + ")", size: 16, style: :bold
       pdf.text entry.content
 
-      pdf.move_down 30
+      pdf.start_new_page
     end
 
     send_data(pdf.render,
