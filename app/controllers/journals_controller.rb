@@ -28,8 +28,7 @@ class JournalsController < ApplicationController
 
     send_data(pdf.render,
       filename: 'hello.pdf',
-      type: 'application/pdf',
-      disposition: 'inline')
+      type: 'application/pdf')
   end
 
   def destroy
