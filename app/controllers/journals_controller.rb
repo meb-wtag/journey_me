@@ -4,15 +4,6 @@ class JournalsController < ApplicationController
   before_action :require_login
   load_and_authorize_resource
 
-  def show
-    respond_to do |format|
-      format.html
-      format.pdf do
-        render pdf: @journal.title, template: 'journals/pdf_template', formats: [:html]
-      end
-    end
-  end
-
   def create
     @journal = @user.journals.new(journal_params)
     if @journal.save
@@ -21,6 +12,24 @@ class JournalsController < ApplicationController
       flash[:error] = t('journal.message.error.create')
     end
     redirect_to user_journal_path(@user, @journal)
+  end
+
+  def download
+    pdf = Prawn::Document.new
+    pdf.text 'Exported Journal: ' + @journal.title , size: 20, style: :bold, align: :center
+    pdf.move_down 50
+
+    @journal.journal_entries.each do |entry|
+      pdf.text entry.title + " (" + entry.created_at.to_formatted_s(:short) + ")", size: 16, style: :bold
+      pdf.text entry.content
+
+      pdf.move_down 30
+    end
+
+    send_data(pdf.render,
+      filename: 'hello.pdf',
+      type: 'application/pdf',
+      disposition: 'inline')
   end
 
   def destroy
