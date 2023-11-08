@@ -143,3 +143,7 @@ en:
     delete:
       success: File deleted successfully.
       fail: Failed to delete the file.
+  calendar:
+    calendar: Calendar
+    updates: Updates
+    creations: Creations
