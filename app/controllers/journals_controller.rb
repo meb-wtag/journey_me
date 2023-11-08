@@ -8,13 +8,6 @@ class JournalsController < ApplicationController
     @journal = @user.journals.find(params[:id])
     @entryQuery = @journal.journal_entries.ransack(params[:q])
     @entries = @entryQuery.result(distinct: true)
-
-    respond_to do |format|
-      format.html
-      format.pdf do
-        render pdf: @journal.title, template: 'journals/pdf_template', formats: [:html]
-      end
-    end
   end
 
   def create
