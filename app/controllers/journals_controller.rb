@@ -27,7 +27,7 @@ class JournalsController < ApplicationController
     end
 
     send_data(pdf.render,
-      filename: 'hello.pdf',
+      filename: @journal.title,
       type: 'application/pdf')
   end
 
