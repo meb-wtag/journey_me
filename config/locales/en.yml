@@ -74,6 +74,7 @@ en:
       username: Username
       role: Role
     show:
+      name: Name
       adress: Adress
       email: Email
       full_name: Full Name
@@ -143,3 +144,8 @@ en:
     delete:
       success: File deleted successfully.
       fail: Failed to delete the file.
+  calendar:
+    calendar: Calendar
+    events: Events
+    creations: Creations
+    updates: Updates

@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   helper_method :authenticate_user
 
   rescue_from CanCan::AccessDenied do |exception|
-    flash[:error] = error.message
+    flash[:error] = t('error.message')
     redirect_to root_url
   end
 

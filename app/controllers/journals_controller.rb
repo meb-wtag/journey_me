@@ -4,10 +4,6 @@ class JournalsController < ApplicationController
   before_action :require_login
   load_and_authorize_resource
 
-  def index
-    @journals = @user.journals.order(params[:sort])
-  end
-
   def create
     @journal = @user.journals.new(journal_params)
     if @journal.save
@@ -16,6 +12,23 @@ class JournalsController < ApplicationController
       flash[:error] = t('journal.message.error.create')
     end
     redirect_to user_journal_path(@user, @journal)
+  end
+
+  def download
+    pdf = Prawn::Document.new
+    pdf.text 'Exported Journal: ' + @journal.title , size: 20, style: :bold, align: :center
+    pdf.move_down 50
+
+    @journal.journal_entries.each do |entry|
+      pdf.text entry.title + " (" + entry.created_at.to_formatted_s(:short) + ")", size: 16, style: :bold
+      pdf.text entry.content
+
+      pdf.start_new_page
+    end
+
+    send_data(pdf.render,
+      filename: @journal.title,
+      type: 'application/pdf')
   end
 
   def destroy
@@ -47,6 +60,11 @@ class JournalsController < ApplicationController
     else
       flash[:error] = t('file.delete.fail')
     end
+  end
+
+  def calendar
+    @journal = current_user.journals.find(params[:journal_id])
+    @entries = @journal.journal_entries
   end
 
   private

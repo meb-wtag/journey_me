@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     post :upload_profile_picture, to: 'users#upload_profile_picture', on: :collection
     resources :tasks
     resources :journals do
+      get 'calendar', to: 'journals#calendar'
+      get 'download', to: 'journals#download', on: :member
       post :upload_file, to: 'journals#upload_file', on: :member
       delete 'delete_file/:file_id', to: 'journals#delete_file', as: :delete_file, on: :member
       resources :journal_entries do

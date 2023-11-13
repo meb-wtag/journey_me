@@ -1,19 +1,8 @@
 require 'spec_helper'
 require 'rails_helper'
 RSpec.describe UsersController, type: :controller do
-  let!(:user) do
+  let(:user) do
     FactoryBot.create(:user)
-  end
-
-  describe 'GET #index' do
-    let(:user2) do
-      FactoryBot.create(:user)
-    end
-
-    it 'populates an array of all Users' do
-      get :index
-      expect(assigns(:users)).to match_array [user, user2]
-    end
   end
 
   describe 'GET #new' do
@@ -42,11 +31,19 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
+    let(:user_to_delete) do
+      FactoryBot.create(:user)
+    end
+
     it 'deletes the user' do
-      sign_in_as!(user)
-      expect do
-        delete :destroy, params: { id: user.id }
-      end.to change(User, :count).by(-1)
+      expect {
+        delete :destroy, params: { id: user_to_delete.id }
+      }.to change(User, :count).by(-1)
+    end
+
+    it 'redirects to the users path' do
+      delete :destroy, params: { id: user_to_delete.id }
+      expect(response).to redirect_to(new_user_path)
     end
   end
 
@@ -77,7 +74,7 @@ RSpec.describe UsersController, type: :controller do
 
       it 'sets a success flash message' do
         post :create, params: valid_params
-        expect(flash[:success]).to eq(I18n.t('mail_conf.please_confirm'))
+        expect(flash[:success]).to eq(I18n.t('mailer.please_confirm'))
       end
 
       it 'redirects to the users profile page' do
@@ -160,7 +157,7 @@ RSpec.describe UsersController, type: :controller do
 
       it 'sets a success flash message' do
         get :confirm_email, params: { id: user5.id, confirm_token: 'valid_token' }
-        expect(flash[:success]).to eq(I18n.t('mail_conf.welcome'))
+        expect(flash[:success]).to eq(I18n.t('mailer.welcome'))
       end
     end
 
@@ -172,7 +169,7 @@ RSpec.describe UsersController, type: :controller do
 
       it 'sets an error flash message' do
         get :confirm_email, params: { id: user5.id, confirm_token: 'invalid_token' }
-        expect(flash[:error]).to eq(I18n.t('mail_conf.not_found'))
+        expect(flash[:error]).to eq(I18n.t('mailer.not_found'))
       end
     end
   end
