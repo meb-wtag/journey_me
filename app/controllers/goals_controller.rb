@@ -5,6 +5,26 @@ class GoalsController < ApplicationController
   before_action :require_login
   load_and_authorize_resource
 
+  def index
+    @goal = @journal_entry.goals.find(params[:id])
+  end
+
+  def shwo
+  end
+
+  def new
+    @goal = Goal.new
+  end
+
+  def create
+    @goal = @journal_entry.goals.new(goal_params)
+    if @goal.save
+      flash[:success] = t('journal.message.success.create')
+    else
+      flash[:error] = t('journal.message.error.create')
+    end
+    redirect_to user_journal_journal_entry_path(@user, @journal, @journal_entry)
+  end
 
   private
 
@@ -20,8 +40,8 @@ class GoalsController < ApplicationController
     @journal_entry = @journal.journal_entries.find(params[:id])
   end
 
-  def journal_entry_params
+  def goal_params
     params.require(:journal_entry).permit(:title,
-                                          :content)
+                                          :description)
   end
 end
