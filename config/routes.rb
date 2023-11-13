@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       post :upload_file, to: 'journals#upload_file', on: :member
       delete 'delete_file/:file_id', to: 'journals#delete_file', as: :delete_file, on: :member
       resources :journal_entries do
+        resources :goals
       end
     end
   end
