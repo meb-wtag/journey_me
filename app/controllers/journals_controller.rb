@@ -26,7 +26,7 @@ class JournalsController < ApplicationController
     else
       flash[:error] = t('journal.message.error.delete')
     end
-    if @journals.count == 0
+    if @journals.count.zero?
       redirect_to user_path(current_user)
     else
       redirect_to user_journal_path(id: 1)
