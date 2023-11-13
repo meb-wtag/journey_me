@@ -75,7 +75,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_13_083040) do
     t.integer "journal_id", null: false
     t.string "title", null: false
     t.text "content", null: false
-    t.text "goal"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["journal_id"], name: "index_journal_entries_on_journal_id"
