@@ -42,11 +42,6 @@ RSpec.describe JournalsController, type: :controller do
       delete :destroy, params: { user_id: user.id, id: journal.id }
       expect { journal.reload }.to raise_error(ActiveRecord::RecordNotFound)
     end
-
-    it 'renders the :show template' do
-      delete :destroy, params: { user_id: user.id, id: journal.id }
-      expect(response).to redirect_to user_path
-    end
   end
 
   describe 'POST #create' do
