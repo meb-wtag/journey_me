@@ -28,7 +28,7 @@
           </div>
         </a>
     </div>
-    <div class="header-actions">
+    <div class="journal-actions">
       <div>
         <%= link_to user_journal_calendar_path(@user, @journal) do %>
           <img src="<%= asset_path('calendar.svg') %>" alt="Add Entry" class="magnetic">
@@ -44,12 +44,9 @@
           <img src="<%= asset_path('edit.svg') %>" alt="Edit Journal" class="magnetic">
         <% end %>
       </div>
-      <div>
-        <%= link_to user_journal_path(@user, @journal), data: {
-              turbo_method: :delete,
-              turbo_confirm: t('user.message.confirm')
-            } do %>
-          <img src="<%= asset_path('delete.svg') %>" alt="Add Entry" class="magnetic">
+      <div class="journal-search">
+        <%= search_form_for(@entryQuery, url: search_user_journal_path(@user, @journal), method: :get) do |f| %>
+          <%= f.search_field :title_cont, class: "search-field" %>
         <% end %>
       </div>
     </div>
@@ -63,24 +60,26 @@
         <div><%= t('entry.table.created_at') %></div>
       </li>
       <hr>
-      <% @journal.journal_entries.each do |entry| %>
-        <li class="table-row clickable-row" data-href="<%= user_journal_journal_entry_path(@user, @journal, entry) %>">
-          <div class="id"><%= entry.id %></div>
-          <div class="row-title"><%= entry.title %></div>
-          <div><%= entry.updated_at.to_formatted_s(:short) %></div>
-          <div><%= entry.created_at.to_formatted_s(:short) %></div>
-          <div>
-            <div class="delete-button">
-              <%= link_to user_journal_journal_entry_path(@user, @journal, entry), data: {
-                    turbo_method: :delete,
-                    turbo_confirm: t('user.message.confirm')
-                  } do %>
-                <img src="<%= asset_path('delete.svg') %>" alt="Add Entry">
-              <% end %>
+      <div class="table-content">
+        <% @entries.each_with_index do |entry, index| %>
+          <li class="table-row clickable-row" data-href="<%= user_journal_journal_entry_path(@user, @journal, entry) %>">
+            <div class="id"><%= index + 1 %></div>
+            <div class="row-title"><%= entry.title %></div>
+            <div><%= entry.updated_at.to_formatted_s(:short) %></div>
+            <div><%= entry.created_at.to_formatted_s(:short) %></div>
+            <div>
+              <div class="delete-button">
+                <%= link_to user_journal_journal_entry_path(@user, @journal, entry), data: {
+                      turbo_method: :delete,
+                      turbo_confirm: t('user.message.confirm')
+                    } do %>
+                  <img src="<%= asset_path('delete.svg') %>" alt="Add Entry">
+                <% end %>
+              </div>
             </div>
-          </div>
-        </li>
-      <% end %>
+          </li>
+        <% end %>
+      </div>
     </ul>
   </div>
 </div>
@@ -105,7 +104,22 @@
       <% @journal.files.each do |file| %>
         <div class="file">
           <div>
-            <img src="<%= asset_path('image.svg') %>" alt="Edit Entry">
+            <% if File.directory?(file.filename.to_s) %>
+              <%= image_tag('folder.svg', alt: 'Folder Icon') %>
+            <% else %>
+              <% case file.filename.extension_with_delimiter %>
+              <% when '.pdf' %>
+                  <img src="<%= asset_path('pdf.svg') %>">
+              <% when '.jpg', '.jpeg', '.png', '.gif' %>
+                 <img src="<%= asset_path('image.svg') %>">
+              <% when '.mp4', '.avi', '.mov', '.mkv' %>
+                 <img src="<%= asset_path('video.svg') %>">
+              <% when '.css', '.html', '.rb', '.js' %>
+                 <img src="<%= asset_path('code_file.svg') %>">
+              <% else %>
+                 <img src="<%= asset_path('document.svg') %>">
+              <% end %>
+            <% end %>
           </div>
           <%= link_to file.filename, file %>
           <div class="delete-button">
@@ -137,6 +151,14 @@
     <div>
       <%= link_to download_user_journal_path() do %>
         <img src="<%= asset_path('download.svg') %>" alt="Edit Journal" class="magnetic">
+      <% end %>
+    </div>
+    <div>
+      <%= link_to user_journal_path(@user, @journal), data: {
+            turbo_method: :delete,
+            turbo_confirm: t('user.message.confirm')
+          } do %>
+        <img src="<%= asset_path('delete.svg') %>" alt="Delete Journal" class="magnetic">
       <% end %>
     </div>
   </div>

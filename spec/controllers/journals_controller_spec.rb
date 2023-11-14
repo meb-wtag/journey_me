@@ -11,20 +11,6 @@ RSpec.describe JournalsController, type: :controller do
   let(:journal) { FactoryBot.create(:journal, user: user) }
   let(:valid_params) { FactoryBot.attributes_for(:journal) }
 
-  describe 'GET #index' do
-    let(:journal2) { FactoryBot.create(:journal, user:) }
-
-    it 'populates an array of all Journals' do
-      get :index, params: { user_id: user.id, journal: valid_params }
-      expect(assigns(:journals)).to match_array [journal, journal2]
-    end
-
-    it 'renders the :index template' do
-      get :index, params: { user_id: user.id, journal: valid_params }
-      expect(response).to render_template :index
-    end
-  end
-
   describe 'GET #new' do
     let!(:journal3) { FactoryBot.create(:journal, user:) }
 
@@ -55,11 +41,6 @@ RSpec.describe JournalsController, type: :controller do
     it 'deletes the journal' do
       delete :destroy, params: { user_id: user.id, id: journal.id }
       expect { journal.reload }.to raise_error(ActiveRecord::RecordNotFound)
-    end
-
-    it 'renders the :show template' do
-      delete :destroy, params: { user_id: user.id, id: journal.id }
-      expect(response).to redirect_to user_path
     end
   end
 

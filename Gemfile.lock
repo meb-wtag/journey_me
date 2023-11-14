@@ -261,6 +261,10 @@ GEM
       zeitwerk (~> 2.5)
     rainbow (3.1.1)
     rake (13.1.0)
+    ransack (4.1.1)
+      activerecord (>= 6.1.5)
+      activesupport (>= 6.1.5)
+      i18n
     rdoc (6.6.0)
       psych (>= 4.0.0)
     red-colors (0.3.0)
@@ -364,7 +368,6 @@ GEM
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    wkhtmltopdf-binary (0.12.6.6)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.6.12)
@@ -395,6 +398,7 @@ DEPENDENCIES
   rails (~> 7.0.7)
   rails-controller-testing
   rails-i18n (~> 7.0.7)
+  ransack
   rspec-rails (~> 6.0.0)
   rubocop
   sassc-rails
@@ -409,7 +413,6 @@ DEPENDENCIES
   web-console
   webdrivers
   webpacker
-  wkhtmltopdf-binary
   zeitwerk (~> 2.6.12)
 
 RUBY VERSION
