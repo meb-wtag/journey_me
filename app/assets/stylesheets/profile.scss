@@ -41,5 +41,22 @@
 }
 
 .user-actions {
-	height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10%;
+
+  * {
+  margin-right: 15%;
+	}
+
+	*:last-child {
+		display: flex;
+		flex-direction: column;
+	  margin-right: 0;
+
+	  p{
+	  	margin: 0;
+	  }
+	}
 }

@@ -42,6 +42,14 @@ class UsersController < ApplicationController
     redirect_to user_path(@user)
   end
 
+  def change_role
+    if @user.update(user_params[:role])
+      flash[:success] = 'a'
+    else
+      flash[:error] = t('mailer.welcome')
+    end
+  end
+
   def destroy
     if @user.destroy
       flash[:success] = t('user.message.success.delete')
