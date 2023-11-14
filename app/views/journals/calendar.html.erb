@@ -1,5 +1,5 @@
 <div class="container mt-5 text-center">
-  <h1><%= t('calendar.calendar') %></h1>
+  <h1><%= t('calendar.calendar')%></h1>
   <%= week_calendar(events: @entries) do |date, entries| %>
     <div class="day">
       <h2><%= date.day %></h2>
