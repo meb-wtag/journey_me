@@ -46,13 +46,15 @@
             } %>
       </div>
     <% end %>
-    <div class="admin-switch">
-      <p>admin?</p>
-      <label class="switch">
-        <input type="checkbox" id="admin-switch" data-user-id="<%= @user.id %>" <%= 'checked' if @user.admin? %>>
-        <span class="slider round"></span>
-      </label>
-    </div>
+    <% if !(current_user == @user) %>
+      <div class="admin-switch">
+        <p>admin?</p>
+        <label class="switch">
+          <input type="checkbox" id="admin-switch" data-user-id="<%= @user.id %>" <%= 'checked' if @user.admin? %>>
+          <span class="slider round"></span>
+        </label>
+      </div>
+    <% end %>
   </div>
   <div class="user-information">
     <% if @user.first_name || @user.last_name %>
