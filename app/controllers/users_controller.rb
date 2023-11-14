@@ -43,11 +43,14 @@ class UsersController < ApplicationController
   end
 
   def change_role
-    if @user.update(role: params[:role])
-      flash[:success] = 'a'
+    if @user.admin?
+      @user.update(role: :user)
+      flash[:success] = 'to user'
     else
-      flash[:error] = 'b'
+      @user.update(role: :admin)
+      flash[:success] = 'to admin'
     end
+    redirect_to user_path(@user)
   end
 
   def destroy
