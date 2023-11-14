@@ -1,7 +1,7 @@
 class GoalsController < ApplicationController
   before_action :find_user, only: %i[new create index show destroy update find_journal]
   before_action :find_journal, only: %i[new create index show destroy update find_entry]
-  before_action :find_entry, only: %i[show destroy update]
+  before_action :find_entry, only: %i[show destroy update create]
   before_action :require_login
   load_and_authorize_resource
 
@@ -9,7 +9,7 @@ class GoalsController < ApplicationController
     @goal = @journal_entry.goals.find(params[:id])
   end
 
-  def shwo
+  def show
   end
 
   def new
@@ -37,11 +37,11 @@ class GoalsController < ApplicationController
   end
 
   def find_entry
-    @journal_entry = @journal.journal_entries.find(params[:id])
+    @journal_entry = @journal.journal_entries.find(params[:journal_entry_id])
   end
 
   def goal_params
-    params.require(:journal_entry).permit(:title,
-                                          :description)
+    params.require(:goal).permit(:title,
+                                 :description)
   end
 end

@@ -1,4 +1,4 @@
-<%= simple_form_for([@user, @journal, @journal_entry, @goal], wrapper: :horizontal_form) do |f| %>
+<%= simple_form_for([@user, @journal, @journal_entry, @goal],url: user_journal_journal_entry_goals_path, wrapper: :horizontal_form) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
@@ -6,8 +6,8 @@
     <%= f.input :title, {class: "form-control"} %>
   </div>
   <div>
-    <%= f.label :content %>
-    <%= f.rich_text_area :content %>
+    <%= f.label :description %>
+    <%= f.rich_text_area :description %>
   </div>
 
   <div class="form-actions">
