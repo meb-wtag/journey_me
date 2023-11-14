@@ -10,6 +10,7 @@ FactoryBot.define do
     email { FFaker::Lorem.sentence }
     password { password }
     password_confirmation { password }
+    email_confirmed {}
     confirm_token { confirm_token }
   end
 end

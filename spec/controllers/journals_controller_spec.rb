@@ -83,4 +83,11 @@ RSpec.describe JournalsController, type: :controller do
       expect(journal.reload.files).to_not be_attached
     end
   end
+
+  describe "GET #calendar" do
+    it "renders the :calendar template" do
+      get :calendar, params: {user_id: user.id, journal_id: journal.id }
+      expect(response).to render_template(:calendar)
+    end
+  end
 end

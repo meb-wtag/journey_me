@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :journals do
       get :search, to: 'journals#show', on: :member
       get :calendar, to: 'journals#calendar'
+      get :download, to: 'journals#download', on: :member
       post :upload_file, to: 'journals#upload_file', on: :member
       delete 'delete_file/:file_id', to: 'journals#delete_file', as: :delete_file, on: :member
       resources :journal_entries do

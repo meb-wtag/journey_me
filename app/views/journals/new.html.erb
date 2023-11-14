@@ -2,8 +2,8 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
-  <%= f.input :title, {class: "form-control"}%>
+  <div>
+  <%= f.input :title%>
   <%= f.input :description %>
   <% if @journal.errors[:date].any? %>
     <span class="validation-error">
@@ -14,10 +14,6 @@
   <div>
     <h1><%= t('file.add') %></h1>
     <%= f.input :files, as: :file, label: false, input_html: { multiple: true, direct_upload: true } %>
-    <h1><%= t('file.uploaded') %>:</h1>
-    <% @journal.files.each do |file| %>
-      <%= link_to file.filename, file %>
-    <% end %>
   </div>
 
   <div class="btn btn-primary">

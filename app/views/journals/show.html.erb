@@ -149,7 +149,7 @@
           >
     </div>
     <div>
-      <%= link_to user_journal_path(@user, @journal, format: :pdf), target: '_blank' do %>
+      <%= link_to download_user_journal_path() do %>
         <img src="<%= asset_path('download.svg') %>" alt="Edit Journal" class="magnetic">
       <% end %>
     </div>

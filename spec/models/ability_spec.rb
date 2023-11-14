@@ -17,6 +17,7 @@ RSpec.describe Ability do
     it { is_expected.to be_able_to(:read, Journal) }
     it { is_expected.to be_able_to(:update, Journal) }
     it { is_expected.to be_able_to(:destroy, Journal) }
+    it { is_expected.to be_able_to(:calendar, Journal) }
 
     it { is_expected.to be_able_to(:create, JournalEntry) }
     it { is_expected.to be_able_to(:read, JournalEntry) }
@@ -26,6 +27,7 @@ RSpec.describe Ability do
     it { is_expected.to be_able_to(:create, User) }
     it { is_expected.to be_able_to(:show, User) }
     it { is_expected.to be_able_to(:new, User) }
+    it { is_expected.to be_able_to(:upload_profile_picture, User) }
     it { is_expected.to be_able_to(:update, User, id: user.id) }
 
     it { is_expected.to be_able_to(:index, Task) }

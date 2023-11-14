@@ -1,6 +1,5 @@
-module AuthenticationHelper
-  def sign_in_as!(user)
-    session[:user_id] = user.id
-  end
+def sign_in_as!(user)
+  session[:user_id] = user.id
 end
+
 

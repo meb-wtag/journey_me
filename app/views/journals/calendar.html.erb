@@ -9,7 +9,7 @@
       <% if entries_for_date.any? %>
         <div class="calendar-entry">
           <div class="card">
-            <h3><%= t('calendar.creations')%></h3>
+            <h3><%= t('calendar.creations') %></h3>
             <% entries_for_date.each do |entry| %>
               <p><strong><%= entry.start_time.strftime("%H:%M") %></strong> - <%= entry.title %></p>
             <% end %>
@@ -22,7 +22,7 @@
       <% if entries_for_date.any? %>
         <div class="calendar-entry">
           <div class="card">
-            <h3><%= t('calendar.updates')%></h3>
+            <h3><%= t('calendar.updates') %></h3>
             <% entries_for_date.each do |entry| %>
               <p><strong><%= entry.end_time.strftime("%H:%M") %></strong> - <%= entry.title %></p>
             <% end %>

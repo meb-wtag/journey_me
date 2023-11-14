@@ -20,6 +20,23 @@ class JournalsController < ApplicationController
     redirect_to user_journal_path(@user, @journal)
   end
 
+  def download
+    pdf = Prawn::Document.new
+    pdf.text 'Exported Journal: ' + @journal.title , size: 20, style: :bold, align: :center
+    pdf.move_down 50
+
+    @journal.journal_entries.each do |entry|
+      pdf.text entry.title + " (" + entry.created_at.to_formatted_s(:short) + ")", size: 16, style: :bold
+      pdf.text entry.content
+
+      pdf.start_new_page
+    end
+
+    send_data(pdf.render,
+      filename: @journal.title,
+      type: 'application/pdf')
+  end
+
   def destroy
     if @journal.destroy
       flash[:success] = t('journal.message.success.delete')
