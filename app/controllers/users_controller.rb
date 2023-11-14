@@ -43,10 +43,10 @@ class UsersController < ApplicationController
   end
 
   def change_role
-    if @user.update(user_params[:role])
+    if @user.update(role: params[:role])
       flash[:success] = 'a'
     else
-      flash[:error] = t('mailer.welcome')
+      flash[:error] = 'b'
     end
   end
 

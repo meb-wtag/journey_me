@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :users do
     get 'users/confirm_email/:id/:confirm_token', to: 'users#confirm_email', as: 'confirm_email', on: :member
     post :upload_profile_picture, to: 'users#upload_profile_picture', on: :collection
-    post :change_role, to: 'users#change_role', on: :member
+    patch :change_role, to: 'users#change_role', on: :member
     resources :tasks
     resources :journals do
       get :search, to: 'journals#show', on: :member
