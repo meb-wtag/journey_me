@@ -4,7 +4,6 @@ class CreateJournalEntries < ActiveRecord::Migration[7.0]
       t.integer :journal_id, null: false, index: true, foreign_key: true
       t.string :title, null: false, unique: true
       t.text :content, null: false
-      t.text :goal
 
       t.timestamps
     end

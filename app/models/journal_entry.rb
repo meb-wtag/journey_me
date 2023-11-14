@@ -1,5 +1,6 @@
 class JournalEntry < ApplicationRecord
   belongs_to :journal, inverse_of: :journal_entries
+  has_many :goals
 
   validates :title, presence: true
   validates :content, presence: true
