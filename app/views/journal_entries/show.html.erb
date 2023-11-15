@@ -7,22 +7,6 @@
     <%= f.rich_text_area :content, as: :text %>
   </div>
 
-  <div>
-    <h1>
-      Goals:
-    </h1>
-    <% @journal_entry.goals.each do |goal| %>
-      <div class="card">
-        <%= goal.title %>
-      </div>
-    <% end %>
-    <div>
-      <%= link_to new_user_journal_journal_entry_goal_path(@user, @journal, @journal_entry) do %>
-        <img src="<%= asset_path('add_entry.svg') %>" class="magnetic" alt="Add Entry">
-      <% end %>
-    </div>
-  </div>
-
   <div class="form-actions">
     <%= f.button :submit, class: "btn btn-primary" %>
   </div>

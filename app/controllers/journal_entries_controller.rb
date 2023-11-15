@@ -10,11 +10,6 @@ class JournalEntriesController < ApplicationController
     redirect_to user_journal_path(@user, @journal)
   end
 
-  def show
-    @journal_entry = JournalEntry.find(params[:id])
-    @goal = Goal.new
-  end
-
   def create
     @journal_entry = @journal.journal_entries.new(journal_entry_params)
     if @journal_entry.save
