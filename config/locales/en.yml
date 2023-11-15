@@ -1,4 +1,6 @@
 en:
+  access:
+    denied: You are not allowed to access this Page
   test:
     roles:
       user: user

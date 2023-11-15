@@ -5,5 +5,5 @@ import "./clickable_row"
 import "./upload_profile_picture"
 import "./magnetic"
 import "./file_upload"
-import "./role_change"
+import "./change_role"
 

@@ -3,8 +3,12 @@ class ApplicationController < ActionController::Base
   helper_method :authenticate_user
 
   rescue_from CanCan::AccessDenied do |exception|
-    flash[:error] = t('error.message')
-    redirect_to root_url
+    flash[:error] = t('access.denied')
+    if !current_user.journals.count.zero?
+      redirect_to user_journal_path(current_user, current_user.journals.first)
+    else
+      redirect_to user_path
+    end
   end
 
   def current_user
