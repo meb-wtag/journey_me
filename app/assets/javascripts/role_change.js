@@ -1,4 +1,4 @@
- $(document).ready(function() {
+$(document).ready(function() {
   const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
   const adminSwitch = document.getElementById('admin-switch');
 
