@@ -48,7 +48,7 @@
     <% end %>
     <% if !(current_user == @user) %>
       <div class="admin-switch">
-        <p>admin?</p>
+        <p><%= t('test.user.admin')%></p>
         <label class="switch">
           <input type="checkbox" id="admin-switch" data-user-id="<%= @user.id %>" <%= 'checked' if @user.admin? %>>
           <span class="slider round"></span>
