@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'rails_helper'
 RSpec.describe UsersController, type: :controller do
   let(:user) do
-    FactoryBot.create(:user)
+    FactoryBot.create(:user, role: :admin)
   end
 
   describe 'GET #new' do
@@ -135,6 +135,24 @@ RSpec.describe UsersController, type: :controller do
       sign_in_as!(user)
       get :update, params: { id: user.id, user: { username: nil } }
       expect(response).to redirect_to edit_user_path(user)
+    end
+  end
+
+  describe 'PATCH #role_change' do
+    let!(:user_user) { FactoryBot.create(:user, role: :user) }
+    let!(:admin_user) { FactoryBot.create(:user, role: :admin) }
+    it 'takes the role from admin and changes it to User' do
+      sign_in_as!(user)
+      expect do
+        patch :change_role, params: { id: user_user.id }
+      end.to change { user_user.reload.role }.to 'admin'
+    end
+
+    it 'changes the role to Admin' do
+      sign_in_as!(user)
+      expect do
+        patch :change_role, params: { id: admin_user.id }
+      end.to change { admin_user.reload.role }.to 'user'
     end
   end
 

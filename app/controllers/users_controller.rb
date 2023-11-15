@@ -45,10 +45,10 @@ class UsersController < ApplicationController
   def change_role
     if @user.admin?
       @user.update(role: :user)
-      flash[:success] = 'to user'
+      flash[:success] = t('user.role.to_user')
     else
       @user.update(role: :admin)
-      flash[:success] = 'to admin'
+      flash[:success] = t('user.role.to_admin')
     end
     redirect_to user_path(@user)
   end
