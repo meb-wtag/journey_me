@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'rails_helper'
 RSpec.describe UsersController, type: :controller do
-  let(:user) do
+  let(:admin) do
     FactoryBot.create(:user, role: :admin)
   end
 
