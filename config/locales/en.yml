@@ -1,4 +1,6 @@
 en:
+  access:
+    denied: You are not allowed to access this Page
   test:
     roles:
       user: user
@@ -69,6 +71,10 @@ en:
       title: Title
       assigned_by: Assigned by
   user:
+    role:
+      to_admin: Role successfully changed to Admin
+      to_user: Role successfully changed to User
+      error: There was an error changing the Role
     all_users: All Users
     table:
       username: Username

@@ -42,6 +42,17 @@ class UsersController < ApplicationController
     redirect_to user_path(@user)
   end
 
+  def change_role
+    if @user.admin?
+      @user.update(role: :user)
+      flash[:success] = t('user.role.to_user')
+    else
+      @user.update(role: :admin)
+      flash[:success] = t('user.role.to_admin')
+    end
+    redirect_to user_path(@user)
+  end
+
   def destroy
     if @user.destroy
       flash[:success] = t('user.message.success.delete')

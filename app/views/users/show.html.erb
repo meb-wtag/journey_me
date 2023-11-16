@@ -46,6 +46,15 @@
             } %>
       </div>
     <% end %>
+    <% if !(current_user == @user) %>
+      <div class="admin-switch">
+        <p><%= t('test.user.admin')%></p>
+        <label class="switch">
+          <input type="checkbox" id="admin-switch" data-user-id="<%= @user.id %>" <%= 'checked' if @user.admin? %>>
+          <span class="slider round"></span>
+        </label>
+      </div>
+    <% end %>
   </div>
   <div class="user-information">
     <% if @user.first_name || @user.last_name %>
@@ -68,3 +77,29 @@
     <% end %>
   </div>
 </div>
+
+<script>
+  $(document).ready(function() {
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    const adminSwitch = document.getElementById('admin-switch');
+
+    adminSwitch.addEventListener("click", function() {
+      let userId = adminSwitch.dataset.userId;
+
+      $.ajax({
+        type: "PATCH",
+        url: "/users/"  + userId +  "/change_role",
+        data: {},
+        processData: false,
+        contentType: false,
+        headers: {
+          "X-CSRF-Token": csrfToken,
+        },
+        success: function (data) {
+        },
+        error: function (error) {
+        }
+      });
+    });
+  });
+</script>
